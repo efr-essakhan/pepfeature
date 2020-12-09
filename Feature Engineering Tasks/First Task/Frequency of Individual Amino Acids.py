@@ -108,6 +108,3 @@ print(df.loc[range(10), ['Info_window_seq', 'feat_perc_A',
                          'feat_perc_Q', 'feat_perc_R', 'feat_perc_S', 'feat_perc_T',
                          'feat_perc_V', 'feat_perc_W', 'feat_perc_Y']])
 
-#
-#                          'feat_perc_C', 'feat_perc_D', 'feat_perc_E', 'feat_perc_F',
-#                          'feat_perc_L', 'feat_perc_M', 'feat_perc_N', 'feat_perc_P',
