@@ -29,6 +29,8 @@
 import time
 import pandas as pd
 
+pd.set_option("display.max_columns", None)
+
 # In[4]:
 
 # 'Ov_data.csv' has to be in the same location as program.
@@ -45,14 +47,15 @@ for letter in valid_letters:
 
 
 def peptides_feature_generator(peptide_row):
-    length_of_peptide = 15
+    peptide = peptide_row['Info_window_seq']
+    length_of_peptide = len(peptide)
     number_of_occurrences_of_letter_dict = {'A': 0, 'C': 0, 'D': 0, 'E': 0, 'F': 0, 'G': 0, 'H': 0, 'I': 0, 'K': 0,
                                             'L': 0, 'M': 0, 'N': 0, 'P': 0, 'Q': 0, 'R': 0, 'S': 0, 'T': 0, 'V': 0,
                                             'W': 0, 'Y': 0}
 
-    # 1) Find out number of occurences of each letter in the peptide & figure out peptide length (length of valid amino acid)
+    # 1) Find out number of occurences of each letter in the peptide & figure out peptide length (i.e. number of valid amino-acid letters)
     for i in range(15):
-        peptide_letter = peptide_row['Info_window_seq'][i]
+        peptide_letter = peptide[i]
 
         if peptide_letter in valid_letters:
             number_of_occurrences_of_letter_dict[peptide_letter] += 1
@@ -70,20 +73,21 @@ def peptides_feature_generator(peptide_row):
 # # In[29]:
 
 
-start_time = time.time()
-df.apply(peptides_feature_generator, axis=1)
-print("--- %s seconds ---" % (time.time() - start_time))
-
-
-# In[32]:
-
-
-print(df[['Info_window_seq', 'feat_perc_A',
-       'feat_perc_C', 'feat_perc_D', 'feat_perc_E', 'feat_perc_F',
-       'feat_perc_G', 'feat_perc_H', 'feat_perc_I', 'feat_perc_K',
-       'feat_perc_L', 'feat_perc_M', 'feat_perc_N', 'feat_perc_P',
-       'feat_perc_Q', 'feat_perc_R', 'feat_perc_S', 'feat_perc_T',
-       'feat_perc_V', 'feat_perc_W', 'feat_perc_Y']])
+# start_time = time.time()
+# df.apply(peptides_feature_generator, axis=1)
+# print("--- %s seconds ---" % (time.time() - start_time))
+#
+#
+# # In[32]:
+#
+#
+# print(df[['Info_window_seq', 'feat_perc_A',
+#        'feat_perc_C', 'feat_perc_D', 'feat_perc_E', 'feat_perc_F',
+#        'feat_perc_G', 'feat_perc_H', 'feat_perc_I', 'feat_perc_K',
+#        'feat_perc_L', 'feat_perc_M', 'feat_perc_N', 'feat_perc_P',
+#        'feat_perc_Q', 'feat_perc_R', 'feat_perc_S', 'feat_perc_T',
+#        'feat_perc_V', 'feat_perc_W', 'feat_perc_Y']])
+#
 
 
 # **For testing: the code with smaller dateframe (quicker run time)**
@@ -91,17 +95,19 @@ print(df[['Info_window_seq', 'feat_perc_A',
 # In[39]:
 
 
-# start_time = time.time()
+start_time = time.time()
+
+df.loc[range(10)].apply(peptides_feature_generator, axis=1)
+
+print("--- %s seconds ---" % (time.time() - start_time))
+
+print(df.loc[range(10), ['Info_window_seq', 'feat_perc_A',
+                         'feat_perc_C', 'feat_perc_D', 'feat_perc_E', 'feat_perc_F',
+                         'feat_perc_G', 'feat_perc_H', 'feat_perc_I', 'feat_perc_K',
+                         'feat_perc_L', 'feat_perc_M', 'feat_perc_N', 'feat_perc_P',
+                         'feat_perc_Q', 'feat_perc_R', 'feat_perc_S', 'feat_perc_T',
+                         'feat_perc_V', 'feat_perc_W', 'feat_perc_Y']])
+
 #
-# df.loc[range(10)].apply(peptides_feature_generator, axis=1)
-#
-# print("--- %s seconds ---" % (time.time() - start_time))
-#
-# print(df.loc[range(10), ['Info_window_seq', 'feat_perc_A',
 #                          'feat_perc_C', 'feat_perc_D', 'feat_perc_E', 'feat_perc_F',
-#                          'feat_perc_G', 'feat_perc_H', 'feat_perc_I', 'feat_perc_K',
 #                          'feat_perc_L', 'feat_perc_M', 'feat_perc_N', 'feat_perc_P',
-#                          'feat_perc_Q', 'feat_perc_R', 'feat_perc_S', 'feat_perc_T',
-#                          'feat_perc_V', 'feat_perc_W', 'feat_perc_Y']])
-#
-# print('yolo')
