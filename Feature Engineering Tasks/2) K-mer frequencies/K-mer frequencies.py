@@ -54,7 +54,7 @@ def calculate_kmer(k=3, dataframe=df.loc[range(10)]):
 
 
 start_time = time.time()
-test = calculate_kmer(3, df)
+test = calculate_kmer(4)
 
 print(test)
 print("--- %s seconds ---" % (time.time() - start_time))
@@ -63,9 +63,12 @@ print("--- %s seconds ---" % (time.time() - start_time))
 
 #Results for full df kmer calculation
 #1) calculate_kmer(2, df)  --- 541.756192445755 seconds ---
-#2) calculate_kmer(3, df)
+#2) calculate_kmer(3, df) MemoryError: Unable to allocate 5.30 GiB for an array with shape (8000, 88842) and data type object
 
-
+#Results for df.loc[range(10) kmer calculation
+#1) calculate_kmer(2)  --- 0.18497300148010254 seconds ---
+#2) calculate_kmer(3) --- 2.7471680641174316 seconds ---
+#3)  k=4 --- 48.9020516872406 seconds ---
 
 # As an example, consider the sequence:
 #
