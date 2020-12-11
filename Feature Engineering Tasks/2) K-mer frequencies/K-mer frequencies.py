@@ -12,15 +12,7 @@ df = pd.read_csv('Ov_data.csv')
 
 valid_letters = ['A', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'Y']
 
-#print(''.join(valid_letters))
-
-# #print(df)
-# df = pd.concat([df.loc[range(10)], (pd.DataFrame(columns=[''.join(c) for c in product(''.join(valid_letters), repeat=2)]))])
-# df.fillna(0, inplace=True)
-# print(['feat_perc_{}'.format(''.join(c)) for c in product(''.join(valid_letters), repeat=2)])
-# #print(df.loc[range(10)])
-#
-def calculate_kmer(k=3, dataframe=df.loc[range(10)]):
+def calculate_kmer(k=3, dataframe=df.loc[range(2)]):
     # Create columns
     df = pd.concat(
         [dataframe, (pd.DataFrame(columns=['feat_perc_{}'.format(''.join(c)) for c in product(''.join(valid_letters), repeat=k)]))])
@@ -35,8 +27,6 @@ def calculate_kmer(k=3, dataframe=df.loc[range(10)]):
         for i in range(len(peptide)):
 
             k_mer = peptide[i:i + k]
-            # print(peptide)
-            # print(k_mer)
 
             if len(k_mer) == k:
                 if k_mer in kFreq:
@@ -45,7 +35,7 @@ def calculate_kmer(k=3, dataframe=df.loc[range(10)]):
                     kFreq[k_mer] = 1
 
 
-        #set the kmer frequencies to corresponding columns for each row
+        #set the kmer frequencies to corresponding columns for each row of df
         for kmer, freq in kFreq.items():
             df.loc[row.Index, 'feat_perc_{}'.format(kmer)] = freq #(value / length_of_peptide) * 100
 
@@ -54,7 +44,7 @@ def calculate_kmer(k=3, dataframe=df.loc[range(10)]):
 
 
 start_time = time.time()
-test = calculate_kmer(4)
+test = calculate_kmer(1, df)
 
 print(test)
 print("--- %s seconds ---" % (time.time() - start_time))

@@ -108,3 +108,8 @@ print(df.loc[range(10), ['Info_window_seq', 'feat_perc_A',
                          'feat_perc_Q', 'feat_perc_R', 'feat_perc_S', 'feat_perc_T',
                          'feat_perc_V', 'feat_perc_W', 'feat_perc_Y']])
 
+#Testing:
+
+#The above code takes 800 seconds+
+
+#look at the k-mer version I have done, it can be adopted for this code if the 'k=1', i tried it and it took --- 348.0497336387634 seconds --- for the dataset. TODO: change this code according to k-mer's methodology
