@@ -8,26 +8,25 @@ pd.set_option("display.max_columns", None)
 
 df = pd.read_csv('Ov_data.csv')
 
-#print(df)
-
 valid_letters = ['A', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'Y']
 
-def calculate_kmer(k=3, dataframe=df.loc[range(2)]):
-    # Create columns
+def calculate_kmer(k=2, dataframe=df.loc[range(2)]):
+    # Create columns for each possible Amino-Acid k-letter combination and fill the values as 0 [e.g. for k=3, with the name format: feat_freq_XXX ]
     df = pd.concat(
-        [dataframe, (pd.DataFrame(columns=['feat_perc_{}'.format(''.join(c)) for c in product(''.join(valid_letters), repeat=k)]))])
+        [dataframe, (pd.DataFrame(columns=['feat_freq_{}'.format(''.join(c)) for c in product(''.join(valid_letters), repeat=k)]))])
     df.fillna(0, inplace=True)
 
-    #print(df)
+
     for row in df.itertuples():
         peptide = row.Info_window_seq
-        length_of_peptide = len(peptide) #future use for excluding invalid values in frequence
         kFreq = {}
 
+        # calculate the frequencies of each k-pair of letters in the peptide and store them in kFreq dictionary in the format {Amino-acid-subsequence : Frequency, ...}
         for i in range(len(peptide)):
 
             k_mer = peptide[i:i + k]
 
+            # Filling dict kFreq
             if len(k_mer) == k:
                 if k_mer in kFreq:
                     kFreq[k_mer] += 1
@@ -37,16 +36,14 @@ def calculate_kmer(k=3, dataframe=df.loc[range(2)]):
 
         #set the kmer frequencies to corresponding columns for each row of df
         for kmer, freq in kFreq.items():
-            df.loc[row.Index, 'feat_perc_{}'.format(kmer)] = freq #(value / length_of_peptide) * 100
+            df.loc[row.Index, 'feat_freq_{}'.format(kmer)] = freq #(value / length_of_peptide) * 100
 
     return df
 
 
 
 start_time = time.time()
-test = calculate_kmer(1, df)
-
-print(test)
+print(calculate_kmer(1))
 print("--- %s seconds ---" % (time.time() - start_time))
 
 
