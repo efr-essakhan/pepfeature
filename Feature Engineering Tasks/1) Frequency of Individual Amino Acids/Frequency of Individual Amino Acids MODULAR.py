@@ -45,10 +45,6 @@ def peptides_feature_generator(dataframe=df.loc[range(2)]):
         peptide = row.Info_window_seq
         length_of_peptide = len(peptide)
         number_of_occurrences_of_letter_dict = {}
-        # number_of_occurrences_of_letter_dict = {'A': 0, 'C': 0, 'D': 0, 'E': 0, 'F': 0, 'G': 0, 'H': 0, 'I': 0, 'K': 0,
-        #                                         'L': 0, 'M': 0, 'N': 0, 'P': 0, 'Q': 0, 'R': 0, 'S': 0, 'T': 0, 'V': 0,
-        #                                         'W': 0, 'Y': 0}
-
 
         # 1) Find out number of occurences of each letter in the peptide & figure out peptide length (i.e. number of valid amino-acid letters)
         for i in range(len(peptide)):
@@ -75,32 +71,9 @@ start_time = time.time()
 print(peptides_feature_generator(df))
 print("--- %s seconds ---" % (time.time() - start_time))
 
-# print(df[['Info_window_seq', 'feat_perc_A',
-#        'feat_perc_C', 'feat_perc_D', 'feat_perc_E', 'feat_perc_F',
-#        'feat_perc_G', 'feat_perc_H', 'feat_perc_I', 'feat_perc_K',
-#        'feat_perc_L', 'feat_perc_M', 'feat_perc_N', 'feat_perc_P',
-#        'feat_perc_Q', 'feat_perc_R', 'feat_perc_S', 'feat_perc_T',
-#        'feat_perc_V', 'feat_perc_W', 'feat_perc_Y']])
-#
-
-
-# **For testing: the code with smaller dateframe (quicker run time)**
-
-# start_time = time.time()
-#
-# df.loc[range(10)].apply(peptides_feature_generator, axis=1)
-#
-# print("--- %s seconds ---" % (time.time() - start_time))
-#
-# print(df.loc[range(10), ['Info_window_seq', 'feat_perc_A',
-#                          'feat_perc_C', 'feat_perc_D', 'feat_perc_E', 'feat_perc_F',
-#                          'feat_perc_G', 'feat_perc_H', 'feat_perc_I', 'feat_perc_K',
-#                          'feat_perc_L', 'feat_perc_M', 'feat_perc_N', 'feat_perc_P',
-#                          'feat_perc_Q', 'feat_perc_R', 'feat_perc_S', 'feat_perc_T',
-#                          'feat_perc_V', 'feat_perc_W', 'feat_perc_Y']])
 
 #Testing:
 
-#The above code takes 800 seconds+
+#The OlD above code takes 800 seconds+ with full df
+#The new 'Modular' code takes --- 331.00928473472595 seconds ---
 
-#look at the k-mer version I have done, it can be adopted for this code if the 'k=1', i tried it and it took --- 348.0497336387634 seconds --- for the dataset. TODO: change this code according to k-mer's methodology
