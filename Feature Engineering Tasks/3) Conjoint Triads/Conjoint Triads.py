@@ -9,7 +9,7 @@ pd.set_option("display.max_columns", None)
 df = pd.read_csv('Ov_data.csv')
 
 
-def calc_conjoint_triads(dataframe=df.loc[range(2)]):
+def calc_conjoint_triads(dataframe):
 
     #Dictionary mapping each Amino-Acid to its respective group-value
     AA_classes_dict = {'A': '0', 'G': '0', 'V': '0', 'C': '1', 'F': '2', 'I': '2', 'L': '2', 'P': '2', 'M': '3', 'S': '3', 'T': '3', 'Y': '3',
@@ -20,6 +20,8 @@ def calc_conjoint_triads(dataframe=df.loc[range(2)]):
         [dataframe, (pd.DataFrame(
             columns=['feat_CT_{}'.format(''.join(c)) for c in product('0123456', repeat=3)]))])
     df.fillna(0, inplace=True)
+
+    # ==================== Calculate feature ==================== #
 
     for row in df.itertuples():
         peptide = row.Info_window_seq
@@ -42,12 +44,12 @@ def calc_conjoint_triads(dataframe=df.loc[range(2)]):
 
         # set the frequencies to corresponding columns for each row of df
         for sequence, freq in kFreq.items():
-            df.loc[row.Index, 'feat_CT_{}'.format(sequence)] = freq
+            df.loc[row.Index, 'feat_CT_{}'.format(sequence)] = (freq / len(peptide))
 
     return(df)
 
 start_time = time.time()
-print(calc_conjoint_triads())
+print(calc_conjoint_triads(df.loc[range(2)]))
 print("--- %s seconds ---" % (time.time() - start_time))
 
 

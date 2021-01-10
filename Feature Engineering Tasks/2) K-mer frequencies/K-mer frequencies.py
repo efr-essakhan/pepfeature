@@ -8,14 +8,16 @@ pd.set_option("display.max_columns", None)
 
 df = pd.read_csv('Ov_data.csv')
 
-valid_letters = ['A', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'Y']
+def calculate_kmer(k, dataframe):
 
-def calculate_kmer(k=2, dataframe=df.loc[range(2)]):
+    valid_letters = ['A', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'Y']
+
     # Create columns for each possible Amino-Acid k-letter combination and fill the values as 0 [e.g. for k=3, with the name format: feat_freq_XXX ]
     df = pd.concat(
         [dataframe, (pd.DataFrame(columns=['feat_freq_{}'.format(''.join(c)) for c in product(''.join(valid_letters), repeat=k)]))])
     df.fillna(0, inplace=True)
 
+    # ==================== Calculate feature ==================== #
 
     for row in df.itertuples():
         peptide = row.Info_window_seq
@@ -36,17 +38,18 @@ def calculate_kmer(k=2, dataframe=df.loc[range(2)]):
 
         #set the kmer frequencies to corresponding columns for each row of df
         for kmer, freq in kFreq.items():
-            df.loc[row.Index, 'feat_freq_{}'.format(kmer)] = freq #(value / length_of_peptide) * 100
+            df.loc[row.Index, 'feat_freq_{}'.format(kmer)] = (freq / sum(kFreq.values()))
 
     return df
 
 
 
 start_time = time.time()
-print(calculate_kmer(1))
+print(calculate_kmer(1, df.loc[range(2)]))
 print("--- %s seconds ---" % (time.time() - start_time))
 
 
+#Above code manually tested for k=1, k=2, k=3 with df.loc[range(2)] & works (11/1/21)
 
 #Results for full df kmer calculation
 #1) calculate_kmer(2, df)  --- 541.756192445755 seconds ---
@@ -63,21 +66,40 @@ print("--- %s seconds ---" % (time.time() - start_time))
 #
 # The non-zero values of 2-mer features would be (following our naming standard):
 #
-# LL
-# LL
-# LL
-# ll
-# ll
-# ll
-# ll
-# ld
-# dv
-# vh
-# hi
-# ie
-# es
-# sg
+# 1 LL
+# 2 LL
+# 3 LL
+# 4 ll
+# 5 ll
+# 6 ll
+# 7 ll
+# 8 ld
+# 9 dv
+# 10 vh
+# 11 hi
+# 12 ie
+# 13 es
+# 14 sg
 
+#So e.g. for LL it should be 7/14 = 0.5 <- this is to store in the dataset
+
+
+#LLLLLLLDVHIESGE
+
+# 1 LL
+# 2 LL
+# 3 LL
+# 4 LL
+# 5 LL
+# 6 LL
+# 7 LD
+# 8 DV
+# 9 VH
+# 10 HI
+# 11 IE
+# 12 ES
+# 13 SG
+# 14 GE
 
 
 
