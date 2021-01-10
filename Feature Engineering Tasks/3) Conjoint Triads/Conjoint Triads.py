@@ -44,7 +44,7 @@ def calc_conjoint_triads(dataframe):
 
         # set the frequencies to corresponding columns for each row of df
         for sequence, freq in kFreq.items():
-            df.loc[row.Index, 'feat_CT_{}'.format(sequence)] = (freq / len(peptide))
+            df.loc[row.Index, 'feat_CT_{}'.format(sequence)] = (freq / sum(kFreq.values()))
 
     return(df)
 
@@ -53,7 +53,7 @@ print(calc_conjoint_triads(df.loc[range(2)]))
 print("--- %s seconds ---" % (time.time() - start_time))
 
 
-#Above code is tested and it works.
+#Above code is tested and it works - results matches the teachers excel files given (11/1/21)
 
 # Time Results for df.loc[range(2)] calculation:
 # --- 0.11994695663452148 seconds ---
