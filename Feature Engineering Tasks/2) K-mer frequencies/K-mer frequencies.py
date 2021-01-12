@@ -37,15 +37,16 @@ def calculate_kmer(k, dataframe):
 
 
         #set the kmer frequencies to corresponding columns for each row of df
-        for kmer, freq in kFreq.items():
-            df.loc[row.Index, 'feat_freq_{}'.format(kmer)] = (freq / sum(kFreq.values()))
+        totalQuantity = sum(kFreq.values())
+        for kmer, quantity in kFreq.items():
+            df.loc[row.Index, 'feat_freq_{}'.format(kmer)] = (quantity / totalQuantity)
 
     return df
 
 
 
 start_time = time.time()
-print(calculate_kmer(1, df.loc[range(2)]))
+print(calculate_kmer(2, df.loc[range(100)]))
 print("--- %s seconds ---" % (time.time() - start_time))
 
 

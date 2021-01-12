@@ -43,13 +43,14 @@ def calc_conjoint_triads(dataframe):
                     kFreq[subsequence] = 1
 
         # set the frequencies to corresponding columns for each row of df
-        for sequence, freq in kFreq.items():
-            df.loc[row.Index, 'feat_CT_{}'.format(sequence)] = (freq / sum(kFreq.values()))
+        totalQuantity = sum(kFreq.values())
+        for sequence, quantity in kFreq.items():
+            df.loc[row.Index, 'feat_CT_{}'.format(sequence)] = (quantity / totalQuantity)
 
     return(df)
 
 start_time = time.time()
-print(calc_conjoint_triads(df.loc[range(2)]))
+print(calc_conjoint_triads(df.loc[range(100)]))
 print("--- %s seconds ---" % (time.time() - start_time))
 
 
