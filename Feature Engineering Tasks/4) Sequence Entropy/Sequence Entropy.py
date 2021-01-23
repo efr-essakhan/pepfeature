@@ -1,48 +1,35 @@
-from math import log, e
+from math import log
 import numpy as np
 import pandas as pd
+import time
 
 pd.set_option("display.max_columns", None)
 
 df = pd.read_csv('Ov_data.csv')
 
-a = "DSSHESDSNSNEGRH"
+def entropy(dataframe):
 
+    dataframe['feat_entropy'] = 0
 
-def entropy2(aa_sequence, base=2):
+    for row in dataframe.itertuples():
 
-    for letter in valid_letters:
-        df['feat_perc_{}'.format(letter)] = 0
+        """ Computes entropy of Amino Acid sequence. """
+        aa_sequence = list(row.Info_window_seq)
+        total_aa_in_seq = len(aa_sequence)
 
-    """ Computes entropy of label distribution. """
-    aa_sequence = list(aa_sequence)
-    total_aa_in_seq = len(aa_sequence)
+        arr_values, arr_counts = np.unique(aa_sequence, return_counts=True)
+        arr_probs_of_every_aa = arr_counts / total_aa_in_seq
 
-    if total_aa_in_seq <= 1:
-        return 0
+        entropy = 0.
 
-    arr_values, arr_counts = np.unique(aa_sequence, return_counts=True)
-    print(arr_values)
-    print(arr_counts)
-    arr_probs_of_every_aa = arr_counts / total_aa_in_seq
-    print(arr_probs_of_every_aa)
-    n_classes = np.count_nonzero(arr_probs_of_every_aa)
+        # Compute entropy
+        for i in arr_probs_of_every_aa:
+            entropy -= i * log(i, 2)
 
-    if n_classes <= 1:
-        return 0
+        dataframe.loc[row.Index, 'feat_entropy'] = entropy
 
-    ent = 0.
+    return dataframe
 
-    # Compute entropy
-    for i in arr_probs_of_every_aa:
-        ent -= i * log(i, base)
-
-    return ent
-
-print(entropy2(a))
-
-# #a = pd.Series(a)
-# en(a)
-# print(a)
-# print(a.value_counts())
-# print(en(a.value_counts()))
+start_time = time.time()
+print(entropy(df.loc[range(100)]))
+print("--- %s seconds ---" % (time.time() - start_time))

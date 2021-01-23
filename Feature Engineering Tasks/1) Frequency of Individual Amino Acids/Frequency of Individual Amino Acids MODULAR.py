@@ -35,12 +35,14 @@ df = pd.read_csv('Ov_data.csv')
 valid_letters = ['A', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'Y']
 
 
-def peptides_feature_generator(dataframe=df.loc[range(2)]):
+def peptides_feature_generator(dataframe):
+
+    valid_letters = ['A', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'Y']
     # Create columns
     for letter in valid_letters:
-        df['feat_perc_{}'.format(letter)] = 0
+        dataframe['feat_perc_{}'.format(letter)] = 0
 
-    for row in df.itertuples():
+    for row in dataframe.itertuples():
 
         peptide = row.Info_window_seq
         length_of_peptide = len(peptide)
@@ -60,15 +62,15 @@ def peptides_feature_generator(dataframe=df.loc[range(2)]):
 
         # 2) Find out & set the percentage of each letter in the peptides
         for aa, freq in number_of_occurrences_of_letter_dict.items():
-            df.loc[row.Index, 'feat_perc_{}'.format(aa)] = (freq / length_of_peptide) * 100
+            dataframe.loc[row.Index, 'feat_perc_{}'.format(aa)] = (freq / length_of_peptide) * 100
 
-    return (df)
+    return (dataframe)
 
 
 # **Running the code on dataframe (Ov_data.csv)**
 
 start_time = time.time()
-print(peptides_feature_generator(df))
+print(peptides_feature_generator(df.loc[range(2)]))
 print("--- %s seconds ---" % (time.time() - start_time))
 
 

@@ -12,13 +12,13 @@ def calculate_kmer(k, dataframe):
     valid_letters = ['A', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'Y']
 
     # Create columns for each possible Amino-Acid k-letter combination and fill the values as 0 [e.g. for k=3, with the name format: feat_freq_XXX ]
-    df = pd.concat(
+    dataframe = pd.concat(
         [dataframe, (pd.DataFrame(columns=['feat_freq_{}'.format(''.join(c)) for c in product(''.join(valid_letters), repeat=k)]))])
-    df.fillna(0, inplace=True)
+    dataframe.fillna(0, inplace=True)
 
     # ==================== Calculate feature ==================== #
 
-    for row in df.itertuples():
+    for row in dataframe.itertuples():
         peptide = row.Info_window_seq
         kFreq = {}
 
@@ -38,9 +38,9 @@ def calculate_kmer(k, dataframe):
         #set the kmer frequencies to corresponding columns for each row of df
         totalQuantity = sum(kFreq.values())
         for kmer, quantity in kFreq.items():
-            df.loc[row.Index, 'feat_freq_{}'.format(kmer)] = (quantity / totalQuantity)
+            dataframe.loc[row.Index, 'feat_freq_{}'.format(kmer)] = (quantity / totalQuantity)
 
-    return df
+    return dataframe
 
 
 

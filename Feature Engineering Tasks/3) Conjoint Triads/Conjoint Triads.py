@@ -15,14 +15,14 @@ def calc_conjoint_triads(dataframe):
                        'H': '4', 'N': '4', 'Q': '4', 'W': '4', 'K': '5', 'R': '5', 'D': '6', 'E': '6'}
 
     # Create columns for each possible 3-number (group-value) combination and fill them with 0 [with the name format: feat_CT_XXX ]
-    df = pd.concat(
+    dataframe = pd.concat(
         [dataframe, (pd.DataFrame(
             columns=['feat_CT_{}'.format(''.join(c)) for c in product('0123456', repeat=3)]))])
-    df.fillna(0, inplace=True)
+    dataframe.fillna(0, inplace=True)
 
     # ==================== Calculate feature ==================== #
 
-    for row in df.itertuples():
+    for row in dataframe.itertuples():
         peptide = row.Info_window_seq
         kFreq = {}
 
@@ -41,12 +41,12 @@ def calc_conjoint_triads(dataframe):
                 else:
                     kFreq[subsequence] = 1
 
-        # set the frequencies to corresponding columns for each row of df
+        # set the frequencies to corresponding columns for each row of the dataframe
         totalQuantity = sum(kFreq.values())
         for sequence, quantity in kFreq.items():
-            df.loc[row.Index, 'feat_CT_{}'.format(sequence)] = (quantity / totalQuantity)
+            dataframe.loc[row.Index, 'feat_CT_{}'.format(sequence)] = (quantity / totalQuantity)
 
-    return(df)
+    return(dataframe)
 
 start_time = time.time()
 print(calc_conjoint_triads(df.loc[range(100)]))
