@@ -35,7 +35,7 @@ def calculate_kmer(k, dataframe):
                     kFreq[k_mer] = 1
 
 
-        #set the kmer frequencies to corresponding columns for each row of df
+        #set the kmer frequencies to corresponding columns for each row of the dataframe
         totalQuantity = sum(kFreq.values())
         for kmer, quantity in kFreq.items():
             dataframe.loc[row.Index, 'feat_freq_{}'.format(kmer)] = (quantity / totalQuantity)

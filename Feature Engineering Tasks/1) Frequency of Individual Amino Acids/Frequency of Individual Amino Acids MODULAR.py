@@ -32,8 +32,6 @@ pd.set_option("display.max_columns", None)
 # 'Ov_data.csv' has to be in the same location as program.
 df = pd.read_csv('Ov_data.csv')
 
-valid_letters = ['A', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'Y']
-
 
 def peptides_feature_generator(dataframe):
 
