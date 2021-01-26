@@ -68,7 +68,7 @@ def peptides_feature_generator(dataframe):
 # **Running the code on dataframe (Ov_data.csv)**
 
 start_time = time.time()
-print(peptides_feature_generator(df.loc[range(2)]))
+print(peptides_feature_generator(df.loc[range(1)]))
 print("--- %s seconds ---" % (time.time() - start_time))
 
 

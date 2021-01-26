@@ -34,8 +34,10 @@ def calc_conjoint_triads(dataframe):
 
             subsequence = peptide_grp_val_eqv[i:i + 3]
 
-            #Filling dict kFreq
+            #Fil
+            # ling dict kFreq
             if len(subsequence) == 3:
+
                 if subsequence in kFreq:
                     kFreq[subsequence] += 1
                 else:
