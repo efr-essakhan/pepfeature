@@ -35,5 +35,5 @@ def molecular_weight(dataframe):
     return dataframe
 
 start_time = time.time()
-print(molecular_weight(df.loc[range(100)]))
+print(molecular_weight(df.loc[range(10)]))
 print("--- %s seconds ---" % (time.time() - start_time))
