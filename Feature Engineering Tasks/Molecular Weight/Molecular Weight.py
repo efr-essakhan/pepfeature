@@ -26,8 +26,11 @@ def molecular_weight(dataframe):
         #Variables for each atom, to keep count of weighted sum for each aa in the peptide
         weight = 0
 
-        for i in range(len(every_unique_aa)):
-            weight += (counts_of_every_unique_aa[i] * AA_weights_dict[every_unique_aa[i]])
+        for aa, counts in zip(every_unique_aa, counts_of_every_unique_aa):
+            weight += (counts * AA_weights_dict[aa])
+
+        # for i in range(len(every_unique_aa)):
+        #     weight += (counts_of_every_unique_aa[i] * AA_weights_dict[every_unique_aa[i]])
 
         #Creating the features and setting them
         dataframe.loc[row.Index, 'feat_weight'] = weight
