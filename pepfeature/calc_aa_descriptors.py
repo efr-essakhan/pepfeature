@@ -37,5 +37,5 @@ def calc_aa_descriptors(dataframe):
     return (dataframe)
 
 start_time = time.time()
-print(aadesc(dc.loc[range(1)]))
+print(calc_aa_descriptors(dc.loc[range(1)]))
 print("--- %s seconds ---" % (time.time() - start_time))

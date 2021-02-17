@@ -68,7 +68,7 @@ def calc_aa_percentages(dataframe):
 # **Running the code on dataframe (Ov_data.csv)**
 
 start_time = time.time()
-print(peptides_feature_generator(df.loc[range(1)]))
+print(calc_aa_percentages(df.loc[range(1)]))
 print("--- %s seconds ---" % (time.time() - start_time))
 
 
