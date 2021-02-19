@@ -1,5 +1,5 @@
 #calc_amino_acid_composition.py
-
+import os
 from multiprocessing import Pool
 import multiprocessing as mp
 import numpy as np
@@ -7,6 +7,8 @@ import pandas as pd
 #from pandarallel import pandarallel
 import datetime
 from datetime import datetime
+
+import psutil
 
 pd.set_option("display.max_columns", None)
 
@@ -38,40 +40,47 @@ def calc_aa_composition(dataframe):
 
     return dataframe
 
-def calculate(dataframe, Ncores=4, chunksize = 50000, csv_path = ''): #function that the client should call.
+def df_chunking(df, chunksize):
+    """Splits df into chunks, drops data of original df inplace"""
+    count = 0 # Counter for chunks
+    while len(df):
+        count += 1
+        print(f'Preparing chunk {count}')
+        # Return df chunk
+        yield df.iloc[:chunksize].copy()
+        # Delete data in place because it is no longer needed
+        df.drop(df.index[:chunksize], inplace=True)
 
-    list_df = [dataframe[i:i + chunksize] for i in range(0, dataframe.shape[0], chunksize)]
 
-#313 042 091 1687
+def calculate(dataframe, Ncores=4, chunksize = 50000, csv_path = 'result'): #function that the client should call.
+
+
+    #list_df = [dataframe[i:i + chunksize] for i in range(0, dataframe.shape[0], chunksize)]
+    #list_df = (dataframe[i:i + chunksize] for i in range(0, dataframe.shape[0], chunksize)) #generator used insted (done using round brackets instead of square)
 
     # creating a pool obj
+    #p = Pool(processes=Ncores)
 
-    p = Pool(processes=Ncores)
+    ctx = mp.get_context('spawn')
+    p = ctx.Pool(processes=Ncores)
 
-    #result_df = []
-    #for i in range(0, dataframe.shape[0], chunksize):
-
-
-    # apply the function to the df, whilst distributing it on each of the processors
-    #result_df = pd.concat(p.map(calc_aa_composition, list_df))
-    for idx, result_df in enumerate(p.imap(calc_aa_composition, list_df)):
+    #Running each of the chunks in list_df to one of the cores available and saving the DF with the features calculated as a csv
+    #for idx, result_df in enumerate(p.imap(calc_aa_composition, list_df)):
+    for idx, result_df in enumerate(p.imap(calc_aa_composition, df_chunking(dataframe, chunksize))):
         result_df.to_csv(f'{csv_path}_{datetime.now().strftime("%d%m%Y-%H%M%S")}_{idx}.csv', index = False)
-
         print(result_df)
         print('-------------------------------------------------')
-
 
     p.close()
     p.join() # the process will complete and only then any code after can be ran
 
-    return result_df
 
 
 
 
-def dummydataframe():
+def dummydataframe(rows):
 
-    dc = pd.DataFrame(np.random.randint(0, 100, size=(1000*10000, 12))) #8500 total features from methods
+    dc = pd.DataFrame(np.random.randint(0, 100, size=(rows, 12))) #8500 total features from methods
     dc['Info_window_seq'] = "LLLLLLLLDVHIESG"
 
     return (dc)

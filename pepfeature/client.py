@@ -5,12 +5,18 @@ from pepfeature import calc_amino_acid_composition
 import pandas as pd
 import time
 import multiprocessing
+import os
+import psutil
 
 df = pd.read_csv('Ov_data.csv')
 
 if __name__ == '__main__':
     start = time.time()
-    calc_amino_acid_composition.calculate(dataframe=calc_amino_acid_composition.dummydataframe(), Ncores=multiprocessing.cpu_count(), chunksize=100000, csv_path='yolo')
+
+    process = psutil.Process(os.getpid())
+    print(f'before memory usage {process.memory_percent()}')
+    print(calc_amino_acid_composition.calculate(dataframe=calc_amino_acid_composition.dummydataframe(100000), Ncores=multiprocessing.cpu_count(), chunksize=50000, csv_path='300k'))
+    print(f'after memory usage {process.memory_percent()}')
     #df.loc[range(50000)]
     #calc_amino_acid_composition.dummydataframe()
     #print(calc_amino_acid_composition.calc_aa_composition(df.loc[range(50000)]))
