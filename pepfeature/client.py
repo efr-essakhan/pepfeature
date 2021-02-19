@@ -1,5 +1,5 @@
 # client.py
-from pepfeature import calc_amino_acid_composition
+from pepfeature import calc_kmer_composition
 # import pepfeature
 
 import pandas as pd
@@ -16,7 +16,9 @@ if __name__ == '__main__':
     # process = psutil.Process(os.getpid())
     # print(f'before memory usage {process.memory_percent()}')
     # print(f'after memory usage {process.memory_percent()}')
-    print(calc_amino_acid_composition.calculate(dataframe=df.loc[range(1)], Ncores=multiprocessing.cpu_count()))
+    #print(pf.utils.calculate_export_csv(dataframe=df.loc[range(1)], function=calc_kmer_composition, Ncores=multiprocessing.cpu_count()))
+    print(calc_kmer_composition.calculate_export_csv(k=1, dataframe = df.loc[range(1)], chunksize = 1))
+
     #, chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'test']
     # for gm_chunk in pd.read_csv('Ov_data.csv', chunksize=20000):
     #     print(calc_amino_acid_composition.calculate(dataframe=gm_chunk,
