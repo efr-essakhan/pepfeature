@@ -6,7 +6,7 @@ from itertools import product
 from pepfeature import utils
 import multiprocessing as mp
 
-def _calc_kmer_composition(dataframe, k):
+def kmer_composition(dataframe, k):
 
     valid_letters = ['A', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'Y']
 
@@ -42,17 +42,23 @@ def _calc_kmer_composition(dataframe, k):
     return dataframe
 
 
-def calculate_export_csv(k, dataframe, Ncores=4, chunksize = 50000, csv_path_filename = ['', 'result']): #function that the client should call.
+# def calculate_export_csv(k, dataframe, Ncores=4, chunksize = 50000, csv_path_filename = ['', 'result']): #function that the client should call.
+#
+#     ctx = mp.get_context('spawn') #This guarantees that the Pool processes are just spawned and not forked from the parent process. Accordingly, none of them has access to the original DataFrame and all of them only need a tiny fraction of the parent's memory.
+#     p = ctx.Pool(processes=Ncores)
+#
+#     #Running each of the chunks in list_df to one of the cores available and saving the DF with the features calculated as a csv
+#     #for idx, result_df in enumerate(p.imap(_calc_kmer_composition, df_chunking(dataframe, chunksize))):
+#     for idx, result_df in enumerate(p.imap(functools.partial(_calc_kmer_composition, k = k), utils.df_chunking(dataframe, chunksize))):
+#         result_df.to_csv(os.path.join(csv_path_filename[0], csv_path_filename[1] + f"_{idx}.csv"), index = False) #_{datetime.now().strftime('d%m%Y-%H%M%S')}
+#         print(result_df)
+#         print('-------------------------------------------------')
+#
+#     p.close()
+#     p.join() # the process will complete and only then any code after can be ran
 
-    ctx = mp.get_context('spawn') #This guarantees that the Pool processes are just spawned and not forked from the parent process. Accordingly, none of them has access to the original DataFrame and all of them only need a tiny fraction of the parent's memory.
-    p = ctx.Pool(processes=Ncores)
 
-    #Running each of the chunks in list_df to one of the cores available and saving the DF with the features calculated as a csv
-    #for idx, result_df in enumerate(p.imap(_calc_kmer_composition, df_chunking(dataframe, chunksize))):
-    for idx, result_df in enumerate(p.imap(functools.partial(_calc_kmer_composition, utils.df_chunking(dataframe, chunksize), k))):
-        result_df.to_csv(os.path.join(csv_path_filename[0], csv_path_filename[1] + f"_{idx}.csv"), index = False) #_{datetime.now().strftime('d%m%Y-%H%M%S')}
-        print(result_df)
-        print('-------------------------------------------------')
+def calc_kmer_composition_csv(k, dataframe, Ncores=4, chunksize = 50000, csv_path_filename = ['', 'result']): #function that the client should call.
+    utils.calculate_export_csv(dataframe = dataframe, function = kmer_composition, Ncores= Ncores, chunksize= chunksize, csv_path_filename = csv_path_filename, k=k)
 
-    p.close()
-    p.join() # the process will complete and only then any code after can be ran
+

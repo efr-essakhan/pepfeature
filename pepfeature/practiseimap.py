@@ -59,7 +59,7 @@ def main():
     print('DONE')
 
 
-@profile
+
 def append_lst():
     lst = []
     for i in range(1000):
@@ -69,8 +69,10 @@ def append_lst():
 if __name__ == '__main__':
     #main()
 
-    append_lst()
-    #yolo = df_chunking(df.loc[50000], 10000)
+    #append_lst()
+    df_chunking(df.loc[1], 1)
+    yolo = df_chunking(df.loc[1], 1)
+    print(yolo)
 
 
 

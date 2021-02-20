@@ -17,7 +17,7 @@ if __name__ == '__main__':
     # print(f'before memory usage {process.memory_percent()}')
     # print(f'after memory usage {process.memory_percent()}')
     #print(pf.utils.calculate_export_csv(dataframe=df.loc[range(1)], function=calc_kmer_composition, Ncores=multiprocessing.cpu_count()))
-    print(calc_kmer_composition.calculate_export_csv(k=1, dataframe = df.loc[range(1)], chunksize = 1))
+    print(calc_kmer_composition.calc_kmer_composition_csv(k=1, Ncores=1, dataframe = df.loc[range(1)], chunksize = 5))
 
     #, chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'test']
     # for gm_chunk in pd.read_csv('Ov_data.csv', chunksize=20000):
