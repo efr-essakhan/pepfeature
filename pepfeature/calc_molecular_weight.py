@@ -1,12 +1,7 @@
-import pandas as pd
 import numpy as np
-import time
+from pepfeature import utils
 
-pd.set_option("display.max_columns", None)
-
-df = pd.read_csv('Ov_data.csv')
-
-def calc_molecular_weight(dataframe):
+def _calc_molecular_weight(dataframe):
 
     # Dictionary mapping each Amino-Acid to its respective group-value
     AA_weights_dict = {'A': 89.09, 'G': 75.07, 'V': 117.15, 'C': 121.16, 'F': 165.19, 'I': 131.17, 'L': 131.17,
@@ -37,6 +32,5 @@ def calc_molecular_weight(dataframe):
 
     return dataframe
 
-start_time = time.time()
-print(molecular_weight(df.loc[range(10)]))
-print("--- %s seconds ---" % (time.time() - start_time))
+def calculate_csv(dataframe, Ncores=4, chunksize = 50000, csv_path_filename = ['', 'result']): #function that the client should call.
+    utils.calculate_export_csv(dataframe = dataframe, function = _calc_molecular_weight, Ncores= Ncores, chunksize= chunksize, csv_path_filename = csv_path_filename)

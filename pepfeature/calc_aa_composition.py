@@ -1,11 +1,6 @@
-import pandas as pd
-import time
+from pepfeature import utils
 
-pd.set_option("display.max_columns", None)
-
-df = pd.read_csv('Ov_data.csv')
-
-def calc_aa_composition(dataframe):
+def _calc_aa_composition(dataframe):
 
     # Dictionary mapping each Amino-Acid to its respective group-value
     AA_groups_dict = {'Tiny': ["A", "C", "G", "S", "T"], 'Small': ["A", "B", "C", "D", "G", "N", "P", "S", "T", "V"],
@@ -31,8 +26,5 @@ def calc_aa_composition(dataframe):
 
     return dataframe
 
-start_time = time.time()
-print(calc_aa_composition(df.loc[range(100)]))
-print("--- %s seconds ---" % (time.time() - start_time))
-
-#Code works
+def calculate_csv(dataframe, Ncores=4, chunksize = 50000, csv_path_filename = ['', 'result']): #function that the client should call.
+    utils.calculate_export_csv(dataframe = dataframe, function = _calc_aa_composition, Ncores= Ncores, chunksize= chunksize, csv_path_filename = csv_path_filename)

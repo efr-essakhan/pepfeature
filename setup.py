@@ -9,12 +9,12 @@ README = (HERE / "README.md").read_text()
 
 # This call to setup() does all the work
 setup(
-    name="pepfeature",
+    name="epifeature",
     version="1.1.0",
     description="Functions for calculating epitope features (feature extraction)",
     long_description=README,
     long_description_content_type="text/markdown",
-    url="https://github.com/essakh/pepfeature",
+    url="https://github.com/essakh/epifeature",
     author="Essa Khan",
     author_email="contact.essakh@gmail.com",
     license="MIT",

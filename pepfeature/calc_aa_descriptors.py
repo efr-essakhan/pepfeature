@@ -1,14 +1,8 @@
-import time
-
+from pepfeature import utils
 import numpy as np
 import pandas as pd
 
-pd.set_option("display.max_columns", None)
-
-dc = pd.read_csv('Ov_data.csv')
-
-
-def calc_aa_descriptors(dataframe):
+def _calc_aa_descriptors(dataframe):
     # Dictionary mapping each Amino-Acid to its respective group-value
 
     AA_properties_df = []
@@ -36,6 +30,5 @@ def calc_aa_descriptors(dataframe):
 
     return (dataframe)
 
-start_time = time.time()
-print(calc_aa_descriptors(dc.loc[range(1)]))
-print("--- %s seconds ---" % (time.time() - start_time))
+def calculate_csv(dataframe, Ncores=4, chunksize = 50000, csv_path_filename = ['', 'result']): #function that the client should call.
+    utils.calculate_export_csv(dataframe = dataframe, function = _calc_aa_descriptors, Ncores= Ncores, chunksize= chunksize, csv_path_filename = csv_path_filename)

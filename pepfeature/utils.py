@@ -1,4 +1,5 @@
 import os
+import re
 from multiprocessing import Pool
 import multiprocessing as mp
 import numpy as np
@@ -27,12 +28,13 @@ def df_chunking(df, chunksize):
 def calculate_export_csv(dataframe, function, Ncores=4, chunksize = 50000, csv_path_filename = ['', 'result'],
                          **kwargs): #function that the client should call.
 
+    dataframe = remove_invalid_aa(dataframe)
     ctx = mp.get_context('spawn') #This guarantees that the Pool processes are just spawned and not forked from the parent process. Accordingly, none of them has access to the original DataFrame and all of them only need a tiny fraction of the parent's memory.
     p = ctx.Pool(processes=Ncores)
 
     #Running each of the chunks in list_df to one of the cores available and saving the DF with the features calculated as a csv
     for idx, result_df in enumerate(p.imap(functools.partial(function, **kwargs), df_chunking(dataframe, chunksize))):
-        result_df.to_csv(os.path.join(csv_path_filename[0], csv_path_filename[1] + f"_{idx}.csv"), index = False) #_{datetime.now().strftime('d%m%Y-%H%M%S')}
+        result_df.to_csv(os.path.join(csv_path_filename[0], csv_path_filename[1] + f"_{datetime.now().strftime('%d%m%Y-%H%M%S')}_{idx}.csv"), index = False) #_{datetime.now().strftime('d%m%Y-%H%M%S')}
         print(result_df)
         print('-------------------------------------------------')
 
@@ -54,6 +56,9 @@ def calculate_return_df(dataframe, function, Ncores=4, chunksize = 500): #functi
 
     return result_df
 
+def remove_invalid_aa(df):
+    df['Info_window_seq'] = [re.sub("[BJXZ]", "", str(x)) for x in df['Info_window_seq']]
+    return df
 
 def dummydataframe(rows):
 

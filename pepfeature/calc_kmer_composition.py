@@ -1,12 +1,8 @@
-import functools
-import os
-
 import pandas as pd
 from itertools import product
 from pepfeature import utils
-import multiprocessing as mp
 
-def kmer_composition(dataframe, k):
+def _calc_kmer_composition(dataframe, k):
 
     valid_letters = ['A', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'Y']
 
@@ -58,7 +54,7 @@ def kmer_composition(dataframe, k):
 #     p.join() # the process will complete and only then any code after can be ran
 
 
-def calc_kmer_composition_csv(k, dataframe, Ncores=4, chunksize = 50000, csv_path_filename = ['', 'result']): #function that the client should call.
-    utils.calculate_export_csv(dataframe = dataframe, function = kmer_composition, Ncores= Ncores, chunksize= chunksize, csv_path_filename = csv_path_filename, k=k)
+def calculate_csv(k, dataframe, Ncores=4, chunksize = 50000, csv_path_filename = ['', 'result']): #function that the client should call.
+    utils.calculate_export_csv(dataframe = dataframe, function = _calc_kmer_composition, Ncores= Ncores, chunksize= chunksize, csv_path_filename = csv_path_filename, k=k)
 
 

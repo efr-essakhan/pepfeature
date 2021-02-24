@@ -1,7 +1,7 @@
 
 -----------------
 
-# pepfeature: A package that consists of functions for calculating epitope/peptide features for machine learning purposes.
+# epifeature: A package that consists of functions for calculating epitope/peptide features for machine learning purposes.
 
 <table>
 <tr>

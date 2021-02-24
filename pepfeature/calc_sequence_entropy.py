@@ -1,13 +1,8 @@
 from math import log
 import numpy as np
-import pandas as pd
-import time
+from pepfeature import utils
 
-pd.set_option("display.max_columns", None)
-
-df = pd.read_csv('Ov_data.csv')
-
-def calc_sequence_entropy(dataframe):
+def _calc_sequence_entropy(dataframe):
     """ Computes entropy of Amino Acid sequence. """
 
     # Create column
@@ -34,10 +29,5 @@ def calc_sequence_entropy(dataframe):
 
     return dataframe
 
-start_time = time.time()
-print(entropy(df))
-print("--- %s seconds ---" % (time.time() - start_time))
-
-
-#Above code works 23 Jan 2021
-#--- 45.34812784194946 seconds --- for full df
+def calculate_csv(dataframe, Ncores=4, chunksize = 50000, csv_path_filename = ['', 'result']): #function that the client should call.
+    utils.calculate_export_csv(dataframe = dataframe, function = _calc_sequence_entropy, Ncores= Ncores, chunksize= chunksize, csv_path_filename = csv_path_filename)

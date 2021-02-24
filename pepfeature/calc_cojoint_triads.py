@@ -1,14 +1,8 @@
-import time
 import pandas as pd
+from pepfeature import utils
 from itertools import product
 
-
-pd.set_option("display.max_columns", None)
-
-df = pd.read_csv('Ov_data.csv')
-
-
-def calc_cojoint_triads(dataframe):
+def _calc_cojoint_triads(dataframe):
 
     #Dictionary mapping each Amino-Acid to its respective group-value
     AA_classes_dict = {'A': '0', 'G': '0', 'V': '0', 'C': '1', 'F': '2', 'I': '2', 'L': '2', 'P': '2', 'M': '3', 'S': '3', 'T': '3', 'Y': '3',
@@ -50,27 +44,5 @@ def calc_cojoint_triads(dataframe):
 
     return(dataframe)
 
-start_time = time.time()
-print(calc_conjoint_triads(df.loc[range(100)]))
-print("--- %s seconds ---" % (time.time() - start_time))
-
-
-#Above code is tested and it works - results matches the teachers excel files given (11/1/21)
-
-# Time Results for df.loc[range(2)] calculation:
-# --- 0.11994695663452148 seconds ---
-
-# Time Results for df.loc[range(100)] calculation:
-# --- 0.37883639335632324 seconds ---
-
-# Time Results for df.loc[range(100)] calculation:
-# --- 2.6594951152801514 seconds ---
-
-# Time Results for df.loc[range(10000)] calculation:
-# --- 27.527163982391357 seconds ---
-
-
-
-#Orignal task example to replicate:
-# d = {'Info_window_seq': ['MVRKGEKKKAKP']}
-# print(calc_conjoint_triads(pd.DataFrame(data=d)))
+def calculate_csv(dataframe, Ncores=4, chunksize = 50000, csv_path_filename = ['', 'result']): #function that the client should call.
+    utils.calculate_export_csv(dataframe = dataframe, function = _calc_cojoint_triads, Ncores= Ncores, chunksize= chunksize, csv_path_filename = csv_path_filename)
