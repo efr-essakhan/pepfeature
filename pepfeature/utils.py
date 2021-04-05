@@ -5,12 +5,9 @@ import multiprocessing as mp
 import numpy as np
 import pandas as pd
 import functools
-from pepfeature import *
-#from pandarallel import pandarallel
 import datetime
 from datetime import datetime
 
-import psutil
 
 
 def df_chunking(df, chunksize):
@@ -25,6 +22,8 @@ def df_chunking(df, chunksize):
         df.drop(df.index[:chunksize], inplace=True)
 
 
+#CSV to contain amount of rows = chunksize
+#Chunksize technique saves ram for processed results and results are processed in chunks
 def calculate_export_csv(dataframe, function, Ncores=4, chunksize = 50000, csv_path_filename = ['', 'result'],
                          **kwargs): #function that the client should call.
 
@@ -32,7 +31,7 @@ def calculate_export_csv(dataframe, function, Ncores=4, chunksize = 50000, csv_p
     ctx = mp.get_context('spawn') #This guarantees that the Pool processes are just spawned and not forked from the parent process. Accordingly, none of them has access to the original DataFrame and all of them only need a tiny fraction of the parent's memory.
     p = ctx.Pool(processes=Ncores)
 
-    #Running each of the chunks in list_df to one of the cores available and saving the DF with the features calculated as a csv
+    #Running each of the chunks in list_df to one of the cores available and saving the (chunk) DF with the features calculated as a csv
     for idx, result_df in enumerate(p.imap(functools.partial(function, **kwargs), df_chunking(dataframe, chunksize))):
         result_df.to_csv(os.path.join(csv_path_filename[0], csv_path_filename[1] + f"_{datetime.now().strftime('%d%m%Y-%H%M%S')}_{idx}.csv"), index = False) #_{datetime.now().strftime('d%m%Y-%H%M%S')}
         print(result_df)
@@ -41,6 +40,7 @@ def calculate_export_csv(dataframe, function, Ncores=4, chunksize = 50000, csv_p
     p.close()
     p.join() # the process will complete and only then any code after can be ran
 
+#Here chunksize's utility is purely for distributing how many (chunksize) rows across cores
 def calculate_return_df(dataframe, function, Ncores=4, chunksize = 500): #function that the client should call.
 
     list_df = [dataframe[i:i + chunksize] for i in range(0, dataframe.shape[0], chunksize)]
@@ -56,10 +56,13 @@ def calculate_return_df(dataframe, function, Ncores=4, chunksize = 500): #functi
 
     return result_df
 
+#Pre-processing of data
 def remove_invalid_aa(df):
     df['Info_window_seq'] = [re.sub("[BJXZ]", "", str(x)) for x in df['Info_window_seq']]
     return df
 
+
+#For testing purposes of the functions in this file
 def dummydataframe(rows):
 
     dc = pd.DataFrame(np.random.randint(0, 100, size=(rows, 12))) #8500 total features from methods

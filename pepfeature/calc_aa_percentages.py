@@ -1,4 +1,3 @@
-import pandas as pd
 from pepfeature import utils
 
 def _calc_aa_percentages(dataframe):
@@ -36,3 +35,5 @@ def _calc_aa_percentages(dataframe):
 def calculate_csv(dataframe, Ncores=4, chunksize = 50000, csv_path_filename = ['', 'result']): #function that the client should call.
     utils.calculate_export_csv(dataframe = dataframe, function = _calc_aa_percentages, Ncores= Ncores, chunksize= chunksize, csv_path_filename = csv_path_filename)
 
+def calculate_df(dataframe, Ncores=4, chunksize = 50000): #function that the client should call.
+    return utils.calculate_return_df(dataframe = dataframe, function = _calc_aa_percentages, Ncores= Ncores, chunksize= chunksize)

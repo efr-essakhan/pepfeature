@@ -21,12 +21,13 @@ if __name__ == '__main__':
     #print(aa.calculate_csv(k=2, Ncores=1, dataframe = df.loc[range(1)], chunksize = 5))
     #print(aa.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=5))
     #print(calc_aa_descriptors.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'yolo']))
-    #print(calc_aa_percentages.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'yolo']))
+    #print(calc_aa_percentages.calculate_csv(Ncores=1, dataframe=df, chunksize=5))
     #print(calc_cojoint_triads.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'yolo']))
     #print(calc_molecular_weight.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'yolo']))
     #print(calc_number_of_atoms.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'yolo']))
-    #print(calc_sequence_entropy.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'yolo']))
-    print(calc_sequence_entropy.calculate_csv(Ncores=1, dataframe=df, chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'yolo']))
+    #print(calc_sequence_entropy.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=1))
+    #print(calc_sequence_entropy.calculate_csv(Ncores=1, dataframe=df, chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'yolo']))
+    print(calc_aa_percentages.calculate_df(Ncores=1, dataframe=df, chunksize=2))
 
     #help(pepfeature)
     #, chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'test'] ,
