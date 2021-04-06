@@ -27,4 +27,7 @@ def _calc_aa_composition(dataframe, aa_column = 'Info_window_seq'):
     return dataframe
 
 def calculate_csv(dataframe, Ncores=4, chunksize = 50000, csv_path_filename = ['', 'result'], aa_column = 'Info_window_seq'): #function that the client should call.
-    utils.calculate_export_csv(dataframe = dataframe, function = _calc_aa_composition, Ncores= Ncores, chunksize= chunksize, csv_path_filename = csv_path_filename)
+    utils.calculate_export_csv(dataframe = dataframe, function = _calc_aa_composition, Ncores= Ncores, chunksize= chunksize, aa_column = aa_column, csv_path_filename = csv_path_filename)
+
+def calculate_df(dataframe, Ncores=4, chunksize = 50000, aa_column = 'Info_window_seq'): #function that the client should call.
+    return utils.calculate_return_df(dataframe = dataframe, function = _calc_aa_composition, Ncores= Ncores, aa_column = aa_column, chunksize= chunksize)

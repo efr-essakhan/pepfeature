@@ -17,7 +17,7 @@ def _calc_number_of_atoms(dataframe, aa_column = 'Info_window_seq'):
 
     for row in dataframe.itertuples():
 
-        peptide = list(row.Info_window_seq)
+        peptide = list(getattr(row, aa_column))
 
         every_unique_aa, counts_of_every_unique_aa = np.unique(peptide, return_counts=True)
 
@@ -46,4 +46,7 @@ def _calc_number_of_atoms(dataframe, aa_column = 'Info_window_seq'):
     return dataframe
 
 def calculate_csv(dataframe, Ncores=4, chunksize = 50000, csv_path_filename = ['', 'result'], aa_column = 'Info_window_seq'): #function that the client should call.
-    utils.calculate_export_csv(dataframe = dataframe, function = _calc_number_of_atoms, Ncores= Ncores, chunksize= chunksize, csv_path_filename = csv_path_filename)
+    utils.calculate_export_csv(dataframe = dataframe, function = _calc_number_of_atoms, Ncores= Ncores, aa_column = aa_column, chunksize= chunksize, csv_path_filename = csv_path_filename)
+
+def calculate_df(dataframe, Ncores=4, chunksize = 50000, aa_column = 'Info_window_seq'): #function that the client should call.
+    return utils.calculate_return_df(dataframe = dataframe, function = _calc_number_of_atoms, Ncores= Ncores, aa_column = aa_column, chunksize= chunksize)

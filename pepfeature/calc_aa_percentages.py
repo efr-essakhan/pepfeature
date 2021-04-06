@@ -1,6 +1,6 @@
 from pepfeature import utils
 
-def _calc_aa_percentages(dataframe):
+def _calc_aa_percentages(dataframe, aa_column = 'Info_window_seq'):
 
     valid_letters = ['A', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'Y']
     # Create columns
@@ -9,7 +9,7 @@ def _calc_aa_percentages(dataframe):
 
     for row in dataframe.itertuples():
 
-        peptide = row.Info_window_seq
+        peptide = getattr(row, aa_column)
         length_of_peptide = len(peptide)
         number_of_occurrences_of_letter_dict = {}
 
@@ -32,8 +32,8 @@ def _calc_aa_percentages(dataframe):
     return (dataframe)
 
 
-def calculate_csv(dataframe, Ncores=4, chunksize = 50000, csv_path_filename = ['', 'result']): #function that the client should call.
-    utils.calculate_export_csv(dataframe = dataframe, function = _calc_aa_percentages, Ncores= Ncores, chunksize= chunksize, csv_path_filename = csv_path_filename)
+def calculate_csv(dataframe, Ncores=4, chunksize = 50000, csv_path_filename = ['', 'result'], aa_column = 'Info_window_seq'): #function that the client should call.
+    utils.calculate_export_csv(dataframe = dataframe, function = _calc_aa_percentages, Ncores= Ncores, chunksize= chunksize, aa_column = aa_column, csv_path_filename = csv_path_filename)
 
-def calculate_df(dataframe, Ncores=4, chunksize = 50000): #function that the client should call.
-    return utils.calculate_return_df(dataframe = dataframe, function = _calc_aa_percentages, Ncores= Ncores, chunksize= chunksize)
+def calculate_df(dataframe, Ncores=4, chunksize = 50000, aa_column = 'Info_window_seq'): #function that the client should call.
+    return utils.calculate_return_df(dataframe = dataframe, function = _calc_aa_percentages, Ncores= Ncores, aa_column = aa_column, chunksize= chunksize)

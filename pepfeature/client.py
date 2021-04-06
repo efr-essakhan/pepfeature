@@ -7,6 +7,7 @@ from pepfeature import calc_molecular_weight
 from pepfeature import calc_number_of_atoms
 from pepfeature import calc_sequence_entropy
 from pepfeature import calc_all_features
+from pepfeature import calc_kmer_composition
 import pandas as pd
 import time
 
@@ -27,10 +28,12 @@ if __name__ == '__main__':
     #print(calc_molecular_weight.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'yolo']))
     #print(calc_number_of_atoms.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'yolo']))
     #print(calc_sequence_entropy.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=1))
+    #print(calc_kmer_composition.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=1, k=2, aa_column='Info_window_seq'))
     #print(calc_sequence_entropy.calculate_csv(Ncores=1, dataframe=df, chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'yolo']))
-    #print(calc_aa_percentages.calculate_df(Ncores=1, dataframe=df, chunksize=2))
+
     #print(calc_all_features.calc_all_features_csv(Ncores=4, dataframe=df, chunksize=2))
-    print(calc_aa_composition._calc_aa_composition(dataframe=df, aa_column='Info_window_seq'))
+    #print(calc_aa_composition._calc_aa_composition(dataframe=df, aa_column='Info_window_seq'))
+    print(calc_aa_percentages.calculate_df(Ncores=1, dataframe=df, chunksize=2, aa_column= "Info_window_seq"))
 
     #help(pepfeature)
     #, chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'test'] ,
