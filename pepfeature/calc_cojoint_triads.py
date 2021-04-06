@@ -2,7 +2,7 @@ import pandas as pd
 from pepfeature import utils
 from itertools import product
 
-def _calc_cojoint_triads(dataframe, aa_column = 'Info_window_seq'):
+def calc_cojoint_triads(dataframe, aa_column = 'Info_window_seq'):
 
     #Dictionary mapping each Amino-Acid to its respective group-value
     AA_classes_dict = {'A': '0', 'G': '0', 'V': '0', 'C': '1', 'F': '2', 'I': '2', 'L': '2', 'P': '2', 'M': '3', 'S': '3', 'T': '3', 'Y': '3',
@@ -45,7 +45,7 @@ def _calc_cojoint_triads(dataframe, aa_column = 'Info_window_seq'):
     return(dataframe)
 
 def calculate_csv(dataframe, Ncores=4, chunksize = 50000, csv_path_filename = ['', 'result'], aa_column = 'Info_window_seq'): #function that the client should call.
-    utils.calculate_export_csv(dataframe = dataframe, function = _calc_cojoint_triads, Ncores= Ncores, aa_column = aa_column, chunksize= chunksize, csv_path_filename = csv_path_filename)
+    utils.calculate_export_csv(dataframe = dataframe, function = calc_cojoint_triads, Ncores= Ncores, aa_column = aa_column, chunksize= chunksize, csv_path_filename = csv_path_filename)
 
 def calculate_df(dataframe, Ncores=4, chunksize = 50000, aa_column = 'Info_window_seq'): #function that the client should call.
-    return utils.calculate_return_df(dataframe = dataframe, function = _calc_cojoint_triads, Ncores= Ncores, aa_column = aa_column, chunksize= chunksize)
+    return utils.calculate_return_df(dataframe = dataframe, function = calc_cojoint_triads, Ncores= Ncores, aa_column = aa_column, chunksize= chunksize)
