@@ -2,10 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4413f912-7439-44d8-b9ae-acfa1930c1b8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pepfeature/calc_all_features.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/pepfeature.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/pepfeature.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/calc_aa_composition.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/calc_aa_composition.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/calc_aa_descriptors.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/calc_aa_descriptors.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pepfeature/calc_aa_percentages.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/calc_aa_percentages.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/calc_all_features.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/calc_all_features.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/calc_cojoint_triads.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/calc_cojoint_triads.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/calc_kmer_composition.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/calc_kmer_composition.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/calc_molecular_weight.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/calc_molecular_weight.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/calc_number_of_atoms.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/calc_number_of_atoms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/calc_sequence_entropy.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/calc_sequence_entropy.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pepfeature/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/result_05042021-034840_0.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/result_05042021-034840_1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/result_05042021-034854_0.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pepfeature/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -85,6 +95,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -93,6 +104,11 @@
           <url>file://$PROJECT_DIR$/pepfeature/utils.py</url>
           <line>45</line>
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pepfeature/calc_aa_composition.py</url>
+          <line>2</line>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

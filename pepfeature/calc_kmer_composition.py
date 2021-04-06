@@ -2,7 +2,7 @@ import pandas as pd
 from itertools import product
 from pepfeature import utils
 
-def _calc_kmer_composition(dataframe, k):
+def _calc_kmer_composition(dataframe, k , aa_column = 'Info_window_seq'):
 
     valid_letters = ['A', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'Y']
 
@@ -14,7 +14,7 @@ def _calc_kmer_composition(dataframe, k):
     # ==================== Calculate feature ==================== #
 
     for row in dataframe.itertuples():
-        peptide = row.Info_window_seq
+        peptide = getattr(row, aa_column)
         kFreq = {}
 
         # calculate the frequencies of each k-pair of letters in the peptide and store them in kFreq dictionary in the format {Amino-acid-subsequence : Frequency, ...}
@@ -54,7 +54,7 @@ def _calc_kmer_composition(dataframe, k):
 #     p.join() # the process will complete and only then any code after can be ran
 
 
-def calculate_csv(k, dataframe, Ncores=4, chunksize = 50000, csv_path_filename = ['', 'result']): #function that the client should call.
+def calculate_csv(k, dataframe, Ncores=4, chunksize = 50000, csv_path_filename = ['', 'result'], aa_column = 'Info_window_seq'): #function that the client should call.
     utils.calculate_export_csv(dataframe = dataframe, function = _calc_kmer_composition, Ncores= Ncores, chunksize= chunksize, csv_path_filename = csv_path_filename, k=k)
 
 

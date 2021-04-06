@@ -25,7 +25,7 @@ def df_chunking(df, chunksize):
 #CSV to contain amount of rows = chunksize
 #Chunksize technique saves ram for processed results and results are processed in chunks
 def calculate_export_csv(dataframe, function, Ncores=4, chunksize = 50000, csv_path_filename = ['', 'result'],
-                         **kwargs): #function that the client should call.
+                         **kwargs):
 
     dataframe = remove_invalid_aa(dataframe)
     ctx = mp.get_context('spawn') #This guarantees that the Pool processes are just spawned and not forked from the parent process. Accordingly, none of them has access to the original DataFrame and all of them only need a tiny fraction of the parent's memory.

@@ -1,6 +1,6 @@
 from pepfeature import utils
 
-def _calc_aa_composition(dataframe):
+def _calc_aa_composition(dataframe, aa_column = 'Info_window_seq'):
 
     # Dictionary mapping each Amino-Acid to its respective group-value
     AA_groups_dict = {'Tiny': ["A", "C", "G", "S", "T"], 'Small': ["A", "B", "C", "D", "G", "N", "P", "S", "T", "V"],
@@ -12,7 +12,7 @@ def _calc_aa_composition(dataframe):
 
     for row in dataframe.itertuples():
 
-        peptide = row.Info_window_seq
+        peptide = getattr(row, aa_column)
         peptide_length = len(peptide)
 
         for group_name, group_aa_values in AA_groups_dict.items():
@@ -26,5 +26,5 @@ def _calc_aa_composition(dataframe):
 
     return dataframe
 
-def calculate_csv(dataframe, Ncores=4, chunksize = 50000, csv_path_filename = ['', 'result']): #function that the client should call.
+def calculate_csv(dataframe, Ncores=4, chunksize = 50000, csv_path_filename = ['', 'result'], aa_column = 'Info_window_seq'): #function that the client should call.
     utils.calculate_export_csv(dataframe = dataframe, function = _calc_aa_composition, Ncores= Ncores, chunksize= chunksize, csv_path_filename = csv_path_filename)
