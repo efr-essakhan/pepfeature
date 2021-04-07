@@ -1,7 +1,7 @@
-# ' Calculate statistical and physicochemical features for peptides
-# '
-# ' This function is used to calculate several distinct families of features for
-# ' a vector of peptides.
+"""
+    Calculate statistical and physicochemical features for peptides
+
+"""
 
 import calc_aa_composition
 import calc_aa_descriptors
@@ -13,12 +13,6 @@ import calc_sequence_entropy
 import calc_kmer_composition
 
 from utils import calculate_export_csv, calculate_return_df
-import os
-import multiprocessing as mp
-import functools
-import datetime
-from datetime import datetime
-import numpy as np
 import pandas as pd
 
 
@@ -81,6 +75,25 @@ import pandas as pd
 #     index=False)
 
 def _execute_all_routines(dataframe, k, aa_column='Info_window_seq'):
+    """Executes all feature calculation routines in this project
+    and combines the returned dataframe into a single dataframe.
+
+    This method is utilized in calc_all_features_csv & calc_all_features_df
+
+    Parameters
+    ----------
+    dataframe : pandas DataFrame
+        The file location of the spreadsheet
+    k : int
+        A flag used to print the columns to the console (default is False)
+    aa_column : str, optional
+        A flag used to print the columns to the console (default is False)
+
+    Returns
+    -------
+    pandas DataFrame
+
+    """
     # Creating a back-up of the original dataframe as later below when the dataframe is passed into df_chunking then the original dataframe has parts deleted as chunks are returned by df_chunking (there is pass by reference in python)
     original_dataframe = dataframe.copy()
 

@@ -3,12 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4413f912-7439-44d8-b9ae-acfa1930c1b8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/calc_aa_composition.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/calc_aa_composition.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/calc_aa_descriptors.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/calc_aa_descriptors.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pepfeature/calc_all_features.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/calc_all_features.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/calc_sequence_entropy.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/calc_sequence_entropy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
