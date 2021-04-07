@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from pepfeature import utils
 
-def calc_number_of_atoms(dataframe, aa_column = 'Info_window_seq'):
+def _calc_number_of_atoms(dataframe, aa_column = 'Info_window_seq'):
 
     # Dataframe holding the number of each type of atom (C, H, O, N, S) for each AA:
     atom_groups_df = pd.DataFrame(data={'nC': [3, 3, 4, 5, 9, 2, 6, 6, 6, 6, 5, 4, 5, 5, 6, 3, 4, 5, 11, 9],
@@ -46,7 +46,7 @@ def calc_number_of_atoms(dataframe, aa_column = 'Info_window_seq'):
     return dataframe
 
 def calculate_csv(dataframe, Ncores=4, chunksize = 50000, csv_path_filename = ['', 'result'], aa_column = 'Info_window_seq'): #function that the client should call.
-    utils.calculate_export_csv(dataframe = dataframe, function = calc_number_of_atoms, Ncores= Ncores, aa_column = aa_column, chunksize= chunksize, csv_path_filename = csv_path_filename)
+    utils.calculate_export_csv(dataframe = dataframe, function = _calc_number_of_atoms, Ncores= Ncores, aa_column = aa_column, chunksize= chunksize, csv_path_filename = csv_path_filename)
 
 def calculate_df(dataframe, Ncores=4, chunksize = 50000, aa_column = 'Info_window_seq'): #function that the client should call.
-    return utils.calculate_return_df(dataframe = dataframe, function = calc_number_of_atoms, Ncores= Ncores, aa_column = aa_column, chunksize= chunksize)
+    return utils.calculate_return_df(dataframe = dataframe, function = _calc_number_of_atoms, Ncores= Ncores, aa_column = aa_column, chunksize= chunksize)

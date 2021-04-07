@@ -2,7 +2,7 @@ import pandas as pd
 from itertools import product
 from pepfeature import utils
 
-def calc_kmer_composition(dataframe, k , aa_column = 'Info_window_seq'):
+def _calc_kmer_composition(dataframe, k , aa_column = 'Info_window_seq'):
 
     valid_letters = ['A', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'Y']
 
@@ -55,7 +55,7 @@ def calc_kmer_composition(dataframe, k , aa_column = 'Info_window_seq'):
 
 
 def calculate_csv(k, dataframe, Ncores=4, chunksize = 50000, csv_path_filename = ['', 'result'], aa_column = 'Info_window_seq'): #function that the client should call.
-    utils.calculate_export_csv(dataframe = dataframe, function = calc_kmer_composition, Ncores= Ncores, chunksize= chunksize, csv_path_filename = csv_path_filename, aa_column = aa_column, k=k)
+    utils.calculate_export_csv(dataframe = dataframe, function = _calc_kmer_composition, Ncores= Ncores, chunksize= chunksize, csv_path_filename = csv_path_filename, aa_column = aa_column, k=k)
 
 def calculate_df(dataframe, Ncores=4, chunksize = 50000, aa_column = 'Info_window_seq'): #function that the client should call.
-    return utils.calculate_return_df(dataframe = dataframe, function = calc_kmer_composition, Ncores= Ncores, aa_column = aa_column, chunksize= chunksize)
+    return utils.calculate_return_df(dataframe = dataframe, function = _calc_kmer_composition, Ncores= Ncores, aa_column = aa_column, chunksize= chunksize)

@@ -13,20 +13,10 @@
       <change beforePath="$PROJECT_DIR$/pepfeature/calc_number_of_atoms.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/calc_number_of_atoms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pepfeature/calc_sequence_entropy.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/calc_sequence_entropy.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pepfeature/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/result_06042021-015300_0.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/result_06042021-015752_0.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/result_06042021-015854_0.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/result_06042021-023405_0.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/result_06042021-024407_0.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/result_06042021-024418_0.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/result_06042021-024736_0.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/result_06042021-024801_0.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/result_06042021-025622_0.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/result_06042021-025643_0.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/result_06042021-025649_0.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/result_06042021-025732_0.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/result_06042021-030244_0.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/result_06042021-031100_0.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/result_06042021-040612_0.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/result_06042021-130822_0.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/result_06042021-144849_0.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
