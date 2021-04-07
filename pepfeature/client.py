@@ -1,4 +1,4 @@
-#from pepfeature import calc_kmer_composition as aa
+# from pepfeature import calc_kmer_composition as aa
 from pepfeature import calc_aa_composition
 from pepfeature import calc_aa_descriptors
 from pepfeature import calc_aa_percentages
@@ -11,38 +11,41 @@ from pepfeature import calc_kmer_composition
 import pandas as pd
 import time
 
-
 from pepfeature import *
 
 # df = pd.read_csv('Ov_data.csv')
-df = pd.DataFrame(data={'Info_window_seq' : ['CCAKJATJXARRRZS', 'LLLLLLLLDVHIESG','CCAKJATJXARRRZS', 'LLLLLLLLDVHIESG','CCAKJATJXARRRZS', 'LLLLLLLLDVHIESG','CCAKJATJXARRRZS', 'LLLLLLLLDVHIESG','CCAKJATJXARRRZS', 'LLLLLLLLDVHIESG','CCAKJATJXARRRZS', 'LLLLLLLLDVHIESG''CCAKJATJXARRRZS', 'LLLLLLLLDVHIESG','CCAKJATJXARRRZS', 'LLLLLLLLDVHIESG']})
+df = pd.DataFrame(data={
+    'Info_window_seq': ['CCAKJATJXARRRZS', 'LLLLLLLLDVHIESG', 'CCAKJATJXARRRZS', 'LLLLLLLLDVHIESG', 'CCAKJATJXARRRZS',
+                        'LLLLLLLLDVHIESG', 'CCAKJATJXARRRZS', 'LLLLLLLLDVHIESG', 'CCAKJATJXARRRZS', 'LLLLLLLLDVHIESG',
+                        'CCAKJATJXARRRZS', 'LLLLLLLLDVHIESG''CCAKJATJXARRRZS', 'LLLLLLLLDVHIESG', 'CCAKJATJXARRRZS',
+                        'LLLLLLLLDVHIESG']})
 if __name__ == '__main__':
     start = time.time()
 
+    # print(aa.calculate_csv(k=2, Ncores=1, dataframe = df.loc[range(1)], chunksize = 5))
+    # print(aa.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=5))
+    # print(calc_aa_descriptors.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'yolo']))
+    # print(calc_aa_percentages.calculate_csv(Ncores=1, dataframe=df, chunksize=5))
+    # print(calc_cojoint_triads.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'yolo']))
+    # print(calc_molecular_weight.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'yolo']))
+    # print(calc_number_of_atoms.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'yolo']))
+    # print(calc_sequence_entropy.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=1))
+    # print(calc_kmer_composition.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=1, k=2, aa_column='Info_window_seq'))
+    # print(calc_sequence_entropy.calculate_csv(Ncores=1, dataframe=df, chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'yolo']))
+    # print(calc_all_features.calc_all_features_csv(Ncores=4, dataframe=pd.read_csv('Ov_data.csv').loc[range(10)], k=1, chunksize=3000))
+    #print(calc_all_features.calc_all_features_df(Ncores=4, dataframe=pd.read_csv('Ov_data.csv').loc[range(10)], chunksize=3000, k=1))
+    # print(calc_all_features.calc_all_features_csv(Ncores=4, dataframe=df, chunksize=10))
+    # print(calc_aa_composition._calc_aa_composition(dataframe=df, aa_column='Info_window_seq'))
+    # print(calc_aa_percentages.calculate_df(Ncores=1, dataframe=df, chunksize=2, aa_column= "Info_window_seq"))
 
-    #print(aa.calculate_csv(k=2, Ncores=1, dataframe = df.loc[range(1)], chunksize = 5))
-    #print(aa.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=5))
-    #print(calc_aa_descriptors.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'yolo']))
-    #print(calc_aa_percentages.calculate_csv(Ncores=1, dataframe=df, chunksize=5))
-    #print(calc_cojoint_triads.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'yolo']))
-    #print(calc_molecular_weight.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'yolo']))
-    #print(calc_number_of_atoms.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'yolo']))
-    #print(calc_sequence_entropy.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=1))
-    #print(calc_kmer_composition.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=1, k=2, aa_column='Info_window_seq'))
-    #print(calc_sequence_entropy.calculate_csv(Ncores=1, dataframe=df, chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'yolo']))
-
-    print(calc_all_features.calc_all_features_csv(Ncores=4, dataframe=df, chunksize=10))
-    #print(calc_aa_composition._calc_aa_composition(dataframe=df, aa_column='Info_window_seq'))
-    #print(calc_aa_percentages.calculate_df(Ncores=1, dataframe=df, chunksize=2, aa_column= "Info_window_seq"))
-
-    #help(pepfeature)
-    #, chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'test'] ,
+    # help(pepfeature)
+    # , chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'test'] ,
     # for gm_chunk in pd.read_csv('Ov_data.csv', chunksize=20000):
     #     print(calc_amino_acid_composition.calculate(dataframe=gm_chunk,
     #                                                 Ncores=multiprocessing.cpu_count(), chunksize=0,
     #                                                 csv_path=r'C:\Users\Essa Khan\Desktop\Pepfeature dataframes'))
-    #Above works and took 118.22979235649109 s ['Ov_data.csv' chunksize=10000 , chunksize=10000]
-
+    # Above works and took 118.22979235649109 s ['Ov_data.csv' chunksize=10000 , chunksize=10000]
+    print(type(df))
     # df.loc[range(50000)]
     # calc_amino_acid_composition.dummydataframe()
     # print(calc_amino_acid_composition.calc_aa_composition(df.loc[range(50000)]))

@@ -69,3 +69,8 @@ def dummydataframe(rows):
     dc['Info_window_seq'] = "LLLLLLLLDVHIESG"
 
     return (dc)
+
+
+''''chunksize parameter will cause the iterable to be split into pieces of approximately that size, and each piece is submitted as a separate task.
+
+So in your example, yes, map will take the first 10 (approximately), submit it as a task for a single processor... then the next 10 will be submitted as another task, and so on. Note that it doesn't mean that this will make the processors alternate every 10 files, it's quite possible that processor #1 ends up getting 1-10 AND 11-20, and processor #2 gets 21-30 and 31-40.'''
