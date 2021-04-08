@@ -9,23 +9,32 @@ from pepfeature import calc_sequence_entropy
 from pepfeature import calc_all_features
 from pepfeature import calc_kmer_composition
 import pandas as pd
+import numpy as np
 import time
 
-from pepfeature import *
+df = pd.read_csv('Ov_data.csv')
+# df = pd.DataFrame(data={ 'Info_window_seq': ['CCAKJATJXARRRZS'], 'yolo': ['CCAKJATJXARRRZS'], 'Info_window_seq': ['CCAKJAdJXARRRZS']})
 
-# df = pd.read_csv('Ov_data.csv')
-df = pd.DataFrame(data={
-    'Info_window_seq': ['CCAKJATJXARRRZS', 'LLLLLLLLDVHIESG', 'CCAKJATJXARRRZS', 'LLLLLLLLDVHIESG', 'CCAKJATJXARRRZS',
-                        'LLLLLLLLDVHIESG', 'CCAKJATJXARRRZS', 'LLLLLLLLDVHIESG', 'CCAKJATJXARRRZS', 'LLLLLLLLDVHIESG',
-                        'CCAKJATJXARRRZS', 'LLLLLLLLDVHIESG''CCAKJATJXARRRZS', 'LLLLLLLLDVHIESG', 'CCAKJATJXARRRZS',
-                        'LLLLLLLLDVHIESG']})
+#For testing purposes of the functions in this file
+def dummydataframe(rows):
+
+    dc = pd.DataFrame(np.random.randint(0, 100, size=(rows, 12))) #8500 total features from methods
+    dc['Info_window_seq'] = "LLLLLLLLDVHIESG"
+
+    return (dc)
+
 if __name__ == '__main__':
     start = time.time()
 
-    # print(aa.calculate_csv(k=2, Ncores=1, dataframe = df.loc[range(1)], chunksize = 5))
+    print(calc_all_features.calc_all_features_csv(Ncores=4, dataframe=df.loc[range(2)], chunksize=10, k=1))
+    #print(df.columns)
+   # print(df)
+
+
+    #print(aa.calculate_csv(k=2, Ncores=1, dataframe = df.loc[range(1)], chunksize = 5))
     # print(aa.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=5))
-    # print(calc_aa_descriptors.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'yolo']))
-    # print(calc_aa_percentages.calculate_csv(Ncores=1, dataframe=df, chunksize=5))
+    #print(calc_aa_descriptors.calculate_df(Ncores=1, dataframe=df.loc[range(1)], chunksize=1))
+    #print(calc_aa_percentages.calculate_df(Ncores=1, dataframe=df, chunksize=5))
     # print(calc_cojoint_triads.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'yolo']))
     # print(calc_molecular_weight.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'yolo']))
     # print(calc_number_of_atoms.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'yolo']))
@@ -34,10 +43,10 @@ if __name__ == '__main__':
     # print(calc_sequence_entropy.calculate_csv(Ncores=1, dataframe=df, chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'yolo']))
     # print(calc_all_features.calc_all_features_csv(Ncores=4, dataframe=pd.read_csv('Ov_data.csv').loc[range(10)], k=1, chunksize=3000))
     #print(calc_all_features.calc_all_features_df(Ncores=4, dataframe=pd.read_csv('Ov_data.csv').loc[range(10)], chunksize=3000, k=1))
-    # print(calc_all_features.calc_all_features_csv(Ncores=4, dataframe=df, chunksize=10))
+    #print(calc_all_features.calc_all_features_csv(Ncores=4, dataframe=df.loc[range(2)], chunksize=10, k=1))
     # print(calc_aa_composition._calc_aa_composition(dataframe=df, aa_column='Info_window_seq'))
     # print(calc_aa_percentages.calculate_df(Ncores=1, dataframe=df, chunksize=2, aa_column= "Info_window_seq"))
-
+    #print(calc_aa_descriptors._calc_aa_descriptors(df.loc[range(3)]))
     # help(pepfeature)
     # , chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'test'] ,
     # for gm_chunk in pd.read_csv('Ov_data.csv', chunksize=20000):

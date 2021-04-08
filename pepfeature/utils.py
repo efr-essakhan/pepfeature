@@ -62,13 +62,6 @@ def _remove_invalid_aa(df, aa_column):
     return df
 
 
-#For testing purposes of the functions in this file
-def dummydataframe(rows):
-
-    dc = pd.DataFrame(np.random.randint(0, 100, size=(rows, 12))) #8500 total features from methods
-    dc['Info_window_seq'] = "LLLLLLLLDVHIESG"
-
-    return (dc)
 
 
 ''''chunksize parameter will cause the iterable to be split into pieces of approximately that size, and each piece is submitted as a separate task.

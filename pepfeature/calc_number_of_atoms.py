@@ -2,7 +2,19 @@ import pandas as pd
 import numpy as np
 from pepfeature import utils
 
-def _calc_number_of_atoms(dataframe, aa_column = 'Info_window_seq'):
+def _calc_number_of_atoms(dataframe: object, aa_column: str = 'Info_window_seq') -> object:
+    """
+    Not intended to be called directly by the user, use the functions calculate_csv or calculate_df instead.
+
+    Calculates for each given sequence the total number of
+    atoms of each type in that sequence (which is essentially a weighted sum of the aminoacid numbers)
+
+    Results appended as a new columns named feat_nC, feat_nH, feat_nN, feat_nQ, feat_nS
+
+    :param dataframe: A pandas DataFrame
+    :param aa_column: Name of column in dataframe consisting of Protein Sequences to process
+    :return: A Pandas DataFrame containing the calculated features appended as new columns.
+    """
 
     # Dataframe holding the number of each type of atom (C, H, O, N, S) for each AA:
     atom_groups_df = pd.DataFrame(data={'nC': [3, 3, 4, 5, 9, 2, 6, 6, 6, 6, 5, 4, 5, 5, 6, 3, 4, 5, 11, 9],

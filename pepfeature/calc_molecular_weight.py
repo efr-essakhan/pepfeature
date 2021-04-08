@@ -1,7 +1,20 @@
 import numpy as np
 from pepfeature import utils
 
-def _calc_molecular_weight(dataframe, aa_column = 'Info_window_seq'):
+def _calc_molecular_weight(dataframe: object, aa_column: str = 'Info_window_seq') -> object:
+    """
+    Not intended to be called directly by the user, use the functions calculate_csv or calculate_df instead.
+
+    Calculates total molecular weight of the sequence.
+
+    Calculated as a simple weighted sum of aminoacid counts, with AA weights
+
+    Results appended as a new column named feat_weight
+
+    :param dataframe: A pandas DataFrame
+    :param aa_column: Name of column in dataframe consisting of Protein Sequences to process
+    :return: A Pandas DataFrame containing the calculated features appended as new columns.
+    """
 
     # Dictionary mapping each Amino-Acid to its respective group-value
     AA_weights_dict = {'A': 89.09, 'G': 75.07, 'V': 117.15, 'C': 121.16, 'F': 165.19, 'I': 131.17, 'L': 131.17,

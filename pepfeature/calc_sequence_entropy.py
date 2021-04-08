@@ -3,7 +3,18 @@ import numpy as np
 from pepfeature import utils
 
 
-def _calc_sequence_entropy(dataframe, aa_column='Info_window_seq'):
+def _calc_sequence_entropy(dataframe: object, aa_column: str = 'Info_window_seq') -> object:
+    """
+    Not intended to be called directly by the user, use the functions calculate_csv or calculate_df instead.
+
+    Calculates the entropy of given amino acid sequences
+
+    Results appended as a new column named feat_entropy
+
+    :param dataframe: A pandas DataFrame
+    :param aa_column: Name of column in dataframe consisting of Protein Sequences to process
+    :return: A Pandas DataFrame containing the calculated features appended as new columns.
+    """
     """ Computes entropy of Amino Acid sequence. """
 
     # Create column

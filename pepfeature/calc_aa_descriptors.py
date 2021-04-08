@@ -2,10 +2,20 @@ from pepfeature import utils
 import numpy as np
 import pandas as pd
 
+def _calc_aa_descriptors(dataframe: object, aa_column: str = 'Info_window_seq') -> object:
+    """
+    Not intended to be called directly by the user, use the functions calculate_csv or calculate_df instead.
 
-def _calc_aa_descriptors(dataframe, aa_column='Info_window_seq'):
+    Calculates AA descriptors features
+
+    Results appended as a new columns named feat_perc_{properties} e.g. feat_BLOSUM9
+
+    :param dataframe: A pandas DataFrame
+    :param aa_column: Name of column in dataframe consisting of Protein Sequences to process
+    :return: A Pandas DataFrame containing the calculated features appended as new columns.
+    """
+
     # Dictionary mapping each Amino-Acid to its respective group-value
-
     AA_properties_df = []
     properties = ['crucianiProperties', 'kideraFactors', 'zScales', 'FASGAI', 'VHSE', 'ProtFP', 'stScales', 'tScales',
                   'MSWHIM', 'BLOSUM']

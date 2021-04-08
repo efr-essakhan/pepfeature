@@ -63,9 +63,7 @@ import pandas as pd
 #     p.join()  # the process will complete and only then any code after can be ran
 #
 # dataframe_results = pd.concat(dataframe_results, axis=1)
-#
-# # Remove all columns of the original dataframe (as there will be duplicates)
-# dataframe_results = dataframe_results[dataframe_results.columns.difference(original_dataframe)]
+
 #
 # # Re-concat both dataframes
 # dataframe_results = pd.concat([original_dataframe, dataframe_results], axis=1)
@@ -94,9 +92,12 @@ def _execute_all_routines(dataframe, k, aa_column='Info_window_seq'):
     pandas DataFrame
 
     """
-    # Creating a back-up of the original dataframe as later below when the dataframe is passed into df_chunking then the original dataframe has parts deleted as chunks are returned by df_chunking (there is pass by reference in python)
-    original_dataframe = dataframe.copy()
+    # Creating a back-up of the original dataframe as later below when the dataframe is passed into df_chunking then
+    # the original dataframe has parts deleted as chunks are returned by df_chunking (there is pass by reference in
+    # python)
+    df_copy = dataframe.copy()
 
+    #Functions that will be run to create the dataframes with features
     functions = [
         calc_aa_descriptors._calc_aa_descriptors,
         calc_aa_composition._calc_aa_composition,
@@ -105,30 +106,43 @@ def _execute_all_routines(dataframe, k, aa_column='Info_window_seq'):
         calc_molecular_weight._calc_molecular_weight,
         calc_number_of_atoms._calc_number_of_atoms,
         calc_sequence_entropy._calc_sequence_entropy,
+        #calc_kmer_composition._calc_kmer_composition
     ]
 
-    dataframe_results = []
+    df_results_list = []
     for func in functions:
-        dataframe_results.append(func(dataframe, aa_column))
-        original_dataframe = dataframe.copy()
-    dataframe_results.append(calc_kmer_composition._calc_kmer_composition(original_dataframe, k, aa_column))
 
-    dataframe_results = pd.concat(dataframe_results, axis=1)
+        df_results_list.append(func(df_copy, aa_column))
 
-    # Remove all columns of the original dataframe (as there will be duplicates)
-    dataframe_results = dataframe_results[dataframe_results.columns.difference(dataframe)]
+        #Refresh the Dataset for next use since in python everything is by reference
+        df_copy = dataframe.copy()
 
-    dataframe_results = pd.concat([dataframe, dataframe_results], axis=1)
-    print(dataframe_results)
-    # Re-concat both dataframes to get original DF + calulcated DF
-    return dataframe_results
+    # Seperate line for k-mer as it requires extra 'k' argument
+    df_results_list.append(calc_kmer_composition._calc_kmer_composition(df_copy, k, aa_column))
+
+    for df in df_results_list:
+        #Remove original dataframe columns
+        df.drop(dataframe.columns, axis = 1 , inplace=True)
+
+    #Join all df in list into one df
+    df_with_features = pd.concat(df_results_list, axis=1)
+
+    # Re-concat both dataframes
+    df_with_features = pd.concat([dataframe, df_with_features], axis=1)
+
+
+    # Re-concat both dataframes to get original DF + calculated DF
+    return df_with_features
+
 
 
 def calc_all_features_csv(dataframe, k, Ncores=4, chunksize=50000, csv_path_filename=['', 'result'], aa_column='Info_window_seq'):
+
     calculate_export_csv(dataframe=dataframe, function=_execute_all_routines, csv_path_filename=csv_path_filename,
                          Ncores=Ncores, chunksize=chunksize, aa_column=aa_column, k=k)
 
 
 def calc_all_features_df(dataframe, k, Ncores=4, chunksize=50000, aa_column='Info_window_seq'):
+
     return calculate_return_df(dataframe=dataframe, function=_execute_all_routines, Ncores=Ncores,
                                aa_column=aa_column, chunksize=chunksize, k=k)
