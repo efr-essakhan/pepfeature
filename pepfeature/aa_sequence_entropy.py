@@ -9,7 +9,7 @@ def _calc_sequence_entropy(dataframe: object, aa_column: str = 'Info_window_seq'
 
     Calculates the entropy of given amino acid sequences
 
-    Results appended as a new column named feat_entropy
+    Results appended as a new column named feat_seq_entropy
 
     :param dataframe: A pandas DataFrame
     :param aa_column: Name of column in dataframe consisting of Protein Sequences to process
@@ -18,7 +18,7 @@ def _calc_sequence_entropy(dataframe: object, aa_column: str = 'Info_window_seq'
     """ Computes entropy of Amino Acid sequence. """
 
     # Create column
-    dataframe['feat_entropy'] = 0
+    dataframe['feat_seq_entropy'] = 0
 
     for row in dataframe.itertuples():
 
@@ -37,7 +37,7 @@ def _calc_sequence_entropy(dataframe: object, aa_column: str = 'Info_window_seq'
             entropy -= i * log(i, 2)
 
         # Store calculated entropy in corresponding row value
-        dataframe.loc[row.Index, 'feat_entropy'] = entropy
+        dataframe.loc[row.Index, 'feat_seq_entropy'] = entropy
 
     return dataframe
 

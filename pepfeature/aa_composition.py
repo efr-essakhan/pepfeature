@@ -9,7 +9,7 @@ def _calc_aa_composition(dataframe: object, aa_column: str = 'Info_window_seq') 
 
     For each sequence calculates nine features corresponding to the percentage of each Amino Acid type in the sequences
 
-    Results appended as a new columns named feat_perc_{type} e.g.  feat_perc_tiny, feat_perc_small etc.
+    Results appended as a new columns named feat_perc_{group-value} e.g.  feat_Perc_Tiny, feat_Perc_Small etc.
 
     :param dataframe: A pandas DataFrame
     :param aa_column: Name of column in dataframe consisting of Protein Sequences to process

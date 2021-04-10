@@ -9,7 +9,7 @@ def _calc_number_of_atoms(dataframe: object, aa_column: str = 'Info_window_seq')
     Calculates for each given sequence the total number of
     atoms of each type in that sequence (which is essentially a weighted sum of the aminoacid numbers)
 
-    Results appended as a new columns named feat_nC, feat_nH, feat_nN, feat_nQ, feat_nS
+    Results appended as a new columns named feat_C_atoms, feat_H_atoms, feat_N_atoms, feat_O_atoms, feat_S_atoms
 
     :param dataframe: A pandas DataFrame
     :param aa_column: Name of column in dataframe consisting of Protein Sequences to process
@@ -49,11 +49,11 @@ def _calc_number_of_atoms(dataframe: object, aa_column: str = 'Info_window_seq')
             count_nS+= (counts_of_every_unique_aa[i] * atom_groups_df.loc[every_unique_aa[i], 'nS'])
 
         #Creating the features and setting them
-        dataframe.loc[row.Index, 'feat_nC'] = count_nC
-        dataframe.loc[row.Index, 'feat_nH'] = count_nH
-        dataframe.loc[row.Index, 'feat_nN'] = count_nN
-        dataframe.loc[row.Index, 'feat_nO'] = count_nO
-        dataframe.loc[row.Index, 'feat_nS'] = count_nS
+        dataframe.loc[row.Index, 'feat_C_atoms'] = count_nC
+        dataframe.loc[row.Index, 'feat_H_atoms'] = count_nH
+        dataframe.loc[row.Index, 'feat_N_atoms'] = count_nN
+        dataframe.loc[row.Index, 'feat_O_atoms'] = count_nO
+        dataframe.loc[row.Index, 'feat_S_atoms'] = count_nS
 
     return dataframe
 

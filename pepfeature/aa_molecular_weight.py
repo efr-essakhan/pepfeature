@@ -9,7 +9,7 @@ def _calc_molecular_weight(dataframe: object, aa_column: str = 'Info_window_seq'
 
     Calculated as a simple weighted sum of aminoacid counts, with AA weights
 
-    Results appended as a new column named feat_weight
+    Results appended as a new column named feat_molecular_weight
 
     :param dataframe: A pandas DataFrame
     :param aa_column: Name of column in dataframe consisting of Protein Sequences to process
@@ -41,7 +41,7 @@ def _calc_molecular_weight(dataframe: object, aa_column: str = 'Info_window_seq'
         #     weight += (counts_of_every_unique_aa[i] * AA_weights_dict[every_unique_aa[i]])
 
         #Creating the features and setting them
-        dataframe.loc[row.Index, 'feat_weight'] = weight
+        dataframe.loc[row.Index, 'feat_molecular_weight'] = weight
 
     return dataframe
 

@@ -12,7 +12,7 @@ def _calc_kmer_composition(dataframe: object, k: int, aa_column: str = 'Info_win
     Since there are 20 valid Amino Acid letters, there can be 400 ( 20x20) possible 2-letter combination,
     8000 (20x20x20) 3-letter combinations, etc.
 
-    Results appended as a new column named feat_freq_{subsequence} e.g. feat_freq_AB, feat_freq_BC etc.
+    Results appended as a new column named feat_Perc_{subsequence} e.g. feat_Perc_AB, feat_Perc_BC etc.
 
      :param dataframe: A pandas DataFrame
      :param aa_column: Name of column in dataframe consisting of Protein Sequences to process
@@ -24,7 +24,7 @@ def _calc_kmer_composition(dataframe: object, k: int, aa_column: str = 'Info_win
 
     # Create columns for each possible Amino-Acid k-letter combination and fill the values as 0 [e.g. for k=3, with the name format: feat_freq_XXX ]
     dataframe = pd.concat(
-        [dataframe, (pd.DataFrame(columns=['feat_freq_{}'.format(''.join(c)) for c in product(''.join(valid_letters), repeat=k)]))])
+        [dataframe, (pd.DataFrame(columns=['feat_Perc_{}'.format(''.join(c)) for c in product(''.join(valid_letters), repeat=k)]))])
     dataframe.fillna(0, inplace=True)
 
     # ==================== Calculate feature ==================== #
@@ -49,7 +49,7 @@ def _calc_kmer_composition(dataframe: object, k: int, aa_column: str = 'Info_win
         #set the kmer frequencies to corresponding columns for each row of the dataframe
         totalQuantity = sum(kFreq.values())
         for kmer, quantity in kFreq.items():
-            dataframe.loc[row.Index, 'feat_freq_{}'.format(kmer)] = (quantity / totalQuantity)
+            dataframe.loc[row.Index, 'feat_Perc_{}'.format(kmer)] = (quantity / totalQuantity)
 
     return dataframe
 

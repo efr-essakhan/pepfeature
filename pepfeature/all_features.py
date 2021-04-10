@@ -36,13 +36,13 @@ def _execute_all_routines(dataframe, k, aa_column='Info_window_seq'):
 
     #Functions that will be run to create the dataframes with features
     functions = [
-        pep.aa_descriptors._calc_aa_descriptors,
-        pep.aa_composition._calc_aa_composition,
-        pep.aa_percentages._calc_aa_percentages,
-        pep.aa_cojoint_triads._calc_cojoint_triads,
-        pep.aa_molecular_weight._calc_molecular_weight,
-        pep.aa_number_of_atoms._calc_number_of_atoms,
         pep.aa_sequence_entropy._calc_sequence_entropy,
+        pep.aa_number_of_atoms._calc_number_of_atoms,
+        pep.aa_molecular_weight._calc_molecular_weight,
+        pep.aa_composition._calc_aa_composition,
+        pep.aa_descriptors._calc_aa_descriptors,
+        pep.aa_cojoint_triads._calc_cojoint_triads,
+        pep.aa_percentages._calc_aa_percentages,
         #pep.aa_kmer_composition._calc_kmer_composition
     ]
 
@@ -74,6 +74,7 @@ def _execute_all_routines(dataframe, k, aa_column='Info_window_seq'):
 
 
 def calc_csv(dataframe, k, Ncores=4, rows_per_csv=None, csv_path_filename=['', 'result'], aa_column='Info_window_seq'):
+
     utils.calculate_export_csv(dataframe=dataframe, function=_execute_all_routines, Ncores=Ncores, rows_per_csv=rows_per_csv,
                          csv_path_filename=csv_path_filename, aa_column=aa_column, k=k)
 

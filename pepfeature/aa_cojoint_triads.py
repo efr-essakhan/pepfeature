@@ -22,7 +22,7 @@ def _calc_cojoint_triads(dataframe: object, aa_column: str = 'Info_window_seq') 
                        'H': '4', 'N': '4', 'Q': '4', 'W': '4', 'K': '5', 'R': '5', 'D': '6', 'E': '6'}
 
     # Create columns for each possible 3-number (group-value) combination and fill them with 0 [with the name format:
-    # feat_CT_XXX ]
+    # feat_CTXXX ]
     dataframe = pd.concat(
         [dataframe, (pd.DataFrame(
             columns=['feat_CT{}'.format(''.join(c)) for c in product('0123456', repeat=3)]))])

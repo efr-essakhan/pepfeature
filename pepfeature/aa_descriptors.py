@@ -8,7 +8,7 @@ def _calc_aa_descriptors(dataframe: object, aa_column: str = 'Info_window_seq') 
 
     Calculates AA descriptors features
 
-    Results appended as a new columns named feat_perc_{properties} e.g. feat_BLOSUM9
+    Results appended as a new columns named feat_{properties} e.g. feat_BLOSUM9
 
     :param dataframe: A pandas DataFrame
     :param aa_column: Name of column in dataframe consisting of Protein Sequences to process

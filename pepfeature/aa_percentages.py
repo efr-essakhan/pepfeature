@@ -8,7 +8,7 @@ def _calc_aa_percentages(dataframe: object, aa_column: str = 'Info_window_seq') 
     Calculates the percent of each aminoacid in the peptides (Amino Acid Sequences). This results in 20 new features,
     which should be called feat_perc_A, feat_perc_C, ..., feat_perc_Y.
 
-    Results appended as a new column named feat_perc_{letter} e.g. feat_perc_A, feat_perc_C, ..., feat_perc_Y.
+    Results appended as a new column named feat_Perc_{aa letter} e.g. feat_Perc_A, feat_Perc_C, ..., feat_perc_Y.
 
     :param dataframe: A pandas DataFrame
     :param aa_column: Name of column in dataframe consisting of Protein Sequences to process
