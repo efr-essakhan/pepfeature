@@ -23,7 +23,13 @@ if __name__ == '__main__':
 
     df = pd.read_csv('example_peptide_data.csv')
     #print(df.loc[range(2)].to_dict('series'))
-    pep.all_features.calc_df(dataframe=df.loc[range(200)], k=1, Ncores=2)
+    #pep.all_features.calc_df(dataframe=df.loc[range(200)], k=1, Ncores=2)
+    #pep.all_features.calc_csv(dataframe=df.loc[range(15)], k=1, Ncores=2, rows_per_csv=2)
+    yolo = pep.all_features.calc_df(dataframe=df.loc[range(15)], k=1, Ncores=2)
+    print(yolo)
+    print(pep.aa_cojoint_triads._calc_cojoint_triads(df.loc[range(5)]))
+
+    # print(yolo.dtypes)
 
 
 

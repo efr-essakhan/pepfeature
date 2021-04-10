@@ -42,10 +42,10 @@ def _calc_sequence_entropy(dataframe: object, aa_column: str = 'Info_window_seq'
     return dataframe
 
 
-def calc_csv(dataframe, Ncores=4, chunksize=50000, csv_path_filename=['', 'result'],
+def calc_csv(dataframe, Ncores=4, rows_per_csv=None, csv_path_filename=['', 'result'],
                   aa_column='Info_window_seq'):  # function that the client should call.
-    utils.calculate_export_csv(dataframe=dataframe, function=_calc_sequence_entropy, Ncores=Ncores, aa_column=aa_column,
-                               chunksize=chunksize, csv_path_filename=csv_path_filename)
+    utils.calculate_export_csv(dataframe=dataframe, function=_calc_sequence_entropy, Ncores=Ncores,
+                               rows_per_csv=rows_per_csv, csv_path_filename=csv_path_filename, aa_column=aa_column)
 
 
 def calc_df(dataframe, Ncores=4, chunksize=50000,

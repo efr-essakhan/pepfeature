@@ -29,9 +29,12 @@ def _remove_invalid_aa(df, aa_column):
 
 # CSV to contain amount of rows = chunksize
 # Chunksize technique saves ram for processed results and results are processed in chunks
-def calculate_export_csv(dataframe, function, Ncores=4, chunksize=50000, csv_path_filename=['', 'result'],
+def calculate_export_csv(dataframe, function, Ncores=4, rows_per_csv=None, csv_path_filename=['', 'result'],
                          aa_column='Info_window_seq',
                          **kwargs):  # **kwargs used as a compromise to generalise this function to also be compatible with k-mer calc routine
+
+    if rows_per_csv == None:
+        rows_per_csv = dataframe.shape[0] #number of rows = number of rows in dataframe
 
     dataframe = _remove_invalid_aa(dataframe, aa_column)
 
@@ -41,7 +44,7 @@ def calculate_export_csv(dataframe, function, Ncores=4, chunksize=50000, csv_pat
 
     # Running each of the chunks in list_df across one of the cores available and saving the (chunk) DF with the features calculated as a csv
     for idx, result_df in enumerate(p.imap(functools.partial(function, aa_column=aa_column, **kwargs),
-                                           _df_chunking(dataframe, chunksize))):
+                                           _df_chunking(dataframe, rows_per_csv))):
 
         result_df.to_csv(os.path.join(csv_path_filename[0],
                                       csv_path_filename[1] + f"_{datetime.now().strftime('%d%m%Y-%H%M%S')}_{idx}.csv"),
@@ -54,32 +57,14 @@ def calculate_export_csv(dataframe, function, Ncores=4, chunksize=50000, csv_pat
     p.join()
 
 
-# Here chunksize's utility is for distributing how many (chunksize) rows across cores rather then also only proccesing the chunk at a time in memory - here saving ram is not an objective unlike the csv routine above
-# def calculate_return_df(dataframe, function, Ncores=4, chunksize=500, aa_column='Info_window_seq',
-#                         **kwargs):  # function that the client should call.
-#
-#     dataframe = _remove_invalid_aa(dataframe, aa_column)
-#     list_df = [dataframe[i:i + chunksize] for i in range(0, dataframe.shape[0], chunksize)]
-#
-#     ctx = mp.get_context(
-#         'spawn')  # This guarantees that the Pool processes are just spawned and not forked from the parent process. Accordingly, none of them has access to the original DataFrame and all of them only need a tiny fraction of the parent's memory.
-#     p = ctx.Pool(processes=Ncores)
-#
-#     # Running each of the chunks in list_df to one of the cores available and saving the DF with the features calculated as a csv
-#     result_df = pd.concat(p.map(functools.partial(function, aa_column=aa_column, **kwargs), list_df))
-#
-#     p.close()
-#     p.join()  # the process will complete and only then any code after can be ran
-#
-#     return result_df
 
 
 def calculate_return_df(dataframe, function, Ncores=4, aa_column='Info_window_seq',
                         **kwargs):  # function that the client should call.
 
     dataframe = _remove_invalid_aa(dataframe, aa_column)
-    df_split = np.array_split(dataframe, Ncores)
 
+    df_split = np.array_split(dataframe, Ncores)
 
     ctx = mp.get_context(
         'spawn')  # This guarantees that the Pool processes are just spawned and not forked from the parent process. Accordingly, none of them has access to the original DataFrame and all of them only need a tiny fraction of the parent's memory.
@@ -88,7 +73,6 @@ def calculate_return_df(dataframe, function, Ncores=4, aa_column='Info_window_se
     # Running each of the chunks in list_df to one of the cores available and saving the DF with the features calculated as a csv
     result_df = pd.concat(p.map(functools.partial(function, aa_column=aa_column, **kwargs), df_split))
 
-    print(result_df)
     p.close()
     p.join()  # the process will complete and only then any code after can be ran
 

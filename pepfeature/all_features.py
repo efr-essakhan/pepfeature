@@ -5,7 +5,8 @@
 """
 
 import pepfeature as pep
-from utils import calculate_export_csv, calculate_return_df
+# from utils import calculate_export_csv, calculate_return_df
+import utils
 import pandas as pd
 
 def _execute_all_routines(dataframe, k, aa_column='Info_window_seq'):
@@ -72,13 +73,12 @@ def _execute_all_routines(dataframe, k, aa_column='Info_window_seq'):
 
 
 
-def calc_csv(dataframe, k, Ncores=4, chunksize=50000, csv_path_filename=['', 'result'], aa_column='Info_window_seq'):
-
-    calculate_export_csv(dataframe=dataframe, function=_execute_all_routines, csv_path_filename=csv_path_filename,
-                         Ncores=Ncores, chunksize=chunksize, aa_column=aa_column, k=k)
+def calc_csv(dataframe, k, Ncores=4, rows_per_csv=None, csv_path_filename=['', 'result'], aa_column='Info_window_seq'):
+    utils.calculate_export_csv(dataframe=dataframe, function=_execute_all_routines, Ncores=Ncores, rows_per_csv=rows_per_csv,
+                         csv_path_filename=csv_path_filename, aa_column=aa_column, k=k)
 
 
 def calc_df(dataframe, k, Ncores=4, aa_column='Info_window_seq'):
 
-    return calculate_return_df(dataframe=dataframe, function=_execute_all_routines, Ncores=Ncores,
+    return utils.calculate_return_df(dataframe=dataframe, function=_execute_all_routines, Ncores=Ncores,
                                aa_column=aa_column, k=k)
