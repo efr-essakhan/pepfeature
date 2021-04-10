@@ -2,18 +2,61 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4413f912-7439-44d8-b9ae-acfa1930c1b8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/pepfeature/all_features.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/calc_aa_composition.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/calc_aa_composition.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/calc_aa_descriptors.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/calc_aa_descriptors.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/calc_aa_percentages.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/calc_aa_percentages.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/calc_all_features.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/calc_all_features.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/calc_cojoint_triads.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/calc_cojoint_triads.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/calc_kmer_composition.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/calc_kmer_composition.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/calc_molecular_weight.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/calc_molecular_weight.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/calc_number_of_atoms.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/calc_number_of_atoms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/calc_sequence_entropy.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/calc_sequence_entropy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/examples.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/result_07042021-013341_0.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Feature Engineering Tasks/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Feature Engineering Tasks/.idea/Feature Engineering Tasks.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Feature Engineering Tasks/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Feature Engineering Tasks/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Feature Engineering Tasks/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Feature Engineering Tasks/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Feature Engineering Tasks/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Feature Engineering Tasks/1) Frequency of Individual Amino Acids/.ipynb_checkpoints/Initial features -checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Feature Engineering Tasks/1) Frequency of Individual Amino Acids/Frequency of Individual Amino Acids MODULAR.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Feature Engineering Tasks/1) Frequency of Individual Amino Acids/Frequency of Individual Amino Acids.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Feature Engineering Tasks/1) Frequency of Individual Amino Acids/Initial features .ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Feature Engineering Tasks/1) Frequency of Individual Amino Acids/Ov_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/example_peptide_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Feature Engineering Tasks/2) K-mer frequencies/K-mer frequencies paralized.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Feature Engineering Tasks/2) K-mer frequencies/K-mer frequencies.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Feature Engineering Tasks/2) K-mer frequencies/Ov_data.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Feature Engineering Tasks/2) K-mer frequencies/practise.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Feature Engineering Tasks/3) Conjoint Triads/Conjoint Triads.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Feature Engineering Tasks/3) Conjoint Triads/Ov_data.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Feature Engineering Tasks/4) Sequence Entropy/Ov_data.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Feature Engineering Tasks/4) Sequence Entropy/Sequence Entropy.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Feature Engineering Tasks/4) Sequence Entropy/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Feature Engineering Tasks/Frequency of AA types/Ov_data.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Feature Engineering Tasks/Frequency of AA types/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Feature Engineering Tasks/Frequency of AA types/freq of AA types.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Feature Engineering Tasks/Molecular Weight/Molecular Weight.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Feature Engineering Tasks/Molecular Weight/Ov_data.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Feature Engineering Tasks/Molecular Weight/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Feature Engineering Tasks/Number of atoms/Number of atoms.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Feature Engineering Tasks/Number of atoms/Ov_data.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Feature Engineering Tasks/Number of atoms/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Feature Engineering Tasks/aadescriptors/AAdescriptors.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Feature Engineering Tasks/aadescriptors/Ov_data.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Feature Engineering Tasks/aadescriptors/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Feature Engineering Tasks/aadescriptors/aadesc.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Feature Engineering Tasks/aadescriptors/practice.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/Ov_data.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/calc_aa_composition.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/aa_composition.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/calc_aa_descriptors.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/aa_descriptors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/calc_aa_percentages.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/aa_percentages.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/calc_all_features.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/calc_cojoint_triads.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/aa_cojoint_triads.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/calc_kmer_composition.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/aa_kmer_composition.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/calc_molecular_weight.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/aa_molecular_weight.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/calc_number_of_atoms.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/aa_number_of_atoms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/calc_sequence_entropy.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/aa_sequence_entropy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/examples.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/examples.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/practiseimap.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/result_08042021-161054_0.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/result_08042021-161754_0.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/result_08042021-162011_0.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/result_08042021-163503_0.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/result_08042021-165809_0.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pepfeature/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -94,5 +137,21 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pepfeature/utils.py</url>
+          <line>97</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pepfeature/utils.py</url>
+          <line>80</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

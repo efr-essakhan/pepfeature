@@ -1,91 +1,41 @@
-# from pepfeature import calc_kmer_composition as aa
-from pepfeature import calc_aa_composition
-from pepfeature import calc_aa_descriptors
-from pepfeature import calc_aa_percentages
-from pepfeature import calc_cojoint_triads
-from pepfeature import calc_molecular_weight
-from pepfeature import calc_number_of_atoms
-from pepfeature import calc_sequence_entropy
-from pepfeature import calc_all_features
-from pepfeature import calc_kmer_composition
+"""
+    Contains example use cases of this library.
+"""
+
 import pandas as pd
-import numpy as np
 import time
+import pepfeature as pep
 
-df = pd.read_csv('Ov_data.csv')
 # df = pd.DataFrame(data={ 'Info_window_seq': ['CCAKJATJXARRRZS'], 'yolo': ['CCAKJATJXARRRZS'], 'Info_window_seq': ['CCAKJAdJXARRRZS']})
-
-#For testing purposes of the functions in this file
-def dummydataframe(rows):
-
-    dc = pd.DataFrame(np.random.randint(0, 100, size=(rows, 12))) #8500 total features from methods
-    dc['Info_window_seq'] = "LLLLLLLLDVHIESG"
-
-    return (dc)
+#
+# #For testing purposes of the functions in this file
+# def dummydataframe(rows):
+#
+#     dc = pd.DataFrame(np.random.randint(0, 100, size=(rows, 12))) #8500 total features from methods
+#     dc['Info_window_seq'] = "LLLLLLLLDVHIESG"
+#
+#     return (dc)
+from pepfeature import all_features
 
 if __name__ == '__main__':
-    start = time.time()
 
-    print(calc_all_features.calc_all_features_csv(Ncores=4, dataframe=df.loc[range(2)], chunksize=10, k=1))
-    #print(df.columns)
-   # print(df)
+    start = time.time()  # For timing purposes
+
+    df = pd.read_csv('example_peptide_data.csv')
+    #print(df.loc[range(2)].to_dict('series'))
+    pep.all_features.calc_df(dataframe=df.loc[range(200)], k=1, Ncores=2)
 
 
-    #print(aa.calculate_csv(k=2, Ncores=1, dataframe = df.loc[range(1)], chunksize = 5))
-    # print(aa.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=5))
-    #print(calc_aa_descriptors.calculate_df(Ncores=1, dataframe=df.loc[range(1)], chunksize=1))
-    #print(calc_aa_percentages.calculate_df(Ncores=1, dataframe=df, chunksize=5))
-    # print(calc_cojoint_triads.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'yolo']))
-    # print(calc_molecular_weight.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'yolo']))
-    # print(calc_number_of_atoms.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'yolo']))
-    # print(calc_sequence_entropy.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=1))
-    # print(calc_kmer_composition.calculate_csv(Ncores=1, dataframe=df.loc[range(1)], chunksize=1, k=2, aa_column='Info_window_seq'))
-    # print(calc_sequence_entropy.calculate_csv(Ncores=1, dataframe=df, chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'yolo']))
-    # print(calc_all_features.calc_all_features_csv(Ncores=4, dataframe=pd.read_csv('Ov_data.csv').loc[range(10)], k=1, chunksize=3000))
-    #print(calc_all_features.calc_all_features_df(Ncores=4, dataframe=pd.read_csv('Ov_data.csv').loc[range(10)], chunksize=3000, k=1))
-    #print(calc_all_features.calc_all_features_csv(Ncores=4, dataframe=df.loc[range(2)], chunksize=10, k=1))
-    # print(calc_aa_composition._calc_aa_composition(dataframe=df, aa_column='Info_window_seq'))
-    # print(calc_aa_percentages.calculate_df(Ncores=1, dataframe=df, chunksize=2, aa_column= "Info_window_seq"))
-    #print(calc_aa_descriptors._calc_aa_descriptors(df.loc[range(3)]))
-    # help(pepfeature)
-    # , chunksize=1, csv_path_filename=[r'C:\Users\Essa Khan\Desktop\dataframes', 'test'] ,
-    # for gm_chunk in pd.read_csv('Ov_data.csv', chunksize=20000):
-    #     print(calc_amino_acid_composition.calculate(dataframe=gm_chunk,
-    #                                                 Ncores=multiprocessing.cpu_count(), chunksize=0,
-    #                                                 csv_path=r'C:\Users\Essa Khan\Desktop\Pepfeature dataframes'))
-    # Above works and took 118.22979235649109 s ['Ov_data.csv' chunksize=10000 , chunksize=10000]
-    print(type(df))
-    # df.loc[range(50000)]
-    # calc_amino_acid_composition.dummydataframe()
-    # print(calc_amino_acid_composition.calc_aa_composition(df.loc[range(50000)]))
-    # dataframe=df.loc[range(10)]
-    # print(calc_amino_acid_composition.calculate(df.loc[range(10)], chunksize = 2))
+
+    ##############            Example Use Cases                 ###############
+
+
+    """Calculate all features and store result into CSV"""
+    #pep.all_features.calc_csv(dataframe=df.loc[range(1000)], k=1, Ncores=4, chunksize=200)
+    #print(pep.all_features.calc_df(dataframe=df.loc[range(10)], k=1, Ncores=4, chunksize=2))
+
+    #print(pep.aa_percentages.calculate_df(Ncores=1, dataframe=df.loc[range(1)], chunksize=2, aa_column="Info_window_seq"))
+
+
     print(f'time taken: {time.time() - start}')
 
-    # 9.474778175354004 4,2000
-    # 19.15898585319519,4,2000
-    # Without using NCORE:  19.768373250961304
-
-    # -----
-    # 54.72946786880493, 50k, 4, 10k
-    # 31.59996223449707, 50k, multiprocessing.cpu_count(), 10k
-    # 141.61061215400696 50k no cores
-
-# for x, y in [[1, 2], ['a', 'b']]:
-#     print(f'{x} and {y}')
-#     #print(y)
-
-
-# print(df.Info_n_Negative)
-
-# start = time.time()
-# calc_amino_acid_composition.calc_aa_composition(df)
-# print(f'time taken: {time.time()-start}')
-
-
-# 1 core: time taken: 223.05973744392395
-# max cores: 92.77946376800537
-# without core: and chunking: 466.0802357196808
-
-
-# calc_feature.calculate()
