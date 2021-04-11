@@ -22,7 +22,6 @@ if __name__ == '__main__':
     start = time.time()  # For timing purposes
 
     df = pd.read_csv('example_peptide_data.csv')
-    #print(df.loc[range(2)].to_dict('series'))
     #pep.all_features.calc_df(dataframe=df.loc[range(100)], k=1, Ncores=2)
     pep.all_features.calc_csv(dataframe=df.loc[range(100)], k=2, Ncores=4)
     #yolo = pep.all_features.calc_df(dataframe=df.loc[range(15)], k=1, Ncores=2)
