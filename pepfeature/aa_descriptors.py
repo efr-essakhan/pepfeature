@@ -18,10 +18,10 @@ def _calc_aa_descriptors(dataframe, aa_column= 'Info_window_seq'):
 
     # Dictionary mapping each Amino-Acid to its respective group-value
     AA_properties_df = []
-    properties = ['crucianiProperties', 'kideraFactors', 'zScales', 'FASGAI', 'VHSE', 'ProtFP', 'stScales', 'tScales',
-                  'MSWHIM', 'BLOSUM']
+    properties = ['crucianiProperties', 'kideraFactors', 'zScales', 'FASGAI', 'stScales', 'tScales', 'VHSE', 'ProtFP',
+                  'BLOSUM','MSWHIM']
     for sheet in properties:
-        AA_properties_df.append(pd.read_excel('AAdescriptors.xls', sheet, index_col=0, header=0))
+        AA_properties_df.append(pd.read_excel('AAdescriptors.xlsx', sheet, index_col=0, header=0))
 
     for row in dataframe.itertuples():
 

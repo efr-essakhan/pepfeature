@@ -3,16 +3,12 @@ from pepfeature import utils
 
 def _calc_aa_percentages(dataframe: object, aa_column: str = 'Info_window_seq') -> object:
     """
-    Not intended to be called directly by the user, use the functions calculate_csv or calculate_df instead.
+    Not intended to be called directly by the user, use the functions calculate_csv or calculate_df instead as they have
+    multi-processing functionality
 
-<<<<<<< HEAD
     Calculates the percent of each aminoacid in the peptides (Amino Acid Sequences).
-=======
-    Calculates the percent of each aminoacid in the peptides (Amino Acid Sequences). This results in 20 new features,
-    which should be called feat_perc_A, feat_perc_C, ..., feat_perc_Y.
->>>>>>> parent of 6905cbe (created test)
 
-    Results appended as a new column named feat_Perc_{aa letter} e.g. feat_Perc_A, feat_Perc_C, ..., feat_perc_Y.
+    Results appended as a new column named feat_Perc_{aa letter} e.g. feat_Perc_A, feat_Perc_C, ..., feat_Perc_Y.
 
     :param dataframe: A pandas DataFrame
     :param aa_column: Name of column in dataframe consisting of Protein Sequences to process
@@ -44,12 +40,11 @@ def _calc_aa_percentages(dataframe: object, aa_column: str = 'Info_window_seq') 
 
         # 2) Find out & set the percentage of each letter in the peptides
         for aa, freq in number_of_occurrences_of_letter_dict.items():
-            dataframe.loc[row.Index, 'feat_Perc_{}'.format(aa)] = (freq / length_of_peptide) * 100
+            dataframe.loc[row.Index, 'feat_Perc_{}'.format(aa)] = (freq / length_of_peptide) #* 100
 
     return dataframe
 
 
-<<<<<<< HEAD
 def calc_csv(dataframe: object, save_folder: str, aa_column: str = 'Info_window_seq', Ncores: int = 1, chunksize: int = None):
     """
     Calculates the percent of each Amino-Acid in the peptides (Amino Acid Sequences) chunk by chunk of the inputted 'dataframe'.
@@ -68,10 +63,6 @@ def calc_csv(dataframe: object, save_folder: str, aa_column: str = 'Info_window_
     :param Ncores: Number of cores to use. default=1
     :param chunksize: Number of rows to be processed at a time. default=None (Where a 'None' object denotes no chunks but the entire dataframe to be processed)
     """
-=======
-def calc_csv(dataframe, Ncores=4, rows_per_csv=None, csv_path_filename=['', 'result'],
-                  aa_column='Info_window_seq'):  # function that the client should call.
->>>>>>> parent of 6905cbe (created test)
     utils.calculate_export_csv(dataframe=dataframe, function=_calc_aa_percentages, Ncores=Ncores,
                                save_folder=save_folder, aa_column=aa_column, chunksize=chunksize)
 
