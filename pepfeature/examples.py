@@ -6,29 +6,24 @@ import pandas as pd
 import time
 import pepfeature as pep
 
-# df = pd.DataFrame(data={ 'Info_window_seq': ['CCAKJATJXARRRZS'], 'yolo': ['CCAKJATJXARRRZS'], 'Info_window_seq': ['CCAKJAdJXARRRZS']})
-#
-# #For testing purposes of the functions in this file
-# def dummydataframe(rows):
-#
-#     dc = pd.DataFrame(np.random.randint(0, 100, size=(rows, 12))) #8500 total features from methods
-#     dc['Info_window_seq'] = "LLLLLLLLDVHIESG"
-#
-#     return (dc)
-from pepfeature import all_features
-
 if __name__ == '__main__':
+    # For timing purposes
+    start = time.time()
 
-    start = time.time()  # For timing purposes
+    #Import Sample Data that has Sample Amino-Acid sequences
+    df = pd.read_csv('Sample_Data.csv')
 
-    df = pd.read_csv('example_peptide_data.csv')
-    #pep.all_features.calc_df(dataframe=df.loc[range(100)], k=1, Ncores=2)
-    pep.all_features.calc_csv(dataframe=df.loc[range(100)], k=2, Ncores=4)
-    #yolo = pep.all_features.calc_df(dataframe=df.loc[range(15)], k=1, Ncores=2)
-    #print(yolo)
-    #print(pep.aa_cojoint_triads._calc_cojoint_triads(df.loc[range(5)]))
+    df = df.loc[range(100)] #Making the dataset smaller
 
-    # print(yolo.dtypes)
+    '''Calculate All features at once'''
+
+    #Calculate all features and store result as csv
+    pep.all_features.calc_csv(dataframe=df, k=1,chunksize=50, Ncores=4, save_folder=r'C:\Users\xbox_\Documents\Pepfeature DS', aa_column='Info_window_seq')
+
+    #Calculate all features and return result as DataFrame
+    pep.all_features.calc
+
+
 
 
 

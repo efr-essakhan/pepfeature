@@ -27,14 +27,14 @@ def _remove_invalid_aa(df, aa_column):
     return df
 
 
-# CSV to contain amount of rows = chunksize
+
 # Chunksize technique saves ram for processed results and results are processed in chunks
-def calculate_export_csv(dataframe, function, Ncores=4, rows_per_csv=None, csv_path_filename=['', 'result'],
+def calculate_export_csv(dataframe, function, Ncores=4, chunksize=None, save_folder='',
                          aa_column='Info_window_seq',
                          **kwargs):  # **kwargs used as a compromise to generalise this function to also be compatible with k-mer calc routine
 
-    if rows_per_csv == None:
-        rows_per_csv = dataframe.shape[0] #number of rows = number of rows in dataframe
+    if chunksize == None:
+        chunksize = dataframe.shape[0] #number of rows = number of rows in dataframe
 
     dataframe = _remove_invalid_aa(dataframe, aa_column)
 
@@ -44,10 +44,9 @@ def calculate_export_csv(dataframe, function, Ncores=4, rows_per_csv=None, csv_p
 
     # Running each of the chunks in list_df across one of the cores available and saving the (chunk) DF with the features calculated as a csv
     for idx, result_df in enumerate(p.imap(functools.partial(function, aa_column=aa_column, **kwargs),
-                                           _df_chunking(dataframe, rows_per_csv))):
+                                           _df_chunking(dataframe, chunksize))):
 
-        result_df.to_csv(os.path.join(csv_path_filename[0],
-                                      csv_path_filename[1] + f"_{datetime.now().strftime('%d%m%Y-%H%M%S')}_{idx}.csv"),
+        result_df.to_csv(os.path.join(save_folder + f"\_{datetime.now().strftime('%d%m%Y-%H%M%S')}_{idx}.csv"),
                          index=False)
 
         print(result_df)
@@ -60,7 +59,7 @@ def calculate_export_csv(dataframe, function, Ncores=4, rows_per_csv=None, csv_p
 
 
 def calculate_return_df(dataframe, function, Ncores=4, aa_column='Info_window_seq',
-                        **kwargs):  # function that the client should call.
+                        **kwargs):
 
     dataframe = _remove_invalid_aa(dataframe, aa_column)
 
@@ -78,14 +77,7 @@ def calculate_return_df(dataframe, function, Ncores=4, aa_column='Info_window_se
 
     return result_df
 
-def parallelize_dataframe(df,  n_cores=4 ):#, func,
-    df_split = np.array_split(df, n_cores)
-    # pool = mp.Pool(n_cores)
-    # df = pd.concat(pool.map(func, df_split))
-    # pool.close()
-    # pool.join()
-    #return df
-    return df_split
+
 
 
 

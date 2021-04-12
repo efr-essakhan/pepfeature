@@ -7,7 +7,7 @@ def _calc_kmer_composition(dataframe: object, k: int, aa_column: str = 'Info_win
     Not intended to be called directly by the user, use the functions calculate_csv or calculate_df instead.
 
     Calculates frequency of each k-length contiguous combination of subsequence of amino acid letters in the
-    sequence.
+    sequence. (k-mers in a sequence are all the subsubsequence of length k.)
 
     Since there are 20 valid Amino Acid letters, there can be 400 ( 20x20) possible 2-letter combination,
     8000 (20x20x20) 3-letter combinations, etc.
@@ -54,9 +54,47 @@ def _calc_kmer_composition(dataframe: object, k: int, aa_column: str = 'Info_win
     return dataframe
 
 
-def calc_csv(k, dataframe, Ncores=4, rows_per_csv=None, csv_path_filename = ['', 'result'], aa_column = 'Info_window_seq'): #function that the client should call.
-    utils.calculate_export_csv(dataframe=dataframe, function=_calc_kmer_composition, Ncores=Ncores,
-                               rows_per_csv=rows_per_csv, csv_path_filename=csv_path_filename, aa_column=aa_column, k=k)
+def calc_csv(k: int, dataframe: object, save_folder: str, aa_column: str = 'Info_window_seq', Ncores: int = 1, chunksize: int = None):
+    """
 
-def calc_df(k, dataframe, Ncores=4, chunksize = 50000, aa_column = 'Info_window_seq'): #function that the client should call.
-    return utils.calculate_return_df(dataframe = dataframe, function = _calc_kmer_composition, Ncores= Ncores, aa_column = aa_column, chunksize= chunksize, k=k)
+    Calculates frequency of each k-length contiguous combination of subsequence of amino acid letters in the
+    sequence chunk by chunk from the inputted 'dataframe'.
+    It saves each processed chunk as a CSV(s).
+
+    Since there are 20 valid Amino Acid letters, there can be 400 ( 20x20) possible 2-letter combination,
+    8000 (20x20x20) 3-letter combinations, etc.
+
+    Results appended as a new column named feat_Perc_{subsequence} e.g. feat_Perc_AB, feat_Perc_BC etc.
+
+    This is a Ram efficient way of calculating the Features as the features are calculated on a single chunk of the dataframe (of
+    chunksize number of rows) at a time and when a chunk has been been processed and saved as a CSV, then the chunk
+    is deleted freeing up RAM.
+
+    :param k: Length of subsequences.
+    :param dataframe: A pandas DataFrame that contains a column/feature that is composed of purely Amino-Acid sequences (pepides).
+    :param save_folder: Path to folder for saving the output.
+    :param aa_column: Name of column in dataframe consisting of Amino-Acid sequences to process. Default='Info_window_seq'
+    :param Ncores: Number of cores to use. default=1
+    :param chunksize: Number of rows to be processed at a time. default=None (Where a 'None' object denotes no chunks but the entire dataframe to be processed)
+    """
+    utils.calculate_export_csv(dataframe=dataframe, function=_calc_kmer_composition, Ncores=Ncores,
+                               chunksize=chunksize, save_folder=save_folder, aa_column=aa_column, k=k)
+
+def calc_df(k: int, dataframe: object, Ncores: int = 1, aa_column: str = 'Info_window_seq'):
+    """
+    Calculates frequency of each k-length contiguous combination of subsequence of amino acid letters in the
+    sequence. (k-mers in a sequence are all the subsubsequence of length k.)
+
+    Since there are 20 valid Amino Acid letters, there can be 400 ( 20x20) possible 2-letter combination,
+    8000 (20x20x20) 3-letter combinations, etc.
+
+    Results appended as a new column named feat_Perc_{subsequence} e.g. feat_Perc_AB, feat_Perc_BC etc.
+
+
+    :param k: Length of subsequences.
+    :param dataframe: A pandas DataFrame that contains a column/feature that is composed of purely Amino-Acid sequences (pepides).
+    :param Ncores: Number of cores to use. default=1
+    :param aa_column: Name of column in dataframe consisting of Amino-Acid sequences to process. Default='Info_window_seq'
+    :return: pandas DataFrame
+    """
+    return utils.calculate_return_df(dataframe = dataframe, function = _calc_kmer_composition, Ncores= Ncores, aa_column = aa_column, k=k)

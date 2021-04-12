@@ -6,8 +6,7 @@ def _calc_aa_percentages(dataframe: object, aa_column: str = 'Info_window_seq') 
     Not intended to be called directly by the user, use the functions calculate_csv or calculate_df instead as they have
     multi-processing functionality
 
-    Calculates the percent of each aminoacid in the peptides (Amino Acid Sequences). This results in 20 new features,
-    which should be called feat_Perc_A, feat_Perc_C, ..., feat_Perc_Y.
+    Calculates the percent of each aminoacid in the peptides (Amino Acid Sequences).
 
     Results appended as a new column named feat_Perc_{aa letter} e.g. feat_Perc_A, feat_Perc_C, ..., feat_Perc_Y.
 
@@ -46,29 +45,40 @@ def _calc_aa_percentages(dataframe: object, aa_column: str = 'Info_window_seq') 
     return dataframe
 
 
-def calc_csv(dataframe, Ncores=4, rows_per_csv=None, csv_path_filename=['', 'result'],
-                  aa_column='Info_window_seq'):  # function that the client should call.
+def calc_csv(dataframe: object, save_folder: str, aa_column: str = 'Info_window_seq', Ncores: int = 1, chunksize: int = None):
     """
-    Creates a csv with row
-     Calculates the percent of each aminoacid in the peptides (Amino Acid Sequences) and saves the results as a CSV
+    Calculates the percent of each Amino-Acid in the peptides (Amino Acid Sequences) chunk by chunk of the inputted 'dataframe'.
+    It saves each processed chunk as a CSV(s).
 
-      This results in 20 new features,
-    which should be called feat_Perc_A, feat_Perc_C, ..., feat_Perc_Y.
+    This results in 20 new features per chunk, appended as new columns named feat_Perc_{Amino-Acid letter} e.g. feat_Per_A,
+    feat_Perc_C, ..., feat_Perc_Y.
 
-    Calculates the percent of each aminoacid in the peptides (Amino Acid Sequences). This results in 20 new features,
-    which should be called feat_Perc_A, feat_Perc_C, ..., feat_Perc_Y.
+    This is a Ram efficient way of calculating the Features as the features are calculated on a single chunk of the dataframe (of
+    chunksize number of rows) at a time and when a chunk has been been processed and saved as a CSV, then the chunk
+    is deleted freeing up RAM.
+
+    :param dataframe: A pandas DataFrame that contains a column/feature that is composed of purely Amino-Acid sequences (pepides).
+    :param save_folder: Path to folder for saving the output.
+    :param aa_column: Name of column in dataframe consisting of Amino-Acid sequences to process. Default='Info_window_seq'
+    :param Ncores: Number of cores to use. default=1
+    :param chunksize: Number of rows to be processed at a time. default=None (Where a 'None' object denotes no chunks but the entire dataframe to be processed)
+    """
+    utils.calculate_export_csv(dataframe=dataframe, function=_calc_aa_percentages, Ncores=Ncores,
+                               save_folder=save_folder, aa_column=aa_column, chunksize=chunksize)
+
+
+def calc_df(dataframe: object, Ncores: object = 1, aa_column: object = 'Info_window_seq'):
+    """
+     Calculates the percent of each aminoacid in the peptides (Amino Acid Sequences).
 
     Results appended as a new column named feat_Perc_{aa letter} e.g. feat_Perc_A, feat_Perc_C, ..., feat_Perc_Y.
 
-    :param dataframe: A pandas DataFrame
-    :param aa_column: Name of column in dataframe consisting of Protein Sequences to process
-    :return: A Pandas DataFrame containing the calculated features appended as new columns.
+    :param dataframe: A pandas DataFrame that contains a column/feature that is composed of purely Amino-Acid sequences (pepides).
+    :param Ncores: Number of cores to use. default=1
+    :param aa_column: Name of column in dataframe consisting of Amino-Acid sequences to process. Default='Info_window_seq'
+    :return: Pandas DataFrame
+
     """
-    utils.calculate_export_csv(dataframe=dataframe, function=_calc_aa_percentages, Ncores=Ncores,
-                               rows_per_csv=rows_per_csv, csv_path_filename=csv_path_filename, aa_column=aa_column)
 
-
-def calc_df(dataframe, Ncores=4, chunksize=50000,
-                 aa_column='Info_window_seq'):  # function that the client should call.
     return utils.calculate_return_df(dataframe=dataframe, function=_calc_aa_percentages, Ncores=Ncores,
-                                     aa_column=aa_column, chunksize=chunksize)
+                                     aa_column=aa_column)
