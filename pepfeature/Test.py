@@ -1,8 +1,12 @@
-import pepfeature
 import pandas as pd
 import time
 import pepfeature as pep
 import string
+
+'''
+       Helper function to implement map, starmap and their async counterparts.
+       '''
+
 
 sample_df = pd.read_csv('Sample_Data.csv')
 #model_df = pd.read_csv("Model_Data.csv")
@@ -35,14 +39,15 @@ def check_invalid_aa_existance(df):
 if __name__ == '__main__':
    # pep.all_features.calc_csv(dataframe=sample_df, k=2, Ncores=4)
 
-    # sample_df = sample_df.loc[range(10)]
+    sample_df = sample_df.loc[range(20)]
     # model_df = model_df.loc[range(10)]
 
-    print(sample_df)
+
 
     #Calculating all features
     sample_df = pep.all_features.calc_df(dataframe=sample_df, k=1, Ncores=4)
-
+    # pep.all_features.calc_csv(dataframe=sample_df, k=4,chunksize=50, Ncores=4, save_folder=r'C:\Users\xbox_\Documents\Pepfeature DS', aa_column='Info_window_seq')
+    print(sample_df)
     # #Removing AA sequuence column from each
     # del sample_df['Info_window_seq']
     # del model_df['Info_window_seq']

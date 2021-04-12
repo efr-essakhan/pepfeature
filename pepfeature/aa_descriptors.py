@@ -1,8 +1,9 @@
 from pepfeature import utils
+import pepfeature as pep
 import numpy as np
 import pandas as pd
 
-def _calc_aa_descriptors(dataframe: object, aa_column: str = 'Info_window_seq') -> object:
+def _calc_aa_descriptors(dataframe, aa_column= 'Info_window_seq'):
     """
     Not intended to be called directly by the user, use the functions calculate_csv or calculate_df instead.
 
@@ -40,6 +41,13 @@ def _calc_aa_descriptors(dataframe: object, aa_column: str = 'Info_window_seq') 
                     dataframe.loc[row.Index, 'feat_{}'.format(row_df.Index)] = weight / len(peptide)
 
     return (dataframe)
+
+#Import Sample Data that has Sample Amino-Acid sequences
+df = pd.read_csv('Ov_data.csv', dtype=float)
+
+#df = df.loc[range()] #Making the dataset smaller
+
+print(_calc_aa_descriptors(df))
 
 
 def calc_csv(dataframe: object, save_folder: str, aa_column: str = 'Info_window_seq', Ncores: int = 1, chunksize: int = None):

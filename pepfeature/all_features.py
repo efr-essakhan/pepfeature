@@ -4,9 +4,7 @@
 
 """
 
-import pepfeature as pep
 import utils
-import pandas as pd
 
 def calc_csv(dataframe: object, k: int, save_folder: str, aa_column: str = 'Info_window_seq', Ncores: int = 1, chunksize: int = None):
     """
