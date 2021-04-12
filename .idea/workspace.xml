@@ -3,17 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="4413f912-7439-44d8-b9ae-acfa1930c1b8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/AAdescriptors.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/aa_cojoint_triads.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/aa_cojoint_triads.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/aa_composition.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/aa_composition.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/aa_descriptors.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/aa_descriptors.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/aa_kmer_composition.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/aa_kmer_composition.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/aa_molecular_weight.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/aa_molecular_weight.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/aa_number_of_atoms.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/aa_number_of_atoms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/aa_percentages.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/aa_percentages.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pepfeature/aa_sequence_entropy.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/aa_sequence_entropy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/AAdescriptors.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/AAdescriptors.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/Model_Data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/Model_Data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/Sample_Data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/Sample_Data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/Test.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/Test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pepfeature/all_features.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/all_features.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pepfeature/examples.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/examples.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pepfeature/result_11042021-040459_0.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pepfeature/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/pepfeature/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

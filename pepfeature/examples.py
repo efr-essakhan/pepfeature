@@ -15,13 +15,15 @@ if __name__ == '__main__':
 
     df = df.loc[range(100)] #Making the dataset smaller
 
+    print(pep.aa_descriptors._calc_aa_descriptors(df))
+
     '''Calculate All features at once'''
 
     #Calculate all features and store result as csv
-    pep.all_features.calc_csv(dataframe=df, k=1,chunksize=50, Ncores=4, save_folder=r'C:\Users\xbox_\Documents\Pepfeature DS', aa_column='Info_window_seq')
+    #pep.all_features.calc_csv(dataframe=df, k=1,chunksize=50, Ncores=4, save_folder=r'C:\Users\xbox_\Documents\Pepfeature DS', aa_column='Info_window_seq')
 
     #Calculate all features and return result as DataFrame
-    pep.all_features.calc
+    #print(pep.all_features.calc_df(dataframe=df, k=1,Ncores=4, aa_column='Info_window_seq'))
 
 
 
