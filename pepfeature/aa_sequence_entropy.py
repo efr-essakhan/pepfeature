@@ -1,5 +1,6 @@
 from math import log
 import numpy as np
+import pandas as pd
 from pepfeature import utils
 
 
@@ -40,6 +41,8 @@ def _calc_sequence_entropy(dataframe: object, aa_column: str = 'Info_window_seq'
         dataframe.loc[row.Index, 'feat_seq_entropy'] = entropy
 
     return dataframe
+
+
 
 
 def calc_csv(dataframe: object, save_folder: str, aa_column: str = 'Info_window_seq', Ncores: int = 1, chunksize: int = None):

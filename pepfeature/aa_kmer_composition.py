@@ -54,6 +54,7 @@ def _calc_kmer_composition(dataframe: object, k: int, aa_column: str = 'Info_win
     return dataframe
 
 
+
 def calc_csv(k: int, dataframe: object, save_folder: str, aa_column: str = 'Info_window_seq', Ncores: int = 1, chunksize: int = None):
     """
 

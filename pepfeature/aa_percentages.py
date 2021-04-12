@@ -1,4 +1,5 @@
 from pepfeature import utils
+import pandas as pd
 
 
 def _calc_aa_percentages(dataframe: object, aa_column: str = 'Info_window_seq') -> object:
@@ -45,6 +46,9 @@ def _calc_aa_percentages(dataframe: object, aa_column: str = 'Info_window_seq') 
     return dataframe
 
 
+
+
+
 def calc_csv(dataframe: object, save_folder: str, aa_column: str = 'Info_window_seq', Ncores: int = 1, chunksize: int = None):
     """
     Calculates the percent of each Amino-Acid in the peptides (Amino Acid Sequences) chunk by chunk of the inputted 'dataframe'.
@@ -65,7 +69,6 @@ def calc_csv(dataframe: object, save_folder: str, aa_column: str = 'Info_window_
     """
     utils.calculate_export_csv(dataframe=dataframe, function=_calc_aa_percentages, Ncores=Ncores,
                                save_folder=save_folder, aa_column=aa_column, chunksize=chunksize)
-
 
 def calc_df(dataframe: object, Ncores: object = 1, aa_column: object = 'Info_window_seq'):
     """

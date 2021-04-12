@@ -1,4 +1,5 @@
 from pepfeature import utils
+import pandas as pd
 
 
 def _calc_aa_composition(dataframe: object, aa_column: str = 'Info_window_seq') -> object:
@@ -40,6 +41,8 @@ def _calc_aa_composition(dataframe: object, aa_column: str = 'Info_window_seq') 
             dataframe.loc[row.Index, 'feat_Perc_{}'.format(group_name)] = (count / peptide_length) #* 100
 
     return dataframe
+
+
 
 
 def calc_csv(dataframe: object, save_folder: str, aa_column: str = 'Info_window_seq', Ncores: int = 1, chunksize: int = None):

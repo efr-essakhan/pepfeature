@@ -3,7 +3,7 @@ import pepfeature as pep
 import numpy as np
 import pandas as pd
 
-def _calc_aa_descriptors(dataframe, aa_column= 'Info_window_seq'):
+def _calc_aa_descriptors(dataframe: object, aa_column: str = 'Info_window_seq') -> object:
     """
     Not intended to be called directly by the user, use the functions calculate_csv or calculate_df instead.
 
@@ -42,12 +42,6 @@ def _calc_aa_descriptors(dataframe, aa_column= 'Info_window_seq'):
 
     return (dataframe)
 
-#Import Sample Data that has Sample Amino-Acid sequences
-df = pd.read_csv('Ov_data.csv', dtype=float)
-
-#df = df.loc[range()] #Making the dataset smaller
-
-print(_calc_aa_descriptors(df))
 
 
 def calc_csv(dataframe: object, save_folder: str, aa_column: str = 'Info_window_seq', Ncores: int = 1, chunksize: int = None):
@@ -69,7 +63,7 @@ def calc_csv(dataframe: object, save_folder: str, aa_column: str = 'Info_window_
     """
 
     utils.calculate_export_csv(dataframe=dataframe, function=_calc_aa_descriptors, Ncores=Ncores,
-                               chunksize=chunksize, csv_path_filename=csv_path_filename, aa_column=aa_column)
+                               chunksize=chunksize, csv_path_filename=save_folder, aa_column=aa_column)
 
 
 def calc_df(dataframe: object, Ncores: object = 1, aa_column: object = 'Info_window_seq'):

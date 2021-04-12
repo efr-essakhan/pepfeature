@@ -39,7 +39,7 @@ def check_invalid_aa_existance(df):
 if __name__ == '__main__':
    # pep.all_features.calc_csv(dataframe=sample_df, k=2, Ncores=4)
 
-    sample_df = sample_df.loc[range(20)]
+    sample_df = sample_df.loc[range(100)]
     # model_df = model_df.loc[range(10)]
 
 
@@ -74,3 +74,12 @@ if __name__ == '__main__':
     # print(f'matched: {matched}')
     #
     # print(f'unmatched: {len(unmatched)}')
+
+
+# pd.set_option('display.max_columns', 500)
+# #Import Sample Data that has Sample Amino-Acid sequences
+# df = pd.read_csv('Sample_Data.csv')
+#
+# df = df.loc[range(100)]
+#
+# print( _calc_sequence_entropy(df))

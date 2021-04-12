@@ -57,6 +57,9 @@ def _calc_number_of_atoms(dataframe: object, aa_column: str = 'Info_window_seq')
 
     return dataframe
 
+
+
+
 def calc_csv(dataframe: object, save_folder: str, aa_column: str = 'Info_window_seq', Ncores: int = 1, chunksize: int = None):
     """
     Calculates for each given sequence the total number of

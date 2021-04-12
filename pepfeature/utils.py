@@ -61,7 +61,7 @@ def _execute_all_routines(dataframe, k, aa_column='Info_window_seq'):
         pep.aa_descriptors._calc_aa_descriptors,
         pep.aa_cojoint_triads._calc_cojoint_triads,
         pep.aa_percentages._calc_aa_percentages,
-        #pep.aa_kmer_composition._calc_kmer_composition
+        #pep.aa_kmer_composition._calc_kmer_composition #This one requires different arguments so will have to deal with it seperatly
     ]
 
     df_results_list = []
