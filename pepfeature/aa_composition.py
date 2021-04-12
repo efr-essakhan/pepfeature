@@ -37,7 +37,7 @@ def _calc_aa_composition(dataframe: object, aa_column: str = 'Info_window_seq') 
                 count += group_aa_values.count(aa)
 
             # set the frequency to corresponding columns for each row of the dataframe, column is automatically created if it doesn't exist
-            dataframe.loc[row.Index, 'feat_Perc_{}'.format(group_name)] = (count / peptide_length) #* 100
+            dataframe.loc[row.Index, 'feat_Perc_{}'.format(group_name)] = (count / peptide_length) * 100
 
     return dataframe
 
