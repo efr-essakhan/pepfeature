@@ -98,6 +98,10 @@ def calculate_export_csv(dataframe, function, Ncores=1, chunksize=None, save_fol
     if chunksize == None:
         chunksize = dataframe.shape[0] #number of rows = number of rows in dataframe
 
+    if save_folder != "":
+        save_folder = f'{save_folder}' + "\\"
+
+
     dataframe = _remove_invalid_aa(dataframe, aa_column)
 
     ctx = mp.get_context(
@@ -108,7 +112,7 @@ def calculate_export_csv(dataframe, function, Ncores=1, chunksize=None, save_fol
     for idx, result_df in enumerate(p.imap(functools.partial(function, aa_column=aa_column, **kwargs),
                                            _df_chunking(dataframe, chunksize))):
 
-        result_df.to_csv(os.path.join(save_folder + f"\_{datetime.now().strftime('%d%m%Y-%H%M%S')}_{idx}.csv"),
+        result_df.to_csv(os.path.join(save_folder + f"_{datetime.now().strftime('%d%m%Y-%H%M%S')}_{idx}.csv"),
                          index=False)
 
         print(result_df)

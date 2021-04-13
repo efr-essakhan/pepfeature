@@ -28,20 +28,28 @@ def _calc_aa_percentages(dataframe: object, aa_column: str = 'Info_window_seq') 
 
         # 1) Find out number of occurences of each letter in the peptide & figure out peptide length (i.e. number of
         # valid amino-acid letters)
-        for i in range(len(peptide)):
-            peptide_letter = peptide[i]
+        # for i in range(len(peptide)):
+        #     peptide_letter = peptide[i]
+        #
+        #     if peptide_letter in valid_letters:
+        #         if peptide_letter in number_of_occurrences_of_letter_dict:
+        #             number_of_occurrences_of_letter_dict[peptide_letter] += 1
+        #         else:
+        #             number_of_occurrences_of_letter_dict[peptide_letter] = 1
+        #     else:
+        #         length_of_peptide -= 1
 
-            if peptide_letter in valid_letters:
-                if peptide_letter in number_of_occurrences_of_letter_dict:
-                    number_of_occurrences_of_letter_dict[peptide_letter] += 1
-                else:
-                    number_of_occurrences_of_letter_dict[peptide_letter] = 1
+        for letter in peptide:
+            if letter in number_of_occurrences_of_letter_dict:
+                number_of_occurrences_of_letter_dict[letter] += 1
             else:
-                length_of_peptide -= 1
+                number_of_occurrences_of_letter_dict[letter] = 1
+
+
 
         # 2) Find out & set the percentage of each letter in the peptides
         for aa, freq in number_of_occurrences_of_letter_dict.items():
-            dataframe.loc[row.Index, 'feat_Perc_{}'.format(aa)] = (freq / length_of_peptide) #* 100
+            dataframe.loc[row.Index, f'feat_Perc_{aa}'] = (freq / length_of_peptide) #* 100
 
     return dataframe
 

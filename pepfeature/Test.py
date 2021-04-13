@@ -9,9 +9,76 @@ import string
 
 
 sample_df = pd.read_csv('Sample_Data.csv')
-#model_df = pd.read_csv("Model_Data.csv")
+model_df = pd.read_csv("Model_Data.csv")
 
 
+
+
+if __name__ == '__main__':
+
+    # r = sample_df.shape[0]
+    # sample_df = sample_df.loc[range(r)]
+    # model_df = model_df.loc[range(r)]
+
+    sample_df = sample_df.tail(1)
+    model_df = model_df.tail(1)
+
+
+
+    # pep.all_features.calc_csv(dataframe= sample_df.copy(), k=2, save_folder='', aa_column= 'Info_window_seq', Ncores=4, chunksize= None)
+
+
+
+    #Calculating all features
+    sample_df = pep.all_features.calc_df(dataframe=sample_df, k=2, Ncores=4)
+
+    # #Removing AA sequuence column from each
+    del sample_df['Info_window_seq']
+    del model_df['Info_window_seq']
+
+
+    matched = []
+    unmatched = []
+
+    for idx, column in enumerate(model_df):
+        for model_val, sample_val in zip(model_df[column], sample_df[column]):
+            # model_val = round(float(model_val), 3)
+            # sample_val = round(float(sample_val), 3)
+
+            if model_val == sample_val:
+                # print(f'{model_val} == {sample_val} ------- Model: {column}')
+                matched.append(str(column))
+
+            else:
+                print( f'Model: {model_val} NOT Sample: {sample_val} ------- Model: {column}')
+                unmatched.append(str(column))  # will be used to compare the columns that don't mathch with each other
+
+    print('____________________________________________________')
+    y = []#Removing duplicates
+
+    [y.append(i) for i in matched if i not in y]
+    print(f'matched: {len(y)}')
+    print(y)
+    print('____________________________________________________')
+    #Removing duplicates
+
+    x = []
+
+    [x.append(i) for i in unmatched if i not in x]
+
+    print(f'unmatched: {len(x)}')
+    print(x)
+
+
+
+
+
+
+
+
+
+
+####################################
 def check_invalid_aa_existance(df):
     # This was ran over Model_Dataset and no invalid AA were found
 
@@ -31,55 +98,3 @@ def check_invalid_aa_existance(df):
                 print(f'{c} NOT IN {seq}')
 
     print(bad_aa)
-
-
-# check_invalid_aa_existance(model_df)
-
-
-if __name__ == '__main__':
-   # pep.all_features.calc_csv(dataframe=sample_df, k=2, Ncores=4)
-
-    sample_df = sample_df.loc[range(100)]
-    # model_df = model_df.loc[range(10)]
-
-
-
-    #Calculating all features
-    sample_df = pep.all_features.calc_df(dataframe=sample_df, k=1, Ncores=4)
-    # pep.all_features.calc_csv(dataframe=sample_df, k=4,chunksize=50, Ncores=4, save_folder=r'C:\Users\xbox_\Documents\Pepfeature DS', aa_column='Info_window_seq')
-    print(sample_df)
-    # #Removing AA sequuence column from each
-    # del sample_df['Info_window_seq']
-    # del model_df['Info_window_seq']
-    #
-    #
-    # matched = 0
-    # unmatched = []
-    #
-    # for idx, column in enumerate(model_df):
-    #     for sample_val, model_val in zip(model_df[column], sample_df[column]):
-    #         model_val = round(float(model_val), 3)
-    #         sample_val = round(float(sample_val), 3)
-    #
-    #         if model_val == sample_val:
-    #             print(f'{model_val} == {sample_val}')
-    #             matched += 1
-    #
-    #         else:
-    #             print(
-    #                 f'{model_val} NOT {sample_val} ------- Model: {column}')
-    #             unmatched.append(column)  # will be used to compare the columns that don't mathch with each other
-    #
-    # print('____________________________________________________')
-    # print(f'matched: {matched}')
-    #
-    # print(f'unmatched: {len(unmatched)}')
-
-
-# pd.set_option('display.max_columns', 500)
-# #Import Sample Data that has Sample Amino-Acid sequences
-# df = pd.read_csv('Sample_Data.csv')
-#
-# df = df.loc[range(100)]
-#
-# print( _calc_sequence_entropy(df))

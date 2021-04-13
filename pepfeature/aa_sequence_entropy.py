@@ -16,7 +16,6 @@ def _calc_sequence_entropy(dataframe: object, aa_column: str = 'Info_window_seq'
     :param aa_column: Name of column in dataframe consisting of Protein Sequences to process
     :return: A Pandas DataFrame containing the calculated features appended as new columns.
     """
-    """ Computes entropy of Amino Acid sequence. """
 
     # Create column
     dataframe['feat_seq_entropy'] = 0
