@@ -31,6 +31,6 @@ Please see pepfeature/examples.py for example use cases.
 Also see the attached API of each function/ algorithm, for a complete documentation.
 
 
-## Contributing to feature-stuff
+## Contributing to pepfeature
 
 All contributions, bug reports, bug fixes, documentation improvements, enhancements and ideas are welcome.
