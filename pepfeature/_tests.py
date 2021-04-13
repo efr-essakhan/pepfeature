@@ -13,9 +13,9 @@ model_df = pd.read_csv("Model_Data.csv")
 
 if __name__ == '__main__':
 
-    # r = sample_df.shape[0]
-    # sample_df = sample_df.loc[range(r)]
-    # model_df = model_df.loc[range(r)]
+    r = 10
+    sample_df = sample_df.loc[range(r)]
+    model_df = model_df.loc[range(r)]
 
     # sample_df = sample_df.tail(1)
     # model_df = model_df.tail(1)
