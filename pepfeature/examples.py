@@ -5,25 +5,19 @@
 import pandas as pd
 import time
 import pepfeature as pep
-import numpy as np
-
-def dummydataframe(rows):
-
-    dc = pd.DataFrame(np.random.randint(0, 100, size=(rows, 12))) #8500 total features from methods
-    dc['Info_window_seq'] = "LLLLLLLLDVHIESG"
-
-    return (dc)
 
 if __name__ == '__main__':
     # For timing purposes
     start = time.time()
 
     #Import Sample Data that has Sample Amino-Acid sequences
-    df = pd.read_csv('Ov_data.csv')
+    df = pd.read_csv('Sample_Data.csv')
 
     #df = df.loc[range()] #Making the dataset smaller
-
-    print(pep.aa_descriptors._calc_aa_descriptors(df))
+    #
+    # print(pep.aa_descriptors._algorithm(df))
+    # pep.aa_CT.calc_df(df, sav)
+    pep.aa_percentages.calc_csv(df,"",Ncores=4)
 
     '''Calculate All features at once'''
 

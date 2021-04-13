@@ -1,10 +1,11 @@
 import pandas as pd
 from itertools import product
-from pepfeature import utils
+from pepfeature import _utils
 
-def _calc_kmer_composition(dataframe: object, k: int, aa_column: str = 'Info_window_seq') -> object:
+def _algorithm(dataframe: object, k: int, aa_column: str = 'Info_window_seq') -> object:
     """
-    Not intended to be called directly by the user, use the functions calculate_csv or calculate_df instead.
+    Not intended to be called directly by the user, use the functions calc_csv or calc_df instead as they have
+    multi-processing functionality and more.
 
     Calculates frequency of each k-length contiguous combination of subsequence of amino acid letters in the
     sequence. (k-mers in a sequence are all the subsubsequence of length k.)
@@ -78,8 +79,8 @@ def calc_csv(k: int, dataframe: object, save_folder: str, aa_column: str = 'Info
     :param Ncores: Number of cores to use. default=1
     :param chunksize: Number of rows to be processed at a time. default=None (Where a 'None' object denotes no chunks but the entire dataframe to be processed)
     """
-    utils.calculate_export_csv(dataframe=dataframe, function=_calc_kmer_composition, Ncores=Ncores,
-                               chunksize=chunksize, save_folder=save_folder, aa_column=aa_column, k=k)
+    _utils.calculate_export_csv(dataframe=dataframe, function=_algorithm, Ncores=Ncores,
+                                chunksize=chunksize, save_folder=save_folder, aa_column=aa_column, k=k)
 
 def calc_df(k: int, dataframe: object, Ncores: int = 1, aa_column: str = 'Info_window_seq'):
     """
@@ -98,4 +99,4 @@ def calc_df(k: int, dataframe: object, Ncores: int = 1, aa_column: str = 'Info_w
     :param aa_column: Name of column in dataframe consisting of Amino-Acid sequences to process. Default='Info_window_seq'
     :return: pandas DataFrame
     """
-    return utils.calculate_return_df(dataframe = dataframe, function = _calc_kmer_composition, Ncores= Ncores, aa_column = aa_column, k=k)
+    return _utils.calculate_return_df(dataframe = dataframe, function = _algorithm, Ncores= Ncores, aa_column = aa_column, k=k)

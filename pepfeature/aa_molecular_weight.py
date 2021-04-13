@@ -1,10 +1,11 @@
 import numpy as np
-from pepfeature import utils
+from pepfeature import _utils
 import pandas as pd
 
-def _calc_molecular_weight(dataframe: object, aa_column: str = 'Info_window_seq') -> object:
+def _algorithm(dataframe: object, aa_column: str = 'Info_window_seq') -> object:
     """
-    Not intended to be called directly by the user, use the functions calculate_csv or calculate_df instead.
+    Not intended to be called directly by the user, use the functions calc_csv or calc_df instead as they have
+    multi-processing functionality and more.
 
     Calculates total molecular weight of the sequence.
 
@@ -69,8 +70,8 @@ def calc_csv(dataframe: object, save_folder: str, aa_column: str = 'Info_window_
     """
 
     #function that the client should call.
-    utils.calculate_export_csv(dataframe=dataframe, function=_calc_molecular_weight, Ncores=Ncores,
-                               chunksize=chunksize, save_folder=save_folder, aa_column=aa_column)
+    _utils.calculate_export_csv(dataframe=dataframe, function=_algorithm, Ncores=Ncores,
+                                chunksize=chunksize, save_folder=save_folder, aa_column=aa_column)
 
 def calc_df(dataframe: object, Ncores: object = 1, aa_column: object = 'Info_window_seq'):
     """
@@ -84,4 +85,4 @@ def calc_df(dataframe: object, Ncores: object = 1, aa_column: object = 'Info_win
     :return: Pandas DataFrame
 
     """
-    return utils.calculate_return_df(dataframe = dataframe, function = _calc_molecular_weight, Ncores= Ncores, aa_column = aa_column)
+    return _utils.calculate_return_df(dataframe = dataframe, function = _algorithm, Ncores= Ncores, aa_column = aa_column)

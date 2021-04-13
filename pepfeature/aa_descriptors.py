@@ -1,11 +1,12 @@
-from pepfeature import utils
+from pepfeature import _utils
 import pepfeature as pep
 import numpy as np
 import pandas as pd
 
-def _calc_aa_descriptors(dataframe: object, aa_column: str = 'Info_window_seq') -> object:
+def _algorithm(dataframe: object, aa_column: str = 'Info_window_seq') -> object:
     """
-    Not intended to be called directly by the user, use the functions calculate_csv or calculate_df instead.
+    Not intended to be called directly by the user, use the functions calc_csv or calc_df instead as they have
+    multi-processing functionality and more.
 
     Calculates AA descriptors features
 
@@ -62,8 +63,8 @@ def calc_csv(dataframe: object, save_folder: str, aa_column: str = 'Info_window_
     :param chunksize: Number of rows to be processed at a time. default=None (Where a 'None' object denotes no chunks but the entire dataframe to be processed)
     """
 
-    utils.calculate_export_csv(dataframe=dataframe, function=_calc_aa_descriptors, Ncores=Ncores,
-                               chunksize=chunksize, csv_path_filename=save_folder, aa_column=aa_column)
+    _utils.calculate_export_csv(dataframe=dataframe, function=_algorithm, Ncores=Ncores,
+                                chunksize=chunksize, csv_path_filename=save_folder, aa_column=aa_column)
 
 
 def calc_df(dataframe: object, Ncores: object = 1, aa_column: object = 'Info_window_seq'):
@@ -80,5 +81,5 @@ def calc_df(dataframe: object, Ncores: object = 1, aa_column: object = 'Info_win
     """
 
 
-    return utils.calculate_return_df(dataframe=dataframe, function=_calc_aa_descriptors, Ncores=Ncores,
-                                     aa_column=aa_column)
+    return _utils.calculate_return_df(dataframe=dataframe, function=_algorithm, Ncores=Ncores,
+                                      aa_column=aa_column)
