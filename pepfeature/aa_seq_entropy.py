@@ -1,6 +1,14 @@
+"""
+    This module contains methods to calculate the entropy of given amino acid sequence
+    returned as CSV(s) or DataFrame.
+
+    Methods user can call from this module:
+        calc_csv,
+        calc_df
+"""
+
 from math import log
 import numpy as np
-import pandas as pd
 from pepfeature import _utils
 
 

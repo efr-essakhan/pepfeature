@@ -1,5 +1,13 @@
+"""
+    This module contains methods to Calculate AA descriptors features for given amino acid sequences. Results
+    returned as CSV(s) or DataFrame.
+
+    Methods user can call from this module:
+        calc_csv,
+        calc_df
+"""
+
 from pepfeature import _utils
-import pepfeature as pep
 import numpy as np
 import pandas as pd
 
@@ -64,7 +72,7 @@ def calc_csv(dataframe: object, save_folder: str, aa_column: str = 'Info_window_
     """
 
     _utils.calculate_export_csv(dataframe=dataframe, function=_algorithm, Ncores=Ncores,
-                                chunksize=chunksize, csv_path_filename=save_folder, aa_column=aa_column)
+                                chunksize=chunksize, save_folder=save_folder, aa_column=aa_column)
 
 
 def calc_df(dataframe: object, Ncores: object = 1, aa_column: object = 'Info_window_seq'):

@@ -1,3 +1,12 @@
+"""
+    This module contains methods to Calculates frequency of each k-length contiguous combination of subsequence of amino acid letters in the
+    sequence. Results returned as CSV(s) or DataFrame.
+
+    Methods user can call from this module:
+        calc_csv,
+        calc_df
+"""
+
 import pandas as pd
 from itertools import product
 from pepfeature import _utils

@@ -14,7 +14,6 @@ def _df_chunking(df, chunksize):
     count = 0  # Counter for chunks
     while len(df):
         count += 1
-        print(f'Preparing chunk {count}')
         # Return df chunk
         yield df.iloc[:chunksize].copy()
         # Delete data in place because it is no longer needed
@@ -60,7 +59,7 @@ def _execute_all_routines(dataframe, k, aa_column='Info_window_seq'):
         pep.aa_composition._algorithm,
         pep.aa_descriptors._algorithm,
         pep.aa_CT._algorithm,
-        pep.aa_percentages._algorithm,
+        pep.aa_proportion._algorithm,
         #pep.aa_kmer_composition._calc_kmer_composition #This one requires different arguments so will have to deal with it seperatly
     ]
 
@@ -114,9 +113,6 @@ def calculate_export_csv(dataframe, function, Ncores=1, chunksize=None, save_fol
 
         result_df.to_csv(os.path.join(save_folder + f"_{datetime.now().strftime('%d%m%Y-%H%M%S')}_{idx}.csv"),
                          index=False)
-
-        print(result_df)
-        print('-------------------------------------------------')
 
     p.close()
     p.join()

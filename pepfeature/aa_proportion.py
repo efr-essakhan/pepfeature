@@ -1,3 +1,12 @@
+"""
+    This module contains methods to Calculate all the proportion (out of 1) of each Amino Acid in the peptide. Results
+    returned as CSV(s) or DataFrame.
+
+    Methods user can call from this module:
+        calc_csv,
+        calc_df
+"""
+
 from pepfeature import _utils
 import pandas as pd
 
@@ -7,7 +16,7 @@ def _algorithm(dataframe: object, aa_column: str = 'Info_window_seq') -> object:
     Not intended to be called directly by the user, use the functions calc_csv or calc_df instead as they have
     multi-processing functionality and more.
 
-    Calculates the percent of each aminoacid in the peptides (Amino Acid Sequences).
+    Calculates the proportion (out of 1) of each aminoacid in the peptides (Amino Acid Sequences).
 
     Results appended as a new column named feat_Perc_{aa letter} e.g. feat_Perc_A, feat_Perc_C, ..., feat_Perc_Y.
 
@@ -59,7 +68,7 @@ def _algorithm(dataframe: object, aa_column: str = 'Info_window_seq') -> object:
 
 def calc_csv(dataframe: object, save_folder: str, aa_column: str = 'Info_window_seq', Ncores: int = 1, chunksize: int = None):
     """
-    Calculates the percent of each Amino-Acid in the peptides (Amino Acid Sequences) chunk by chunk of the inputted 'dataframe'.
+    Calculates the proportion (out of 1) od each Amino-Acid in the peptides (Amino Acid Sequences) chunk by chunk of the inputted 'dataframe'.
     It saves each processed chunk as a CSV(s).
 
     This results in 20 new features per chunk, appended as new columns named feat_Perc_{Amino-Acid letter} e.g. feat_Per_A,
@@ -80,7 +89,7 @@ def calc_csv(dataframe: object, save_folder: str, aa_column: str = 'Info_window_
 
 def calc_df(dataframe: object, Ncores: object = 1, aa_column: object = 'Info_window_seq'):
     """
-     Calculates the percent of each aminoacid in the peptides (Amino Acid Sequences).
+     Calculates the proportion (out of 1) of each aminoacid in the peptides (Amino Acid Sequences).
 
     Results appended as a new column named feat_Perc_{aa letter} e.g. feat_Perc_A, feat_Perc_C, ..., feat_Perc_Y.
 

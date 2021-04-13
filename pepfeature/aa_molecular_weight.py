@@ -1,6 +1,15 @@
+"""
+    This module contains methods to Calculates total molecular weight for given amino acid sequences. Results
+    returned as CSV(s) or DataFrame.
+
+    Methods user can call from this module:
+        calc_csv,
+        calc_df
+"""
+
 import numpy as np
 from pepfeature import _utils
-import pandas as pd
+
 
 def _algorithm(dataframe: object, aa_column: str = 'Info_window_seq') -> object:
     """

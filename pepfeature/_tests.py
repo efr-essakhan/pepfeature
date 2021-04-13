@@ -1,7 +1,9 @@
+"""
+    Code that generates as DF with features calculates and compares each value with a Model Dataframe for accuracy.
+"""
+
 import pandas as pd
-import time
 import pepfeature as pep
-import string
 
 sample_df = pd.read_csv('Sample_Data.csv')
 model_df = pd.read_csv("Model_Data.csv")
@@ -75,7 +77,6 @@ if __name__ == '__main__':
 
 ####################################
 def check_invalid_aa_existance(df):
-    # This was ran over Model_Dataset and no invalid AA were found
 
     bad_aa = 0
     bad_aa_seq = []

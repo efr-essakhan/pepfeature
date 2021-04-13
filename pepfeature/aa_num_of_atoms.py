@@ -1,3 +1,13 @@
+"""
+    This module contains methods to Calculate for each given sequence the total number of
+    atoms of each type in that sequence (which is essentially a weighted sum of the aminoacid numbers). Results
+    returned as CSV(s) or DataFrame.
+
+    Methods user can call from this module:
+        calc_csv,
+        calc_df
+"""
+
 import pandas as pd
 import numpy as np
 from pepfeature import _utils

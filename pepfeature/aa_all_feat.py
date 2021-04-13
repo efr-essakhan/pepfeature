@@ -1,6 +1,9 @@
 """
-    Methods to Calculate all features at once either returned as a DataFrame or stored into CSV
+    This module contains methods to Calculate all features at once either returned as a DataFrame or stored into CSV.
 
+    Methods user can call from this module:
+        calc_csv,
+        calc_df
 """
 
 import _utils

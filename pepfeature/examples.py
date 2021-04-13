@@ -1,5 +1,5 @@
 """
-    Contains example use cases of this library.
+    Contains example use cases for this package
 """
 
 import pandas as pd
@@ -13,33 +13,62 @@ if __name__ == '__main__':
     #Import Sample Data that has Sample Amino-Acid sequences
     df = pd.read_csv('Sample_Data.csv')
 
-    #df = df.loc[range()] #Making the dataset smaller
+
+    ##########Example Use cases. Make sure to: Uncomment what line you want to test & Set save_folder argument to correct path
+
+
+    '''Calculate all features at once'''
+    # #As CSV
+    # pep.aa_all_feat.calc_csv(dataframe=df, save_folder=r"C:\Users\xbox_\Documents\Pepfeature DS",aa_column='Info_window_seq'
+    #                                  ,Ncores=4,chunksize=None, k=2)
+
+    # #As DF
+    # pep.aa_all_feat.calc_df(dataframe=df, aa_column='Info_window_seq', Ncores=4, k=2)
+
+
+
+    '''Calculate features and output result as CSV'''
+    # pep.aa_molecular_weight.calc_csv(dataframe=df, save_folder=r"C:\Users\xbox_\Documents\Pepfeature DS",aa_column='Info_window_seq'
+    #                                  ,Ncores=4,chunksize=None)
     #
-    # print(pep.aa_descriptors._algorithm(df))
-    # pep.aa_CT.calc_df(df, sav)
-    pep.aa_percentages.calc_csv(df,"",Ncores=4)
+    # pep.aa_seq_entropy.calc_csv(dataframe=df, save_folder=r"C:\Users\xbox_\Documents\Pepfeature DS",
+    #                                  aa_column='Info_window_seq'
+    #                                  , Ncores=4, chunksize=None)
+    #
+    # pep.aa_num_of_atoms.calc_csv(dataframe=df, save_folder=r"C:\Users\xbox_\Documents\Pepfeature DS",
+    #                             aa_column='Info_window_seq'
+    #                             , Ncores=4, chunksize=None)
+    #
+    # pep.aa_descriptors.calc_csv(dataframe=df, save_folder=r"C:\Users\xbox_\Documents\Pepfeature DS",
+    #                             aa_column='Info_window_seq'
+    #                             , Ncores=4, chunksize=None)
+    #
+    # pep.aa_composition.calc_csv(dataframe=df, save_folder=r"C:\Users\xbox_\Documents\Pepfeature DS",
+    #                             aa_column='Info_window_seq'
+    #                             , Ncores=4, chunksize=None)
+    #
+    # pep.aa_proportion.calc_csv(dataframe=df, save_folder=r"C:\Users\xbox_\Documents\Pepfeature DS",
+    #                             aa_column='Info_window_seq'
+    #                             , Ncores=4, chunksize=None)
+    #
+    # pep.aa_CT.calc_csv(dataframe=df, save_folder=r"C:\Users\xbox_\Documents\Pepfeature DS",
+    #                             aa_column='Info_window_seq'
+    #                             , Ncores=4, chunksize=None)
+    #
+    # pep.aa_kmer_composition.calc_csv(dataframe=df, save_folder=r"C:\Users\xbox_\Documents\Pepfeature DS",
+    #                             aa_column='Info_window_seq'
+    #                             , Ncores=4, chunksize=None, k=2)
 
-    '''Calculate All features at once'''
 
-    #Calculate all features and store result as csv
-    # pep.all_features.calc_csv(dataframe=df, k=1,chunksize=50, Ncores=4, save_folder=r'C:\Users\xbox_\Documents\Pepfeature DS', aa_column='Info_window_seq')
-
-    #Calculate all features and return result as DataFrame
-    #print(pep.all_features.calc_df(dataframe=df, k=1,Ncores=4, aa_column='Info_window_seq'))
-
-
-
-
-
-    ##############            Example Use Cases                 ###############
-
-
-    """Calculate all features and store result into CSV"""
-    #pep.all_features.calc_csv(dataframe=df.loc[range(1000)], k=1, Ncores=4, chunksize=200)
-    #print(pep.all_features.calc_df(dataframe=df.loc[range(10)], k=1, Ncores=4, chunksize=2))
-
-    #print(pep.aa_percentages.calculate_df(Ncores=1, dataframe=df.loc[range(1)], chunksize=2, aa_column="Info_window_seq"))
-
+    '''Calculate features and output results as pandas DF'''
+    # print(pep.aa_molecular_weight.calc_df(dataframe=df, Ncores=4, aa_column='Info_window_seq'))
+    # print(pep.aa_seq_entropy.calc_df(dataframe=df, Ncores=4, aa_column='Info_window_seq'))
+    # print(pep.aa_num_of_atoms.calc_df(dataframe=df, Ncores=4, aa_column='Info_window_seq'))
+    # print(pep.aa_descriptors.calc_df(dataframe=df, Ncores=4, aa_column='Info_window_seq'))
+    # print(pep.aa_composition.calc_df(dataframe=df, Ncores=4, aa_column='Info_window_seq'))
+    # print(pep.aa_proportion.calc_df(dataframe=df, Ncores=4, aa_column='Info_window_seq'))
+    # print(pep.aa_CT.calc_df(dataframe=df, Ncores=4))
+    # print(pep.aa_kmer_composition.calc_df(k=2, dataframe=df, Ncores=4, aa_column='Info_window_seq'))
 
     print(f'time taken: {time.time() - start}')
 

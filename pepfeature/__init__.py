@@ -14,5 +14,5 @@ for f in Path(__file__).parent.glob("*.py"):
 del import_module, Path
 
 __all__ = ["aa_all_feat", "aa_composition", "aa_CT", "aa_descriptors","aa_kmer_composition", "aa_molecular_weight"
-           , "aa_num_of_atoms", "aa_percentages", "aa_seq_entropy"]
+           , "aa_num_of_atoms", "aa_proportion", "aa_seq_entropy"]
 
