@@ -8,7 +8,6 @@
 """
 
 from pepfeature import _utils
-import pandas as pd
 
 
 def _algorithm(dataframe: object, aa_column: str = 'Info_window_seq') -> object:

@@ -10,16 +10,17 @@ if __name__ == '__main__':
     # For timing purposes
     start = time.time()
 
-    #Import Sample Data that has Sample Amino-Acid sequences
+    #Import Sample Data that has Sample Amino-Acid sequences to run our calculations on
     df = pd.read_csv('Sample_Data.csv')
 
 
-    ##########Example Use cases. Make sure to: Uncomment what line you want to test & Set save_folder argument to correct path
+    ##########Example Use cases. Make sure to: Uncomment what line you want to test & Set save_folder arguments to correct path of your choice
 
+    savefolder =r"C:\Users\xbox_\Documents\Pepfeature DS"
 
     '''Calculate all features at once'''
-    # #As CSV
-    # pep.aa_all_feat.calc_csv(dataframe=df, save_folder=r"C:\Users\xbox_\Documents\Pepfeature DS",aa_column='Info_window_seq'
+    #As CSV
+    # pep.aa_all_feat.calc_csv(dataframe=df, save_folder=savefolder,aa_column='Info_window_seq'
     #                                  ,Ncores=4,chunksize=None, k=2)
 
     # #As DF
@@ -28,34 +29,34 @@ if __name__ == '__main__':
 
 
     '''Calculate features and output result as CSV'''
-    # pep.aa_molecular_weight.calc_csv(dataframe=df, save_folder=r"C:\Users\xbox_\Documents\Pepfeature DS",aa_column='Info_window_seq'
+    # pep.aa_molecular_weight.calc_csv(dataframe=df, save_folder=savefolder, aa_column='Info_window_seq'
     #                                  ,Ncores=4,chunksize=None)
-    #
-    # pep.aa_seq_entropy.calc_csv(dataframe=df, save_folder=r"C:\Users\xbox_\Documents\Pepfeature DS",
+
+    # pep.aa_seq_entropy.calc_csv(dataframe=df, save_folder=savefolder,
     #                                  aa_column='Info_window_seq'
     #                                  , Ncores=4, chunksize=None)
     #
-    # pep.aa_num_of_atoms.calc_csv(dataframe=df, save_folder=r"C:\Users\xbox_\Documents\Pepfeature DS",
+    # pep.aa_num_of_atoms.calc_csv(dataframe=df, save_folder=savefolder,
     #                             aa_column='Info_window_seq'
     #                             , Ncores=4, chunksize=None)
     #
-    # pep.aa_descriptors.calc_csv(dataframe=df, save_folder=r"C:\Users\xbox_\Documents\Pepfeature DS",
+    # pep.aa_descriptors.calc_csv(dataframe=df, save_folder=savefolder,
     #                             aa_column='Info_window_seq'
     #                             , Ncores=4, chunksize=None)
     #
-    # pep.aa_composition.calc_csv(dataframe=df, save_folder=r"C:\Users\xbox_\Documents\Pepfeature DS",
+    # pep.aa_composition.calc_csv(dataframe=df, save_folder=savefolder,
     #                             aa_column='Info_window_seq'
     #                             , Ncores=4, chunksize=None)
     #
-    # pep.aa_proportion.calc_csv(dataframe=df, save_folder=r"C:\Users\xbox_\Documents\Pepfeature DS",
+    # pep.aa_proportion.calc_csv(dataframe=df, save_folder=savefolder,
     #                             aa_column='Info_window_seq'
     #                             , Ncores=4, chunksize=None)
     #
-    # pep.aa_CT.calc_csv(dataframe=df, save_folder=r"C:\Users\xbox_\Documents\Pepfeature DS",
+    # pep.aa_CT.calc_csv(dataframe=df, save_folder=savefolder,
     #                             aa_column='Info_window_seq'
     #                             , Ncores=4, chunksize=None)
     #
-    # pep.aa_kmer_composition.calc_csv(dataframe=df, save_folder=r"C:\Users\xbox_\Documents\Pepfeature DS",
+    # pep.aa_kmer_composition.calc_csv(dataframe=df, save_folder=savefolder,
     #                             aa_column='Info_window_seq'
     #                             , Ncores=4, chunksize=None, k=2)
 

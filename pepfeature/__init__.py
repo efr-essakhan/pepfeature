@@ -16,3 +16,18 @@ del import_module, Path
 __all__ = ["aa_all_feat", "aa_composition", "aa_CT", "aa_descriptors","aa_kmer_composition", "aa_molecular_weight"
            , "aa_num_of_atoms", "aa_proportion", "aa_seq_entropy"]
 
+# Let users know if they're missing any of our hard dependencies
+hard_dependencies = ("pandas", "numpy")
+missing_dependencies = []
+
+for dependency in hard_dependencies:
+    try:
+        __import__(dependency)
+    except ImportError as e:
+        missing_dependencies.append(f"{dependency}: {e}")
+
+if missing_dependencies:
+    raise ImportError(
+        "Unable to import required dependencies:\n" + "\n".join(missing_dependencies)
+    )
+del hard_dependencies, dependency, missing_dependencies
