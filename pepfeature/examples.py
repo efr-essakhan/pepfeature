@@ -68,7 +68,7 @@ if __name__ == '__main__':
     # print(pep.aa_descriptors.calc_df(dataframe=df, Ncores=4, aa_column='Info_window_seq'))
     # print(pep.aa_composition.calc_df(dataframe=df, Ncores=4, aa_column='Info_window_seq'))
     # print(pep.aa_proportion.calc_df(dataframe=df, Ncores=4, aa_column='Info_window_seq'))
-    # print(pep.aa_CT.calc_df(dataframe=df, Ncores=4))
+    print(pep.aa_CT.calc_df(dataframe=df, Ncores=4))
     # print(pep.aa_kmer_composition.calc_df(k=2, dataframe=df, Ncores=4, aa_column='Info_window_seq'))
 
     print(f'time taken: {time.time() - start}')

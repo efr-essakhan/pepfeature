@@ -50,11 +50,12 @@ if __name__ == '__main__':
                 print( f'Model: {model_val} NOT Sample: {sample_val} ------- Model: {column}')
                 unmatched.append(str(column))  # will be used to compare the columns that don't mathch with each other
 
+    print('Result of test:')
     print('____________________________________________________')
     y = []#Removing duplicates
 
     [y.append(i) for i in matched if i not in y]
-    print(f'matched: {len(y)}')
+    print(f'matched cells: {len(y)}')
     print(y)
     print('____________________________________________________')
     #Removing duplicates
@@ -63,7 +64,7 @@ if __name__ == '__main__':
 
     [x.append(i) for i in unmatched if i not in x]
 
-    print(f'unmatched: {len(x)}')
+    print(f'unmatched cells (if none then test passed): {len(x)}')
     print(x)
 
 
