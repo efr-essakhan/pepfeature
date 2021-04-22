@@ -86,7 +86,7 @@ def calc_csv(dataframe: object, save_folder: str, aa_column: str = 'Info_window_
     _utils.calculate_export_csv(dataframe=dataframe, function=_algorithm, Ncores=Ncores,
                                 save_folder=save_folder, aa_column=aa_column, chunksize=chunksize)
 
-def calc_df(dataframe: object, Ncores: object = 1, aa_column: object = 'Info_window_seq'):
+def calc_df(dataframe: object, Ncores: int = 1, aa_column: str = 'Info_window_seq'):
     """
      Calculates the proportion (out of 1) of each aminoacid in the peptides (Amino Acid Sequences).
 

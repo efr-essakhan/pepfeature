@@ -93,7 +93,7 @@ def calc_csv(dataframe: object, save_folder: str, aa_column: str = 'Info_window_
     _utils.calculate_export_csv(dataframe=dataframe, function=_algorithm, Ncores=Ncores,
                                 chunksize=chunksize, save_folder=save_folder, aa_column=aa_column)
 
-def calc_df(dataframe: object, Ncores: object = 1, aa_column: object = 'Info_window_seq'):
+def calc_df(dataframe: object, Ncores: int = 1, aa_column: str = 'Info_window_seq'):
     """
      Calculates for each given sequence the total number of
     atoms of each type in that sequence (which is essentially a weighted sum of the aminoacid numbers)

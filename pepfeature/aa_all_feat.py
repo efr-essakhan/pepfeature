@@ -6,7 +6,7 @@
         calc_df
 """
 
-import _utils
+from pepfeature import _utils
 
 def calc_csv(dataframe: object, k: int, save_folder: str, aa_column: str = 'Info_window_seq', Ncores: int = 1, chunksize: int = None):
     """

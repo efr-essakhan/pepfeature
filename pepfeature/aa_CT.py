@@ -93,7 +93,7 @@ def calc_csv(dataframe: object, save_folder: str, aa_column: str = 'Info_window_
                                 chunksize=chunksize, save_folder=save_folder, aa_column=aa_column)
 
 
-def calc_df(dataframe: object, Ncores: object = 1, aa_column: object = 'Info_window_seq'):
+def calc_df(dataframe: object, Ncores: int = 1, aa_column: str = 'Info_window_seq'):
     """
     Calculates conjoint triads features
 
