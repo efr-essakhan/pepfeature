@@ -1,5 +1,6 @@
+#__init__.py
 # Version of pepfeature package
-__version__ = "1.1.0"
+__version__ = "1.0.0"
 
 """Import all modules that exist in the current directory."""
 # Ref https://stackoverflow.com/a/60861023/
