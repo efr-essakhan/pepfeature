@@ -1,30 +1,23 @@
 """
-    Code that generates as DF with features calculates and compares each value with a Model Dataframe for accuracy.
+    A Test:
+    To check the veracity of the results produced from the feature calculation algorithms of this package.
+    The test consists of code that first generates peptide features on Sample_Data.csv and compares each value of the output DataFrame with a Model Dataframe (Model_Data.csv) for accuracy.
 """
 
 import pandas as pd
 import pepfeature as pep
-
-sample_df = pd.read_csv('data/Sample_Data.csv')
-model_df = pd.read_csv("data/Model_Data.csv")
-
-
-
+import pkg_resources
 
 if __name__ == '__main__':
+
+    sample = pkg_resources.resource_filename('pepfeature', 'data/Sample_Data.csv')
+    model = pkg_resources.resource_filename('pepfeature', "data/Model_Data.csv")
+    sample_df = pd.read_csv(sample)
+    model_df = pd.read_csv(model)
 
     r = 10
     sample_df = sample_df.loc[range(r)]
     model_df = model_df.loc[range(r)]
-
-    # sample_df = sample_df.tail(1)
-    # model_df = model_df.tail(1)
-
-
-
-    # pep.all_features.calc_csv(dataframe= sample_df.copy(), k=2, save_folder='', aa_column= 'Info_window_seq', Ncores=4, chunksize= None)
-
-
 
     #Calculating all features
     sample_df = pep.aa_all_feat.calc_df(dataframe=sample_df, k=2, Ncores=4)

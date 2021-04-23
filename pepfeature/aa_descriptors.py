@@ -13,8 +13,6 @@ import pandas as pd
 import pkg_resources
 
 
-# DB_FILE = pkg_resources.resource_filename('<package name>', 'data/sqlite.db')
-
 def _algorithm(dataframe: object, aa_column: str = 'Info_window_seq') -> object:
     """
     Not intended to be called directly by the user, use the functions calc_csv or calc_df instead as they have
