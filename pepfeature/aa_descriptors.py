@@ -10,6 +10,10 @@
 from pepfeature import _utils
 import numpy as np
 import pandas as pd
+import pkg_resources
+
+
+# DB_FILE = pkg_resources.resource_filename('<package name>', 'data/sqlite.db')
 
 def _algorithm(dataframe: object, aa_column: str = 'Info_window_seq') -> object:
     """
@@ -24,13 +28,14 @@ def _algorithm(dataframe: object, aa_column: str = 'Info_window_seq') -> object:
     :param aa_column: Name of column in dataframe consisting of Protein Sequences to process
     :return: A Pandas DataFrame containing the calculated features appended as new columns.
     """
-
+    DATA_PATH = pkg_resources.resource_filename('pepfeature', 'data/AAdescriptors.xlsx')
     # Dictionary mapping each Amino-Acid to its respective group-value
     AA_properties_df = []
     properties = ['crucianiProperties', 'kideraFactors', 'zScales', 'FASGAI', 'stScales', 'tScales', 'VHSE', 'ProtFP',
                   'BLOSUM','MSWHIM']
     for sheet in properties:
-        AA_properties_df.append(pd.read_excel('AAdescriptors.xlsx', sheet, index_col=0, header=0))
+        # AA_properties_df.append(pd.read_excel('data/AAdescriptors.xlsx', sheet, index_col=0, header=0))
+        AA_properties_df.append(pd.read_excel(DATA_PATH, sheet, index_col=0, header=0))
 
     for row in dataframe.itertuples():
 

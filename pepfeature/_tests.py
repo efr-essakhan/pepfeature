@@ -5,8 +5,8 @@
 import pandas as pd
 import pepfeature as pep
 
-sample_df = pd.read_csv('Sample_Data.csv')
-model_df = pd.read_csv("Model_Data.csv")
+sample_df = pd.read_csv('data/Sample_Data.csv')
+model_df = pd.read_csv("data/Model_Data.csv")
 
 
 

@@ -24,6 +24,8 @@ setup(
         "Programming Language :: Python :: 3.8",
     ],
     packages=["pepfeature"],
+    package_dir={'pepfeature': 'pepfeature/pepfeature'},
+    package_data={'pepfeature': ['data/AAdescriptors.xlsx']},
     include_package_data=True,
     install_requires=["pandas", "numpy"],
     # entry_points={ WHAT SHOULD RUN WHENEVER THE PACKAGE IS EXECUTED AS: python -m pepfeature
