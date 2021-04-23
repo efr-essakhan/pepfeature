@@ -1,2 +1,2 @@
-include pepfeature/*.csv
+include pepfeature/data/*.csv
 include pepfeature/data/AAdescriptors.xlsx

@@ -18,7 +18,7 @@ __all__ = ["aa_all_feat", "aa_composition", "aa_CT", "aa_descriptors","aa_kmer_c
            , "aa_num_of_atoms", "aa_proportion", "aa_seq_entropy"]
 
 # Let users know if they're missing any of our hard dependencies
-hard_dependencies = ("pandas", "numpy")
+hard_dependencies = ("pandas", "numpy", "setuptools")
 missing_dependencies = []
 
 for dependency in hard_dependencies:

@@ -12,6 +12,7 @@ if __name__ == '__main__':
 
     sample = pkg_resources.resource_filename('pepfeature', 'data/Sample_Data.csv')
     model = pkg_resources.resource_filename('pepfeature', "data/Model_Data.csv")
+
     sample_df = pd.read_csv(sample)
     model_df = pd.read_csv(model)
 

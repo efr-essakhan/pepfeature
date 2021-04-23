@@ -28,7 +28,7 @@ setup(
     package_data={'pepfeature': ['data/AAdescriptors.xlsx', 'data/Sample_Data.csv', "data/Model_Data.csv"]},
     # data_files=[('pepfeature', ['data/AAdescriptors.xlsx', 'data/Sample_Data.csv', ])],
     include_package_data=True,
-    install_requires=["pandas", "numpy"],
+    install_requires=["pandas", "numpy", "setuptools"],
     # entry_points={ WHAT SHOULD RUN WHENEVER THE PACKAGE IS EXECUTED AS: python -m pepfeature
     #     "console_scripts": [
     #         "realpython=reader.__main__:main",
