@@ -4,9 +4,7 @@ import timeit
 
 if __name__ == '__main__':
 
-    cores_to_use = 1
-
-
+    cores_to_use = 4
 
     mysetup = '''
 import pepfeature as pep
@@ -20,6 +18,7 @@ rows_1000 = pd.read_csv('1000_seq.csv')
     
     '''
 
+    print(f'Running code with {cores_to_use} core multiprocessing...\n')
     # timeit statements
 
     #rows_10
