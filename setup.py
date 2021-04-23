@@ -24,7 +24,7 @@ setup(
         "Programming Language :: Python :: 3.8",
     ],
     packages=["pepfeature"],
-    package_dir={'pepfeature': 'pepfeature/pepfeature'},
+    # package_dir={'pepfeature': 'pepfeature/pepfeature'},
     package_data={'pepfeature': ['data/AAdescriptors.xlsx', 'data/Sample_Data.csv', "data/Model_Data.csv"]},
     # data_files=[('pepfeature', ['data/AAdescriptors.xlsx', 'data/Sample_Data.csv', ])],
     include_package_data=True,
