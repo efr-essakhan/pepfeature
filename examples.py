@@ -10,11 +10,13 @@ if __name__ == '__main__':
     # For timing purposes
     start = time.time()
 
-    #Import Sample Data that has Sample Amino-Acid sequences to run our calculations on
-    df = pd.read_csv('data/Sample_Data.csv')
+    #Import Sample Data that has Sample Amino-Acid sequences to run our calculations on (download from github: pepfeature/data/Sample_Data.csv)
+
+    df = pd.read_csv('pepfeature/data/Sample_Data.csv')
 
 
-    ##########Example Use cases. Make sure to: Uncomment what line you want to test & Set save_folder arguments to correct path of your choice
+    #Example Use cases: ##########################################
+    # Make sure to: Uncomment what line you want to test from below & Set save_folder arguments to correct path of your choice (tip: use "" <- to for save_Folder variable to save in working directory)
 
     savefolder =r"C:\Users\xbox_\Documents\Pepfeature DS"
 
@@ -28,7 +30,7 @@ if __name__ == '__main__':
 
 
 
-    '''Calculate features and output result as CSV'''
+    '''Calculate features individually and output result as CSV'''
     # pep.aa_molecular_weight.calc_csv(dataframe=df, save_folder=savefolder, aa_column='Info_window_seq'
     #                                  ,Ncores=4,chunksize=None)
 
@@ -61,15 +63,14 @@ if __name__ == '__main__':
     #                             , Ncores=4, chunksize=None, k=2)
 
 
-    '''Calculate features and output results as pandas DF'''
+    '''Calculate features individually and output results as pandas DF'''
     # print(pep.aa_molecular_weight.calc_df(dataframe=df, Ncores=4, aa_column='Info_window_seq'))
     # print(pep.aa_seq_entropy.calc_df(dataframe=df, Ncores=4, aa_column='Info_window_seq'))
     # print(pep.aa_num_of_atoms.calc_df(dataframe=df, Ncores=4, aa_column='Info_window_seq'))
-    print(pep.aa_descriptors.calc_df(dataframe=df, Ncores=4, aa_column='Info_window_seq'))
+    # print(pep.aa_descriptors.calc_df(dataframe=df, Ncores=4, aa_column='Info_window_seq'))
     # print(pep.aa_composition.calc_df(dataframe=df, Ncores=4, aa_column='Info_window_seq'))
     # print(pep.aa_proportion.calc_df(dataframe=df, Ncores=4, aa_column='Info_window_seq'))
     # print(pep.aa_CT.calc_df(dataframe=df, Ncores=4))
     # print(pep.aa_kmer_composition.calc_df(k=2, dataframe=df, Ncores=4, aa_column='Info_window_seq'))
 
     print(f'time taken: {time.time() - start}')
-
