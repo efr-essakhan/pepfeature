@@ -22,8 +22,8 @@ if __name__ == '__main__':
 
     '''Calculate all features at once'''
     #As CSV
-    # pep.aa_all_feat.calc_csv(dataframe=df, save_folder=savefolder,aa_column='Info_window_seq'
-    #                                  ,Ncores=4,chunksize=None, k=2)
+    pep.aa_all_feat.calc_csv(dataframe=df, save_folder=savefolder,aa_column='Info_window_seq'
+                                     ,Ncores=4,chunksize=None, k=2)
 
     # #As DF
     # pep.aa_all_feat.calc_df(dataframe=df, aa_column='Info_window_seq', Ncores=4, k=2)

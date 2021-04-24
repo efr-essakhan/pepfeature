@@ -30,28 +30,40 @@ def _algorithm(dataframe: object, k: int, aa_column: str = 'Info_window_seq') ->
     # python)
     df_copy = dataframe.copy()
 
+    # #Functions that will be run to create the dataframes with features
+    # functions = [
+    #     pep.aa_seq_entropy._algorithm,
+    #     pep.aa_num_of_atoms._algorithm,
+    #     pep.aa_molecular_weight._algorithm,
+    #     pep.aa_composition._algorithm,
+    #     pep.aa_descriptors._algorithm,
+    #     pep.aa_CT._algorithm,
+    #     pep.aa_proportion._algorithm,
+    #     #pep.aa_kmer_composition._calc_kmer_composition #This one requires different arguments so will have to deal with it seperatly
+    # ]
+
     #Functions that will be run to create the dataframes with features
     functions = [
-        pep.aa_seq_entropy._algorithm,
-        pep.aa_num_of_atoms._algorithm,
-        pep.aa_molecular_weight._algorithm,
-        pep.aa_composition._algorithm,
-        pep.aa_descriptors._algorithm,
-        pep.aa_CT._algorithm,
-        pep.aa_proportion._algorithm,
-        #pep.aa_kmer_composition._calc_kmer_composition #This one requires different arguments so will have to deal with it seperatly
+        pep.aa_seq_entropy.calc_df,
+        pep.aa_num_of_atoms.calc_df,
+        pep.aa_molecular_weight.calc_df,
+        pep.aa_composition.calc_df,
+        pep.aa_descriptors.calc_df,
+        pep.aa_CT.calc_df,
+        pep.aa_proportion.calc_df,
+        #pep.aa_proportion.calc_df #This one requires different arguments so will have to deal with it seperatly
     ]
 
     df_results_list = []
     for func in functions:
 
-        df_results_list.append(func(df_copy, aa_column))
+        df_results_list.append(func(df_copy, 1, aa_column)) #execute each function and store its result into a df
 
         #Refresh the Dataset for next use since in python everything is by reference
         df_copy = dataframe.copy()
 
     # Seperate line for k-mer as it requires extra 'k' argument
-    df_results_list.append(pep.aa_kmer_composition._algorithm(df_copy, k, aa_column))
+    df_results_list.append(pep.aa_kmer_composition.calc_df(dataframe=df_copy, Ncores=1, k=k, aa_column=aa_column))
 
     for df in df_results_list:
         #Remove original dataframe columns

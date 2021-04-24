@@ -68,19 +68,24 @@ def calculate_export_csv(dataframe, function, Ncores=1, chunksize=None, save_fol
 def calculate_return_df(dataframe, function, Ncores=1, aa_column='Info_window_seq',
                         **kwargs):
 
-    dataframe = _remove_invalid_aa(dataframe, aa_column)
+    dataframe = _remove_invalid_aa(dataframe, aa_column) #Data preprocessing
 
-    df_split = np.array_split(dataframe, Ncores)
+    if Ncores > 1: # if Ncore = 1 or lower then not point of multiprocessing
+        df_split = np.array_split(dataframe, Ncores)
 
-    ctx = mp.get_context(
-        'spawn')  # This guarantees that the Pool processes are just spawned and not forked from the parent process. Accordingly, none of them has access to the original DataFrame and all of them only need a tiny fraction of the parent's memory.
-    p = ctx.Pool(processes=Ncores)
+        ctx = mp.get_context(
+            'spawn')  # This guarantees that the Pool processes are just spawned and not forked from the parent process. Accordingly, none of them has access to the original DataFrame and all of them only need a tiny fraction of the parent's memory.
+        p = ctx.Pool(processes=Ncores)
 
-    # Running each of the chunks in list_df to one of the cores available and saving the DF with the features calculated as a csv
-    result_df = pd.concat(p.map(functools.partial(function, aa_column=aa_column, **kwargs), df_split))
+        # Running each of the chunks in list_df to one of the cores available and saving the DF with the features calculated as a csv
+        result_df = pd.concat(p.map(functools.partial(function, aa_column=aa_column, **kwargs), df_split))
 
-    p.close()
-    p.join()  # the process will complete and only then any code after can be ran
+        p.close()
+        p.join()  # the process will complete and only then any code after can be ran
+
+    else:
+        result_df = function(dataframe=dataframe, aa_column=aa_column, **kwargs)
+
 
     return result_df
 
