@@ -18,7 +18,7 @@ if __name__ == '__main__':
     #Example Use cases: ##########################################
     # Make sure to: Uncomment what line you want to test from below & Set save_folder arguments to correct path of your choice (tip: use "" <- to for save_Folder variable to save in working directory)
 
-    savefolder =r"C:\Users\xbox_\Documents\Pepfeature DS"
+    savefolder =r""
 
     '''Calculate all features at once'''
     #As CSV
