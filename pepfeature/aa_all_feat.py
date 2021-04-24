@@ -81,7 +81,7 @@ def _algorithm(dataframe: object, k: int, aa_column: str = 'Info_window_seq') ->
 
 def calc_csv(dataframe: object, k: int, save_folder: str, aa_column: str = 'Info_window_seq', Ncores: int = 1, chunksize: int = None):
     """
-    Calculates all features that this package calculates at once chunk by chunk from the inputted 'dataframe'.
+    Calculates all 8 features that this package calculates at once chunk by chunk from the inputted 'dataframe'.
     It saves each processed chunk as a CSV(s).
 
     Results appended as a new column to dataframe
@@ -97,13 +97,13 @@ def calc_csv(dataframe: object, k: int, save_folder: str, aa_column: str = 'Info
     :param Ncores: Number of cores to use. default=1
     :param chunksize: Number of rows to be processed at a time. default=None (Where a 'None' object denotes no chunks but the entire dataframe to be processed)
     """
-    _utils.calculate_export_csv(dataframe=dataframe, function=_algorithm, Ncores=Ncores,
-                                chunksize=chunksize, save_folder=save_folder, aa_column=aa_column, k=k)
+    _utils.multiprocessing_export_csv(dataframe=dataframe, function=_algorithm, Ncores=Ncores, chunksize=chunksize,
+                                      save_folder=save_folder, aa_column=aa_column, k=k)
 
 
 def calc_df(dataframe: object, k: int, Ncores: int = 1, aa_column: str = 'Info_window_seq'):
     """
-    Calculate all features that this package calculates at once
+    Calculate all 8 features that this package calculates at once
 
     Results appended as a new column to dataframe
 
@@ -114,5 +114,5 @@ def calc_df(dataframe: object, k: int, Ncores: int = 1, aa_column: str = 'Info_w
     :return: pandas DataFrame
     """
 
-    return _utils.calculate_return_df(dataframe=dataframe, function=_algorithm, Ncores=Ncores,
-                                      aa_column=aa_column, k=k)
+    return _utils.multiprocessing_return_df(dataframe=dataframe, function=_algorithm, Ncores=Ncores,
+                                            aa_column=aa_column, k=k)

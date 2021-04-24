@@ -71,8 +71,8 @@ def calc_csv(dataframe: object, save_folder: str, aa_column: str = 'Info_window_
     :param chunksize: Number of rows to be processed at a time. default=None (Where a 'None' object denotes no chunks but the entire dataframe to be processed)
     """
 
-    _utils.calculate_export_csv(dataframe=dataframe, function=_algorithm, Ncores=Ncores,
-                                chunksize=chunksize, save_folder=save_folder, aa_column=aa_column)
+    _utils.multiprocessing_export_csv(dataframe=dataframe, function=_algorithm, Ncores=Ncores, chunksize=chunksize,
+                                      save_folder=save_folder, aa_column=aa_column)
 
 
 def calc_df(dataframe: object, Ncores: int = 1, aa_column: str = 'Info_window_seq'):
@@ -87,5 +87,5 @@ def calc_df(dataframe: object, Ncores: int = 1, aa_column: str = 'Info_window_se
     :return: Pandas DataFrame
 
     """
-    return _utils.calculate_return_df(dataframe=dataframe, function=_algorithm, Ncores=Ncores,
-                                      aa_column=aa_column)
+    return _utils.multiprocessing_return_df(dataframe=dataframe, function=_algorithm, Ncores=Ncores,
+                                            aa_column=aa_column)

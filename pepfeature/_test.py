@@ -50,7 +50,7 @@ def execute(Ncores=4):
                 unmatched.append(str(column))  # will be used to compare the columns that don't mathch with each other
 
     print('____________________________________________________')
-    print('Result of test:')
+    print('Result of test of creating DF of each feature:')
     print('____________________________________________________')
 
     y = []
@@ -68,6 +68,14 @@ def execute(Ncores=4):
         print(f'100% accurate results produced by this package.')
     else:
         print(f'Names of unmathced features: {x}')
+
+
+    ###################################Test 2
+
+    print('____________________________________________________')
+    print('Result of test of creating DF and exporting as CSV:')
+    print('____________________________________________________')
+
 
 
 

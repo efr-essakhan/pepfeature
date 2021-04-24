@@ -34,7 +34,7 @@ def _remove_invalid_aa(df, aa_column):
 
 
 # Chunksize technique saves ram for processed results and results are processed in chunks
-def calculate_export_csv(dataframe, function, Ncores=1, chunksize=None, save_folder='',
+def multiprocessing_export_csv(dataframe, function, Ncores=1, chunksize=None, save_folder='',
                          aa_column='Info_window_seq',
                          **kwargs):  # **kwargs used as a compromise to generalise this function to also be compatible with k-mer calc routine
 
@@ -63,9 +63,11 @@ def calculate_export_csv(dataframe, function, Ncores=1, chunksize=None, save_fol
 
 
 
-
-def calculate_return_df(dataframe, function, Ncores=1, aa_column='Info_window_seq',
+def multiprocessing_return_df(dataframe, function, Ncores=1, aa_column='Info_window_seq',
                         **kwargs):
+    """Purpose of this wrapper function is to:
+        -Take in a function that calculates features and
+        -Excute that function utilizing multiprocessing functionality if Ncores>1"""
 
     dataframe = _remove_invalid_aa(dataframe, aa_column) #Data preprocessing
 

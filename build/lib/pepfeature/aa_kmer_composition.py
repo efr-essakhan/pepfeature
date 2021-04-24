@@ -88,8 +88,8 @@ def calc_csv(k: int, dataframe: object, save_folder: str, aa_column: str = 'Info
     :param Ncores: Number of cores to use. default=1
     :param chunksize: Number of rows to be processed at a time. default=None (Where a 'None' object denotes no chunks but the entire dataframe to be processed)
     """
-    _utils.calculate_export_csv(dataframe=dataframe, function=_algorithm, Ncores=Ncores,
-                                chunksize=chunksize, save_folder=save_folder, aa_column=aa_column, k=k)
+    _utils.multiprocessing_export_csv(dataframe=dataframe, function=_algorithm, Ncores=Ncores, chunksize=chunksize,
+                                      save_folder=save_folder, aa_column=aa_column, k=k)
 
 def calc_df(k: int, dataframe: object, Ncores: int = 1, aa_column: str = 'Info_window_seq'):
     """
@@ -108,4 +108,5 @@ def calc_df(k: int, dataframe: object, Ncores: int = 1, aa_column: str = 'Info_w
     :param aa_column: Name of column in dataframe consisting of Amino-Acid sequences to process. Default='Info_window_seq'
     :return: pandas DataFrame
     """
-    return _utils.calculate_return_df(dataframe = dataframe, function = _algorithm, Ncores= Ncores, aa_column = aa_column, k=k)
+    return _utils.multiprocessing_return_df(dataframe=dataframe, function=_algorithm, Ncores=Ncores,
+                                            aa_column=aa_column, k=k)
