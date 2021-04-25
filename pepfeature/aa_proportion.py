@@ -17,7 +17,7 @@ def _algorithm(dataframe: object, aa_column: str = 'Info_window_seq') -> object:
 
     Calculates the proportion (out of 1) of each aminoacid in the peptides (Amino Acid Sequences).
 
-    Results appended as a new column named feat_Perc_{aa letter} e.g. feat_Perc_A, feat_Perc_C, ..., feat_Perc_Y.
+    Results appended as a new column named feat_Prop_{aa letter} e.g. feat_Prop_A, feat_Prop_C, ..., feat_Prop_Y.
 
     :param dataframe: A pandas DataFrame
     :param aa_column: Name of column in dataframe consisting of Protein Sequences to process
@@ -26,7 +26,7 @@ def _algorithm(dataframe: object, aa_column: str = 'Info_window_seq') -> object:
     valid_letters = ['A', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'Y']
     # Create columns
     for letter in valid_letters:
-        dataframe['feat_Perc_{}'.format(letter)] = 0
+        dataframe['feat_Prop_{}'.format(letter)] = 0
 
     for row in dataframe.itertuples():
 
@@ -55,9 +55,9 @@ def _algorithm(dataframe: object, aa_column: str = 'Info_window_seq') -> object:
 
 
 
-        # 2) Find out & set the percentage of each letter in the peptides
+        # 2) Find out & set the Propentage of each letter in the peptides
         for aa, freq in number_of_occurrences_of_letter_dict.items():
-            dataframe.loc[row.Index, f'feat_Perc_{aa}'] = (freq / length_of_peptide) #* 100
+            dataframe.loc[row.Index, f'feat_Prop_{aa}'] = (freq / length_of_peptide) #* 100
 
     return dataframe
 
@@ -70,8 +70,8 @@ def calc_csv(dataframe: object, save_folder: str, aa_column: str = 'Info_window_
     Calculates the proportion (out of 1) od each Amino-Acid in the peptides (Amino Acid Sequences) chunk by chunk of the inputted 'dataframe'.
     It saves each processed chunk as a CSV(s).
 
-    This results in 20 new features per chunk, appended as new columns named feat_Perc_{Amino-Acid letter} e.g. feat_Per_A,
-    feat_Perc_C, ..., feat_Perc_Y.
+    This results in 20 new features per chunk, appended as new columns named feat_Prop_{Amino-Acid letter} e.g. feat_Per_A,
+    feat_Prop_C, ..., feat_Prop_Y.
 
     This is a Ram efficient way of calculating the Features as the features are calculated on a single chunk of the dataframe (of
     chunksize number of rows) at a time and when a chunk has been been processed and saved as a CSV, then the chunk
@@ -90,7 +90,7 @@ def calc_df(dataframe: object, Ncores: int = 1, aa_column: str = 'Info_window_se
     """
      Calculates the proportion (out of 1) of each aminoacid in the peptides (Amino Acid Sequences).
 
-    Results appended as a new column named feat_Perc_{aa letter} e.g. feat_Perc_A, feat_Perc_C, ..., feat_Perc_Y.
+    Results appended as a new column named feat_Prop_{aa letter} e.g. feat_Prop_A, feat_Prop_C, ..., feat_Prop_Y.
 
     :param dataframe: A pandas DataFrame that contains a column/feature that is composed of purely Amino-Acid sequences (pepides).
     :param Ncores: Number of cores to use. default=1

@@ -16,9 +16,9 @@ def _algorithm(dataframe: object, aa_column: str = 'Info_window_seq') -> object:
 
     Calculates Frequency of AA types for given amino acid sequences
 
-    For each sequence calculates nine features corresponding to the percentage of each Amino Acid type in the sequences
+    For each sequence calculates nine features corresponding to the proportion (out of 1) of each Amino Acid type in the sequences
 
-    Results appended as a new columns named feat_perc_{group-value} e.g.  feat_Perc_Tiny, feat_Perc_Small etc.
+    Results appended as a new columns named feat_Prop_{group-value} e.g.  feat_Prop_Tiny, feat_Prop_Small etc.
 
     :param dataframe: A pandas DataFrame
     :param aa_column: Name of column in dataframe consisting of Protein Sequences to process
@@ -46,7 +46,7 @@ def _algorithm(dataframe: object, aa_column: str = 'Info_window_seq') -> object:
                 count += group_aa_values.count(aa)
 
             # set the frequency to corresponding columns for each row of the dataframe, column is automatically created if it doesn't exist
-            dataframe.loc[row.Index, 'feat_Perc_{}'.format(group_name)] = (count / peptide_length) #* 100
+            dataframe.loc[row.Index, 'feat_Prop_{}'.format(group_name)] = (count / peptide_length) #* 100
 
     return dataframe
 
@@ -58,7 +58,7 @@ def calc_csv(dataframe: object, save_folder: str, aa_column: str = 'Info_window_
     Calculates Frequency of AA types for given amino acid sequences chunk by chunk from the inputted 'dataframe'.
     It saves each processed chunk as a CSV(s).
 
-    Results appended as a new columns named feat_perc_{group-value} e.g.  feat_Perc_Tiny, feat_Perc_Small etc.
+    Results appended as a new columns named feat_Prop_{group-value} e.g.  feat_Prop_Tiny, feat_Prop_Small etc.
 
     This is a Ram efficient way of calculating the Features as the features are calculated on a single chunk of the dataframe (of
     chunksize number of rows) at a time and when a chunk has been been processed and saved as a CSV, then the chunk
@@ -79,9 +79,9 @@ def calc_df(dataframe: object, Ncores: int = 1, aa_column: str = 'Info_window_se
     """
     Calculates Frequency of AA types for given amino acid sequences
 
-    For each sequence calculates nine features corresponding to the percentage of each Amino Acid type in the sequences
+    For each sequence calculates nine features corresponding to the proportion (out of 1) of each Amino Acid type in the sequences
 
-    Results appended as a new columns named feat_perc_{group-value} e.g.  feat_Perc_Tiny, feat_Perc_Small etc.
+    Results appended as a new columns named feat_Prop_{group-value} e.g.  feat_Prop_Tiny, feat_Prop_Small etc.
 
     :param dataframe: A pandas DataFrame that contains a column/feature that is composed of purely Amino-Acid sequences (pepides).
     :param Ncores: Number of cores to use. default=1
@@ -92,3 +92,5 @@ def calc_df(dataframe: object, Ncores: int = 1, aa_column: str = 'Info_window_se
 
     return _utils.multiprocessing_return_df(dataframe=dataframe, function=_algorithm, Ncores=Ncores,
                                             aa_column=aa_column)
+
+

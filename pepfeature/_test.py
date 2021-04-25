@@ -15,14 +15,14 @@ import pandas as pd
 import pepfeature as pep
 import pkg_resources
 
-def execute(Ncores=4):
+def execute(Ncores=4, save_folder = ''):
     sample = pkg_resources.resource_filename('pepfeature', 'data/Sample_Data.csv')
     model = pkg_resources.resource_filename('pepfeature', "data/Model_Data.csv")
 
     sample_df = pd.read_csv(sample)
     model_df = pd.read_csv(model)
 
-    r = 10
+    r = 103
     sample_df = sample_df.loc[range(r)]
     model_df = model_df.loc[range(r)]
 
@@ -70,11 +70,26 @@ def execute(Ncores=4):
         print(f'Names of unmathced features: {x}')
 
 
-    ###################################Test 2
+    ###################################Test 2: check if CSV function works
+    print('____________________________________________________')
+    print('For testing sake: Creating DF and exporting as CSV:')
+    print('____________________________________________________')
+
+    sample = pkg_resources.resource_filename('pepfeature', 'data/Sample_Data.csv')
+
+    sample_df = pd.read_csv(sample)
+
+    sample_df = sample_df.loc[range(r)]
+
+
+    pep.aa_all_feat.calc_csv(dataframe=sample_df, save_folder=save_folder, aa_column='Info_window_seq'
+                             , Ncores=Ncores, chunksize=None, k=2)
 
     print('____________________________________________________')
-    print('Result of test of creating DF and exporting as CSV:')
+    print(f'Please check the CSV that has been created in folder location: {save_folder}')
     print('____________________________________________________')
+
+
 
 
 
