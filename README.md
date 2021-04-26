@@ -1,15 +1,22 @@
-
------------------
-
-# Pepfeature: A package that consists of functions for calculating epitope/peptide features for prediction purposes
+# Pepfeature
+## _A package that consists of functions for calculating epitope/peptide features for prediction purposes_
 
 
 
-## What is it
+### What is it
 
-**pepfeature** is a Python package providing fast and flexible algorithms and functions
-for the feature calculation of epitope features which can be used for macine learning purposes such as classification for epitiope prediction.
+**Pepfeature** is a Python package providing routines for calculating peptide features on a given amino acid sequence.
+These features can be used for macine learning purposes such as classification for epitiope prediction.
 
+### Pepfeature Requirements
+**Required Software/Tools/Dependencies:**  
+- Python 3.7
+
+**Required Package Dependencies:**  
+- panadas
+- numpy
+- setuptools
+- openpyxl
 
 ## Installation
 
