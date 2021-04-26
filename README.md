@@ -38,6 +38,7 @@ df = pd.read_csv('pepfeature/data/Sample_Data.csv')
 
 #Use of pepfeature
 if __name__ == '__main__':
+    #Calculate all features on df
     df_feat = pep.aa_all_feat.calc_df(dataframe=df, aa_column='Info_window_seq', Ncores=4, k=2)
  
     print(df_feat)
