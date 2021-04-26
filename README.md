@@ -13,10 +13,16 @@ These features can be used for macine learning purposes such as classification f
 - Python 3.8
 
 **Required Package Dependencies:**  
-- panadas
-- numpy
-- setuptools
-- openpyxl
+(The Package has been tested on these verstions of the dependancies. Updated versions may also be compatible with the Package)
+- et-xmlfile v1.1.0
+- setuptools v56.0.0
+- numpy v1.20.2
+- openpyxl v3.0.7
+- pandas v1.2.4
+- python-dateutil v2.8.1
+- pytz v2021.1
+- six v1.15.0
+
 
 ## Installation
 
@@ -27,8 +33,12 @@ pip install Pepfeature
 The source code is currently hosted on GitHub at: https://github.com/essakh/pepfeature
 
 ## Example Use
-**NOTE: The Github contains an 'examples.py' with many example use cases**
+**NOTE: The Github contains an 'examples.py' in the root folder with many example use cases**
 
+**Ensure at all times that any lines of code that utilize this package are encapsulated within the code block:**
+```python
+if __name__ == '__main__':
+```
 Example:
 ```python
 import pepfeature as pep
@@ -45,12 +55,10 @@ if __name__ == '__main__':
 ```
 
 
-## How to use it
+## API
 
-**Ensure at all times that any lines of code that utilize this package are encapsulated within the code block.**
-```python
-if __name__ == '__main__':
-```
+The API follows this structure:
+![line of code](.pictures/generic_string.png)
 
 Please see pepfeature/examples.py for example use cases.
 
