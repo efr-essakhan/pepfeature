@@ -33,7 +33,7 @@ def _algorithm(dataframe: object, aa_column: str = 'Info_window_seq') -> object:
                   'BLOSUM','MSWHIM']
     for sheet in properties:
         # AA_properties_df.append(pd.read_excel('data/AAdescriptors.xlsx', sheet, index_col=0, header=0))
-        AA_properties_df.append(pd.read_excel(DATA_PATH, sheet, index_col=0, header=0))
+        AA_properties_df.append(pd.read_excel(DATA_PATH, sheet,  engine = 'openpyxl', index_col=0, header=0))
 
     for row in dataframe.itertuples():
 
