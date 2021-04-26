@@ -1,7 +1,7 @@
 
 -----------------
 
-# Pepfeature (Alpha v 0.01): A package that consists of functions for calculating epitope/peptide features for prediction purposes
+# Pepfeature: A package that consists of functions for calculating epitope/peptide features for prediction purposes
 
 
 
@@ -15,9 +15,18 @@ for the feature calculation of epitope features which can be used for macine lea
 
 [Documentation underconstruction]
 
-Download pepfeature folder from this repo. You can use the pepfeature/examples.py script as a playing field.
+You can:
+pip install Pepfeature
 
-Make sure you have the modules pandas and numpy installed.
+Hard dependancies:
+
+-pandas
+-numpy
+-setuptools
+-openpyxl
+
+
+You can use the pepfeature/examples.py script as a playing field.
 
 (Tested on python 3.8)
 

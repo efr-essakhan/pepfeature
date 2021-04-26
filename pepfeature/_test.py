@@ -1,9 +1,11 @@
 """
     *** A private module ***
 
-    A Test:
-    To check the veracity of the results produced from the feature calculation algorithms of this package.
+    Two Tests on the package are carried out:
+    1) To check the veracity of the results produced from the feature calculation algorithms of this package.
     The test consists of code that first generates peptide features on Sample_Data.csv and compares each value of the output DataFrame with a Model Dataframe (Model_Data.csv) for accuracy.
+`   2) The test consists of code that first generates peptide features on Sample_Data.csv and then exports the results as a CSV.
+
 
     Usage:
         If pepfeature module is imported than call pepfeature._test.execute() in script
@@ -15,14 +17,14 @@ import pandas as pd
 import pepfeature as pep
 import pkg_resources
 
-def execute(Ncores=4, save_folder = ''):
+def execute(save_folder, Ncores):
     sample = pkg_resources.resource_filename('pepfeature', 'data/Sample_Data.csv')
     model = pkg_resources.resource_filename('pepfeature', "data/Model_Data.csv")
 
     sample_df = pd.read_csv(sample)
     model_df = pd.read_csv(model)
 
-    r = 103
+    r = 10
     sample_df = sample_df.loc[range(r)]
     model_df = model_df.loc[range(r)]
 
@@ -46,34 +48,30 @@ def execute(Ncores=4, save_folder = ''):
                 matched.append(str(column))
 
             else:
-                print(f'Model: {model_val} =/= Sample: {sample_val} ------- Model: {column}')
+                # print(f'Model: {model_val} =/= Sample: {sample_val} ------- Model: {column}')
                 unmatched.append(str(column))  # will be used to compare the columns that don't mathch with each other
 
-    print('____________________________________________________')
-    print('Result of test of creating DF of each feature:')
+    print('_____________TEST 1_______________________________________')
+    print('Result of test of creating DF (on Sample_Data.csv) consisting ALL feature calculated (using aa_all_feat.calc_df()):')
     print('____________________________________________________')
 
     y = []
     [y.append(i) for i in matched if i not in y]  # Removing duplicates
-    print(f'{len(y)} Matched features. Names of matched features:')
-    print(y)
-
-    print('____________________________________________________')
+    print(f'{len(y)} Matched features with Model_Data.csv.\n')
 
     x = []
     [x.append(i) for i in unmatched if i not in x]  # Removing duplicates
 
-    print(f'{len(x)} Umatched features.')
+    print(f'{len(x)} Umatched features with Model_Data.csv.')
     if len(x) == 0:
-        print(f'100% accurate results produced by this package.')
+        print(f'Thus, 100% accurate results produced by this package.')
     else:
-        print(f'Names of unmathced features: {x}')
+        print(f'Names of unmatched Model_Data.csv features: {x}')
 
 
     ###################################Test 2: check if CSV function works
-    print('____________________________________________________')
-    print('For testing sake: Creating DF and exporting as CSV:')
-    print('____________________________________________________')
+    print('__________________TEST 2__________________________________')
+    print('For testing sake: re-creating DF and exporting as CSV (using aa_all_feat.calc_csv()) ...')
 
     sample = pkg_resources.resource_filename('pepfeature', 'data/Sample_Data.csv')
 
@@ -85,17 +83,11 @@ def execute(Ncores=4, save_folder = ''):
     pep.aa_all_feat.calc_csv(dataframe=sample_df, save_folder=save_folder, aa_column='Info_window_seq'
                              , Ncores=Ncores, chunksize=None, k=2)
 
-    print('____________________________________________________')
-    print(f'Please check the CSV that has been created in folder location: {save_folder}')
-    print('____________________________________________________')
-
-
-
-
-
+    print(f'CSV created, please check the CSV that has been created in set folder location for accuracy')
+    print('____________________Test ENDED________________________________')
 
 if __name__ == '__main__':
-    execute(4)
+    execute(save_folder='', Ncores=4)
 
 
 

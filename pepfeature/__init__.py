@@ -1,6 +1,6 @@
 #__init__.py
 # Version of pepfeature package
-__version__ = "1.0.5"
+__version__ = "1.0.6"
 
 """Import all modules that exist in the current directory."""
 # Ref https://stackoverflow.com/a/60861023/
@@ -17,7 +17,7 @@ del import_module, Path
 __all__ = ["aa_all_feat", "aa_composition", "aa_CT", "aa_descriptors","aa_kmer_composition", "aa_molecular_weight"
            , "aa_num_of_atoms", "aa_proportion", "aa_seq_entropy", "_test"]
 
-# Let users know if they're missing any of our hard dependencies
+# Let users know if they're missing any hard dependencies to use the Package
 hard_dependencies = ("pandas", "numpy", "setuptools", "openpyxl")
 missing_dependencies = []
 
