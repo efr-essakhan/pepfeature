@@ -10,7 +10,7 @@ These features can be used for macine learning purposes such as classification f
 
 ## Pepfeature Requirements
 **Required Software/Tools:**  
-- Python 3.8
+- Tested on Python 3.8 (other Python 3 versions probably work too)
 
 **Required Package Dependencies:**  
 (Pepfeature has been tested on these versions of the dependancies. More recent versions of these dependancies may also be compatible with the Package.)
@@ -29,13 +29,13 @@ These features can be used for macine learning purposes such as classification f
 ```
 pip install Pepfeature
 ```
-(All missing dependancies are expected to be installed asswell with this 'pip install'.)
+(All dependancies are expected to be automatically installed asswell with this 'pip install pepfeature' command.)
 The source code is currently hosted on GitHub at: https://github.com/essakh/pepfeature
 
 ## Example Use
 **NOTE: The Github contains an 'examples.py' in the root folder with many example use cases**
 
-**Ensure at all times that any lines of code that utilize this package are encapsulated within the code block:**
+**Ensure at all times that any lines of code that utilize this package are executed within the code block:**
 ```python
 if __name__ == '__main__':
 ```
@@ -51,7 +51,7 @@ if __name__ == '__main__':
     #Calculate all features on df
     df_feat = pep.aa_all_feat.calc_df(dataframe=df, aa_column='Info_window_seq', Ncores=4, k=2)
  
-    print(df_feat)
+    print(df_feat) #print the data frame to console
 ```
 
 
