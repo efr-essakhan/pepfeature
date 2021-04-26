@@ -58,7 +58,7 @@ if __name__ == '__main__':
 ## API
 
 The API follows this structure:
-![line of code](.pictures/generic_string.png)
+![line of code](./pictures/generic_string.png)
 
 Please see pepfeature/examples.py for example use cases.
 
