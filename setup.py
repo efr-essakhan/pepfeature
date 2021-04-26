@@ -10,7 +10,7 @@ README = (HERE / "README.md").read_text()
 # This call to setup() does all the work
 setup(
     name="Pepfeature",
-    version="1.0.6",
+    version="1.0.8",
     description="A package that consists of functions for calculating epitope/peptide features for prediction purposes (Feature calculation/extraction)",
     long_description=README,
     long_description_content_type="text/markdown",
@@ -28,10 +28,14 @@ setup(
     package_data={'pepfeature': ['data/AAdescriptors.xlsx', 'data/Sample_Data.csv', "data/Model_Data.csv"]},
     # data_files=[('pepfeature', ['data/AAdescriptors.xlsx', 'data/Sample_Data.csv', ])],
     include_package_data=True,
-    install_requires=["pandas", "numpy", "setuptools", "openpyxl"],
-    # entry_points={ WHAT SHOULD RUN WHENEVER THE PACKAGE IS EXECUTED AS: python -m pepfeature
-    #     "console_scripts": [
-    #         "realpython=reader.__main__:main",
-    #     ]
-    # },
+    install_requires=[
+    "et-xmlfile>=1.1.0",
+	"numpy>=1.20.2",
+	"openpyxl>=3.0.7",
+	"pandas>=1.2.4",
+	"setuptools>=56.0.0",
+	"python-dateutil>=2.8.1",
+	"pytz>=2021.1",
+    "six>=1.15.0"
+    ],
 )

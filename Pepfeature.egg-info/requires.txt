@@ -1,4 +1,8 @@
-pandas
-numpy
-setuptools
-openpyxl
+et-xmlfile>=1.1.0
+numpy>=1.20.2
+openpyxl>=3.0.7
+pandas>=1.2.4
+setuptools>=56.0.0
+python-dateutil>=2.8.1
+pytz>=2021.1
+six>=1.15.0

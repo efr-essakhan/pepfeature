@@ -32,7 +32,7 @@ if __name__ == '__main__':
 
     '''Calculate features individually and output result as CSV'''
     # pep.aa_molecular_weight.calc_csv(dataframe=df, save_folder=savefolder, aa_column='Info_window_seq'
-    #                                  ,Ncores=4,chunksize=None)
+    #                                  ,Ncores=4,chunksize=30)
 
     # pep.aa_seq_entropy.calc_csv(dataframe=df, save_folder=savefolder,
     #                                  aa_column='Info_window_seq'

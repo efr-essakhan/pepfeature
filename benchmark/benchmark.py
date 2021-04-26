@@ -18,32 +18,32 @@ rows_1000 = pd.read_csv('1000_seq.csv')
     
     '''
 
-    # print(f'Running code with {cores_to_use} core multiprocessing...\n')
-    # # timeit statements
-    #
-    # #rows_10
-    # print("10 peptides: "+ str(timeit.timeit(setup=mysetup,stmt=f"pep.aa_all_feat.calc_df(dataframe=rows_10, aa_column='Info_window_seq', Ncores={cores_to_use}, k=2)",
-    #                     number=5)) + " s")
+    print(f'Running code with {cores_to_use} core multiprocessing...\n')
+    # timeit statements
 
-    # #rows_50
-    # print("50 peptides: " + str(timeit.timeit(setup=mysetup,
-    #                                           stmt=f"pep.aa_all_feat.calc_df(dataframe=rows_50, aa_column='Info_window_seq', Ncores={cores_to_use}, k=2)",
-    #                                           number=5)) + " s")
-    #
-    # #rows_100
-    # print("100 peptides: " + str(timeit.timeit(setup=mysetup,
-    #                                           stmt=f"pep.aa_all_feat.calc_df(dataframe=rows_100, aa_column='Info_window_seq', Ncores={cores_to_use}, k=2)",
-    #                                           number=5)) + " s")
-    #
-    # #rows_500
-    # print("500 peptides: " + str(timeit.timeit(setup=mysetup,
-    #                                           stmt=f"pep.aa_all_feat.calc_df(dataframe=rows_500, aa_column='Info_window_seq', Ncores={cores_to_use}, k=2)",
-    #                                           number=5)) + " s")
-    #
-    # #rows_1000
-    # print("1000 peptides: " + str(timeit.timeit(setup=mysetup,
-    #                                            stmt=f"pep.aa_all_feat.calc_df(dataframe=rows_1000, aa_column='Info_window_seq', Ncores={cores_to_use}, k=2)",
-    #                                            number=5)) + " s")
+    #rows_10
+    print("10 peptides: "+ str(timeit.timeit(setup=mysetup,stmt=f"pep.aa_all_feat.calc_df(dataframe=rows_10, aa_column='Info_window_seq', Ncores={cores_to_use}, k=2)",
+                        number=5)) + " s")
+
+    #rows_50
+    print("50 peptides: " + str(timeit.timeit(setup=mysetup,
+                                              stmt=f"pep.aa_all_feat.calc_df(dataframe=rows_50, aa_column='Info_window_seq', Ncores={cores_to_use}, k=2)",
+                                              number=5)) + " s")
+
+    #rows_100
+    print("100 peptides: " + str(timeit.timeit(setup=mysetup,
+                                              stmt=f"pep.aa_all_feat.calc_df(dataframe=rows_100, aa_column='Info_window_seq', Ncores={cores_to_use}, k=2)",
+                                              number=5)) + " s")
+
+    #rows_500
+    print("500 peptides: " + str(timeit.timeit(setup=mysetup,
+                                              stmt=f"pep.aa_all_feat.calc_df(dataframe=rows_500, aa_column='Info_window_seq', Ncores={cores_to_use}, k=2)",
+                                              number=5)) + " s")
+
+    #rows_1000
+    print("1000 peptides: " + str(timeit.timeit(setup=mysetup,
+                                               stmt=f"pep.aa_all_feat.calc_df(dataframe=rows_1000, aa_column='Info_window_seq', Ncores={cores_to_use}, k=2)",
+                                               number=5)) + " s")
 
 
 
