@@ -13,7 +13,7 @@ These features can be used for macine learning purposes such as classification f
 - Python 3.8
 
 **Required Package Dependencies:**  
-(The Package has been tested on these verstions of the dependancies. Updated versions may also be compatible with the Package)
+(Pepfeature has been tested on these versions of the dependancies. More recent versions of these dependancies may also be compatible with the Package.)
 - et-xmlfile v1.1.0
 - setuptools v56.0.0
 - numpy v1.20.2
