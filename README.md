@@ -20,7 +20,7 @@ The features it can calculate for a given Amino Acid string sequence are:
 | 7   | Molecular Weight                                 | 2.3.7                                                                | aa_molecular_weight.py                           |
 | 8   | AA descriptors                                   | 2.3.8                                                                | aa_descriptors.py                                |
 
-Additionally a module named aa_feat_all.py also exists and it contains functions to calculate all the eight features in one go and.
+Additionally a module named aa_feat_all.py also exists and it contains functions to calculate all the eight features in one go.
 
 
 ## Pepfeature Requirements
