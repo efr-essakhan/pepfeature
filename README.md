@@ -74,7 +74,7 @@ Also see the attached API of each function/ algorithm, for a complete documentat
 ## Functions documentation
 ### aa_all_feat
 This module contains methods to Calculate all features that this package is capable of calculating in one go, the functions callable either return results as a pandas DataFrame or a CSV.
-##### pepfeature.aa_all_feat.calc_csv
+#### pepfeature.aa_all_feat.calc_csv
  Calculates all 8 features that this package calculates at once chunk by chunk from the inputted 'dataframe'. It saves each processed chunk as a CSV(s).
  
   This is a Ram efficient way of calculating the Features as the features are calculated on a single chunk of the dataframe (of chunksize number of rows) at a time and when a chunk has been been processed and saved as a CSV, then the chunk is deleted freeing up RAM.
@@ -97,7 +97,7 @@ pepfeature.aa_all_feat.calc_csv(dataframe, k, save_folder, aa_column = 'Info_win
 - **`chunksize`** : `int`,  `Default=None`
     - Number of rows to be processed at a time. (Where a 'None' object denotes no chunks but the entire dataframe to be processed)
 
-##### pepfeature.aa_all_feat.calc_df
+#### pepfeature.aa_all_feat.calc_df
 Calculate all 8 features that this package calculates at once Results appended as a new column to input dataframe.
 ```python
 pepfeature.aa_all_feat.calc_df(dataframe, k, Ncores = 1, aa_column= 'Info_window_seq')
