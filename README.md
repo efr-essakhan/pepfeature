@@ -67,7 +67,6 @@ Then you will have the following possible API interfacing options, as illustrate
 ![line of code](pictures/generic_string.PNG)
 Please see pepfeature/examples.py on the Github repo for example use cases.
 
-Also see the attached API of each function/ algorithm, for a complete documentation.
 ## The Data Frame format to input into interface functions
 
 The interface functions are calc_csv & calc_df. They have been detailed in respect to each module in the following section "Functions documentation",
