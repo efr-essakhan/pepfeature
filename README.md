@@ -55,9 +55,17 @@ if __name__ == '__main__':
 ```
 
 
-## API
+## Understanding the API
 
-The API interface consists of calling two functions from 9 possibile modules, an overview of the modules and the two callable functions are illustrated in the figure below:
+The API interface consists of calling two functions from 9 possibile modules, an overview of the modules and their two callable functions are illustrated in the figure below:
+
+![line of code](pictures/pepfeature_public_modules_and_functions.PNG)
+
+Thus, if in your python script you:
+```python
+import pepfeature
+```
+Then you you will have the following possible API interfacing options, as illustrated in the image below:
 
 ![line of code](pictures/generic_string.PNG)
 
