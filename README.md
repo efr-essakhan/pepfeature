@@ -83,13 +83,19 @@ Also see the attached API of each function/ algorithm, for a complete documentat
 pepfeature.aa_all_feat.calc_csv(dataframe, k, save_folder, aa_column = 'Info_window_seq', Ncores = 1, chunksize = None)
 ```
  **Parameters:**
-- **`dataframe`** : DataFrame object
-tab-separated values table with neoantigen candidates represented by long mutated peptide sequences
-- `k`: tab-separated values table with neoantigen candidates represented by long mutated peptide sequences
-- `save_folder`: tab-separated values table with neoantigen candidates represented by long mutated peptide sequences
-- `aa_column`: tab-separated values table with neoantigen candidates represented by long mutated peptide sequences
-- `candidate-file`: tab-separated values table with neoantigen candidates represented by long mutated peptide sequences
-- `candidate-file`: tab-separated values table with neoantigen candidates represented by long mutated peptide sequences
+- **`dataframe`** : `Pandas DataFrame object`
+    - A pandas DataFrame that contains a column/feature that is composed of purely Amino-Acid sequences (pepides).
+- **`k`** : `int`
+    - Length of subsequences (this is used to calculate k-mer composition features)
+- **`save_folder`** : `str`
+    - Path to folder for saving the output as CSV
+- **`aa_column`** : `str`,  `Default='Info_window_seq'`
+    - Name of column in dataframe input consisting of the Amino-Acid sequences to process.
+- **`Ncores`** : `int`,  `Default=1`
+    - Number of cores to use for executing function (multiprocessing).
+- **`chunksize`** : `int`,  `Default=None`
+    - Number of rows to be processed at a time. (Where a 'None' object denotes no chunks but the entire dataframe to be processed)
+
 
  
 
