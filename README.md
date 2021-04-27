@@ -82,9 +82,17 @@ Also see the attached API of each function/ algorithm, for a complete documentat
 ```python
 pepfeature.aa_all_feat.calc_csv(dataframe, k, save_folder, aa_column = 'Info_window_seq', Ncores = 1, chunksize = None)
 ```
+ **Parameters:**
+- **`dataframe`** : DataFrame object
+tab-separated values table with neoantigen candidates represented by long mutated peptide sequences
+- `k`: tab-separated values table with neoantigen candidates represented by long mutated peptide sequences
+- `save_folder`: tab-separated values table with neoantigen candidates represented by long mutated peptide sequences
+- `aa_column`: tab-separated values table with neoantigen candidates represented by long mutated peptide sequences
+- `candidate-file`: tab-separated values table with neoantigen candidates represented by long mutated peptide sequences
+- `candidate-file`: tab-separated values table with neoantigen candidates represented by long mutated peptide sequences
 
  
- **Parameters**
+
  
 
 
