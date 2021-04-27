@@ -220,6 +220,19 @@ This is a Ram efficient way of calculating the Features as the features are calc
 ```python
 pepfeature.aa_descriptors.calc_csv(dataframe, save_folder, aa_column = 'Info_window_seq', Ncores = 1, chunksize = None)
 ```
+ **Parameters:**
+- **`dataframe`** : `Pandas DataFrame object`
+    - A pandas DataFrame that contains a column/feature that is composed of purely Amino-Acid sequences (pepides).
+- **`save_folder`** : `str`
+    - Path to folder for saving the output as CSV
+- **`aa_column`** : `str`,  `Default='Info_window_seq'`
+    - Name of column in dataframe input consisting of the Amino-Acid sequences to process.
+- **`Ncores`** : `int`,  `Default=1`
+    - Number of cores to use for executing function (multiprocessing).
+- **`chunksize`** : `int`,  `Default=None`
+    - Number of rows to be processed at a time. (Where a 'None' object denotes no chunks but the entire dataframe to be processed)
+    
+
 #### pepfeature.aa_descriptors.calc_df
 
 ```python
@@ -283,6 +296,19 @@ This is a Ram efficient way of calculating the Features as the features are calc
 ```python
 pepfeature.aa_molecular_weight.calc_csv(dataframe, save_folder, aa_column = 'Info_window_seq', Ncores = 1, chunksize = None)
 ```
+ **Parameters:**
+- **`dataframe`** : `Pandas DataFrame object`
+    - A pandas DataFrame that contains a column/feature that is composed of purely Amino-Acid sequences (pepides).
+- **`save_folder`** : `str`
+    - Path to folder for saving the output as CSV
+- **`aa_column`** : `str`,  `Default='Info_window_seq'`
+    - Name of column in dataframe input consisting of the Amino-Acid sequences to process.
+- **`Ncores`** : `int`,  `Default=1`
+    - Number of cores to use for executing function (multiprocessing).
+- **`chunksize`** : `int`,  `Default=None`
+    - Number of rows to be processed at a time. (Where a 'None' object denotes no chunks but the entire dataframe to be processed)
+    
+
 #### pepfeature.aa_molecular_weight.calc_df
 
 ```python
@@ -296,6 +322,19 @@ This is a Ram efficient way of calculating the Features as the features are calc
 ```python
 pepfeature.aa_num_of_atomst.calc_csv(dataframe, save_folder, aa_column = 'Info_window_seq', Ncores = 1, chunksize = None)
 ```
+ **Parameters:**
+- **`dataframe`** : `Pandas DataFrame object`
+    - A pandas DataFrame that contains a column/feature that is composed of purely Amino-Acid sequences (pepides).
+- **`save_folder`** : `str`
+    - Path to folder for saving the output as CSV
+- **`aa_column`** : `str`,  `Default='Info_window_seq'`
+    - Name of column in dataframe input consisting of the Amino-Acid sequences to process.
+- **`Ncores`** : `int`,  `Default=1`
+    - Number of cores to use for executing function (multiprocessing).
+- **`chunksize`** : `int`,  `Default=None`
+    - Number of rows to be processed at a time. (Where a 'None' object denotes no chunks but the entire dataframe to be processed)
+    
+
 #### pepfeature.aa_num_of_atoms.calc_df
 
 ```python
@@ -307,8 +346,21 @@ This module contains functions to calculate all the proportion (out of 1) of eac
 #### pepfeature.aa_porportion.calc_csv
 This is a Ram efficient way of calculating the Features as the features are calculated on a single chunk of the dataframe (of chunksize number of rows) at a time and when a chunk has been been processed and saved as a CSV, then the chunk is deleted freeing up RAM.
 ```python
-pepfeature.aa_CT.calc_csv(dataframe, save_folder, aa_column = 'Info_window_seq', Ncores = 1, chunksize = None)
+pepfeature.aa_porportion.calc_csv(dataframe, save_folder, aa_column = 'Info_window_seq', Ncores = 1, chunksize = None)
 ```
+ **Parameters:**
+- **`dataframe`** : `Pandas DataFrame object`
+    - A pandas DataFrame that contains a column/feature that is composed of purely Amino-Acid sequences (pepides).
+- **`save_folder`** : `str`
+    - Path to folder for saving the output as CSV
+- **`aa_column`** : `str`,  `Default='Info_window_seq'`
+    - Name of column in dataframe input consisting of the Amino-Acid sequences to process.
+- **`Ncores`** : `int`,  `Default=1`
+    - Number of cores to use for executing function (multiprocessing).
+- **`chunksize`** : `int`,  `Default=None`
+    - Number of rows to be processed at a time. (Where a 'None' object denotes no chunks but the entire dataframe to be processed)
+
+
 #### pepfeature.aa_porportion.calc_df
 
 ```python
@@ -322,6 +374,19 @@ This is a Ram efficient way of calculating the Features as the features are calc
 ```python
 pepfeature.aa_seq_entropy.calc_csv(dataframe, save_folder, aa_column = 'Info_window_seq', Ncores = 1, chunksize = None)
 ```
+ **Parameters:**
+- **`dataframe`** : `Pandas DataFrame object`
+    - A pandas DataFrame that contains a column/feature that is composed of purely Amino-Acid sequences (pepides).
+- **`save_folder`** : `str`
+    - Path to folder for saving the output as CSV
+- **`aa_column`** : `str`,  `Default='Info_window_seq'`
+    - Name of column in dataframe input consisting of the Amino-Acid sequences to process.
+- **`Ncores`** : `int`,  `Default=1`
+    - Number of cores to use for executing function (multiprocessing).
+- **`chunksize`** : `int`,  `Default=None`
+    - Number of rows to be processed at a time. (Where a 'None' object denotes no chunks but the entire dataframe to be processed)
+    
+
 #### pepfeature.aa_seq_entropy.calc_df
 
 ```python
