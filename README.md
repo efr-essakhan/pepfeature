@@ -59,7 +59,7 @@ if __name__ == '__main__':
 
 The API interface consists of calling two functions from 9 possibile modules, an overview of the modules and the two callable functions are illustrated in the figure below:
 
-![line of code](pictures/generic_string.png)
+![line of code](pictures/generic_string.PNG)
 
 Please see pepfeature/examples.py for example use cases.
 
