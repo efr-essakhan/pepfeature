@@ -151,8 +151,6 @@ pepfeature.aa_all_feat.calc_df(dataframe, Ncores = 1, aa_column= 'Info_window_se
  **Parameters:**
 - **`dataframe`** : `Pandas DataFrame object`
     - A pandas DataFrame that contains a column/feature that is composed of purely Amino-Acid sequences (pepides).
-- **`k`** : `int`
-    - Length of subsequences (this is used to calculate k-mer composition features)
 - **`Ncores`** : `int`,  `Default=1`
     - Number of cores to use for executing function (multiprocessing).
 - **`aa_column`** : `str`,  `Default='Info_window_seq'`
@@ -178,7 +176,52 @@ This module contains functions to calculate AA descriptors features for given am
 ### aa_kmer_composition
 This module contains functions to calculate frequency of each k-length contiguous combination of subsequence of amino acid letters in the sequence.
 #### pepfeature.aa_kmer_composition.calc_csv
+Calculates frequency of each k-length contiguous combination of subsequence of amino acid letters in the sequence chunk by chunk from the inputted 'dataframe'. It saves each processed chunk as a CSV(s). 
+
+Since there are 20 valid Amino Acid letters, there can be 400 ( 20x20) possible 2-letter combination, 8000 (20x20x20) 3-letter combinations, etc. 
+
+Results appended as a new column named feat_Prop_{subsequence} e.g. feat_Prop_AB, feat_Prop_BC etc. 
+
+This is a Ram efficient way of calculating the Features as the features are calculated on a single chunk of the dataframe (of chunksize number of rows) at a time and when a chunk has been been processed and saved as a CSV, then the chunk is deleted freeing up RAM.
+```python
+pepfeature.aa_kmer_composition.calc_csv(k, dataframe, save_folder, aa_column = 'Info_window_seq', Ncores = 1, chunksize = None)
+```
+ **Parameters:**
+ - **`k`** : `int`
+    - Length of subsequences
+- **`dataframe`** : `Pandas DataFrame object`
+    - A pandas DataFrame that contains a column/feature that is composed of purely Amino-Acid sequences (pepides).
+- **`save_folder`** : `str`
+    - Path to folder for saving the output as CSV
+- **`aa_column`** : `str`,  `Default='Info_window_seq'`
+    - Name of column in dataframe input consisting of the Amino-Acid sequences to process.
+- **`Ncores`** : `int`,  `Default=1`
+    - Number of cores to use for executing function (multiprocessing).
+- **`chunksize`** : `int`,  `Default=None`
+    - Number of rows to be processed at a time. (Where a 'None' object denotes no chunks but the entire dataframe to be processed)
+
 #### pepfeature.aa_kmer_composition.calc_df
+Calculates frequency of each k-length contiguous combination of subsequence of amino acid letters in the sequence. (k-mers in a sequence are all the subsubsequence of length k.) 
+
+Since there are 20 valid Amino Acid letters, there can be 400 ( 20x20) possible 2-letter combination, 8000 (20x20x20) 3-letter combinations, etc.
+
+Results appended as a new column named feat_Prop_{subsequence} e.g. feat_Prop_AB, feat_Prop_BC etc.
+```python
+pepfeature.aa_kmer_composition.calc_df(k, dataframe, Ncores = 1, aa_column= 'Info_window_seq')
+```
+ **Parameters:**
+- **`k`** : `int`
+    - Length of subsequences
+- **`dataframe`** : `Pandas DataFrame object`
+    - A pandas DataFrame that contains a column/feature that is composed of purely Amino-Acid sequences (pepides).
+- **`Ncores`** : `int`,  `Default=1`
+    - Number of cores to use for executing function (multiprocessing).
+- **`aa_column`** : `str`,  `Default='Info_window_seq'`
+    - Name of column in dataframe input consisting of the Amino-Acid sequences to process.
+
+ **Returns:**
+ - **`Pandas DataFrame object`**
+    - A Pandas DataFrame containing the calculated features appended as new columns.
 
 ### aa_molecular_weight
 This module contains functions to calculate total molecular weight for given amino acid sequences.
