@@ -1,6 +1,7 @@
 # Pepfeature
 ### _A package that consists of functions for calculating epitope/peptide features for prediction purposes_
 
+
 ### What is it
 
 **Pepfeature** is a Python package providing routines for calculating peptide features on a given amino acid sequence.
@@ -73,7 +74,8 @@ The interface functions are calc_csv & calc_df. They have been detailed in respe
 
 Both the interface functions, viz. calc_csv & calc_df always take an argument 'dataframe' and 'aa_column' in all cases.
 
-The 'dataframe' parameter of both the calc_csv() & calc_df() functions require a pandas Data frame* with at least one column that consists of amino acid sequences; this column's name you must pass as the 'aa_column' parameter into calc_csv() & calc_df() aswell.
+The 'dataframe' parameter of both the calc_csv() & calc_df() functions require a pandas Data frame* with at least one column that consists of amino acid sequences; this column's name you must pass as the 'aa_column' parameter into calc_csv() & calc_df() aswell. 
+**Note: The Amino Acid sequences to calculate features on can be of varying sizes/lengths.**
 
 *in the example code shown in the 'Example Use' section of this documentation. The line 
 ```python
@@ -84,7 +86,18 @@ This Sample_Data.csv exists in the location pepfeature/data/Sample_Data.csv rela
 
 ## Functions documentation
 ### aa_all_feat
-This module contains methods to Calculate all features that this package is capable of calculating in one go, the functions callable either return results as a pandas DataFrame or a CSV.
+This module contains methods to Calculate all features that this package is capable of calculating in one go, the functions callable either return results as a pandas DataFrame or are exportes as a CSV.
+
+The features calculated by the functions are:
+1. Proportion of Individual Amino Acids in sequence
+2. k-mer Composition
+3. Conjoint Triad Frequencies
+4. Sequence Entropy
+5. Frequency of Amino Acid types
+6. Number of atoms
+7. Molecular Weight
+8. Amino Acid descriptors
+
 #### pepfeature.aa_all_feat.calc_csv
  Calculates all 8 features that this package calculates at once chunk by chunk from the inputted 'dataframe'. It saves each processed chunk as a CSV(s).
  
