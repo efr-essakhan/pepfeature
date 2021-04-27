@@ -223,7 +223,7 @@ pepfeature.aa_descriptors.calc_csv(dataframe, save_folder, aa_column = 'Info_win
 #### pepfeature.aa_descriptors.calc_df
 
 ```python
-pepfeature.aa_CT.calc_df(dataframe, Ncores = 1, aa_column= 'Info_window_seq')
+pepfeature.aa_descriptors.calc_df(dataframe, Ncores = 1, aa_column= 'Info_window_seq')
 ```
  
 ### aa_kmer_composition
@@ -286,7 +286,7 @@ pepfeature.aa_molecular_weight.calc_csv(dataframe, save_folder, aa_column = 'Inf
 #### pepfeature.aa_molecular_weight.calc_df
 
 ```python
-pepfeature.aa_seq_entropy.calc_df(dataframe, Ncores = 1, aa_column= 'Info_window_seq')
+pepfeature.aa_molecular_weight.calc_df(dataframe, Ncores = 1, aa_column= 'Info_window_seq')
 ```
 
 ### aa_num_of_atoms
@@ -299,7 +299,7 @@ pepfeature.aa_num_of_atomst.calc_csv(dataframe, save_folder, aa_column = 'Info_w
 #### pepfeature.aa_num_of_atoms.calc_df
 
 ```python
-pepfeature.aa_seq_entropy.calc_df(dataframe, Ncores = 1, aa_column= 'Info_window_seq')
+pepfeature.aa_num_of_atoms.calc_df(dataframe, Ncores = 1, aa_column= 'Info_window_seq')
 ```
 
 ### aa_porportion
@@ -312,7 +312,7 @@ pepfeature.aa_CT.calc_csv(dataframe, save_folder, aa_column = 'Info_window_seq',
 #### pepfeature.aa_porportion.calc_df
 
 ```python
-pepfeature.aa_seq_entropy.calc_df(dataframe, Ncores = 1, aa_column= 'Info_window_seq')
+pepfeature.aa_porportion.calc_df(dataframe, Ncores = 1, aa_column= 'Info_window_seq')
 ```
 
 ### aa_seq_entropy
