@@ -57,8 +57,9 @@ if __name__ == '__main__':
 
 ## API
 
-The API follows this structure:
-![line of code](./pictures/generic_string.png)
+The API interface consists of calling two functions from 9 possibile modules, an overview of the modules and the two callable functions are illustrated in the figure below:
+
+![line of code](pictures/generic_string.png)
 
 Please see pepfeature/examples.py for example use cases.
 
