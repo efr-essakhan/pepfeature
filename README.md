@@ -7,6 +7,22 @@
 **Pepfeature** is a Python package providing routines for calculating peptide features on a given amino acid sequence.
 These features can be used for macine learning purposes such as classification for epitiope prediction.
 
+The features it can calculate for a given Amino Acid string sequence are:
+
+| No. |                      Feature                     | Explanation and references to be found in this section of Report.pdf | Calculated in Pepfeature package's Python Module |
+|-----|:------------------------------------------------:|----------------------------------------------------------------------|--------------------------------------------------|
+| 1   | Proportion of Individual Amino Acids in sequence | 2.3.1                                                                | aa_proportion.py                                 |
+| 2   | k-mer Composition                                | 2.3.2                                                                | aa_kmer_composition.py                           |
+| 3   | Conjoint Triad Frequencies                       | 2.3.3                                                                | aa_CT.py                                         |
+| 4   | Sequence Entropy                                 | 2.3.4                                                                | aa_seq_entropy.py                                |
+| 5   | Frequency of AA types                            | 2.3.5                                                                | aa_composition.py                                |
+| 6   | Number of atoms                                  | 2.3.6                                                                | aa_num_of_atoms.py                               |
+| 7   | Molecular Weight                                 | 2.3.7                                                                | aa_molecular_weight.py                           |
+| 8   | AA descriptors                                   | 2.3.8                                                                | aa_descriptors.py                                |
+
+Additionally a module named aa_feat_all.py also exists and it contains functions to calculate all the eight features in one go and.
+
+
 ## Pepfeature Requirements
 **Required Software/Tools:**  
 - Tested on Python 3.8 (other Python 3 versions probably work too)
