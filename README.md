@@ -389,7 +389,7 @@ pepfeature.aa_molecular_weight.calc_df(dataframe, Ncores = 1, aa_column= 'Info_w
 
 ### aa_num_of_atoms
 This module contains functions to calculate for each given sequence the total number of atoms of each type in that sequence (which is essentially a weighted sum of the aminoacid numbers).
-#### pepfeature.aa_num_of_atomst.calc_csv
+#### pepfeature.aa_num_of_atoms.calc_csv
 Calculates for each given sequence the total number of
 atoms of each type in that sequence (which is essentially a weighted sum of the aminoacid numbers) chunk by chunk from the inputted 'dataframe'.
 It saves each processed chunk as a CSV(s).
@@ -398,7 +398,7 @@ Results appended as a new columns named feat_C_atoms, feat_H_atoms, feat_N_atoms
 
 This is a Ram efficient way of calculating the Features as the features are calculated on a single chunk of the dataframe (of chunksize number of rows) at a time and when a chunk has been been processed and saved as a CSV, then the chunk is deleted freeing up RAM.
 ```python
-pepfeature.aa_num_of_atomst.calc_csv(dataframe, save_folder, aa_column = 'Info_window_seq', Ncores = 1, chunksize = None)
+pepfeature.aa_num_of_atoms.calc_csv(dataframe, save_folder, aa_column = 'Info_window_seq', Ncores = 1, chunksize = None)
 ```
  **Parameters:**
 - **`dataframe`** : `Pandas DataFrame object`
