@@ -1,4 +1,4 @@
-# Pepfeature
+# Pepfeature V1.0.8
 ### _A package that consists of functions for calculating epitope/peptide features for prediction purposes_
 
 
@@ -28,7 +28,7 @@ Additionally a module named aa_feat_all.py also exists and it contains functions
 - Tested on Python 3.8 (other Python 3 versions probably work too)
 
 **Required Package Dependencies:**  
-(Pepfeature has been tested on these versions of the dependancies. More recent versions of these dependancies may also be compatible with the Package.)
+(Pepfeature has been tested on these versions of the dependancies. More recent/older versions of these dependancies may also be compatible with the Package.)
 - et-xmlfile v1.1.0
 - setuptools v56.0.0
 - numpy v1.20.2
