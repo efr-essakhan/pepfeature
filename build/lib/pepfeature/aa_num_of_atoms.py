@@ -27,7 +27,7 @@ def _algorithm(dataframe: object, aa_column: str = 'Info_window_seq') -> object:
     :return: A Pandas DataFrame containing the calculated features appended as new columns.
     """
 
-    # Dataframe holding the number of each type of atom (C, H, O, N, S) for each AA:
+    # Dataframe holding the number of each type of atom (C, H, O, N, S) for each Amino Acid:
     atom_groups_df = pd.DataFrame(data={'nC': [3, 3, 4, 5, 9, 2, 6, 6, 6, 6, 5, 4, 5, 5, 6, 3, 4, 5, 11, 9],
                                         'nH': [7, 7, 7, 9, 11, 5, 9, 13, 14, 13, 11, 8, 9, 10, 14, 7, 9, 11, 12, 11],
                                         'nN': [1, 1, 1, 1, 1, 1, 3, 1, 2, 1, 1, 2, 1, 2, 4, 1, 1, 1, 2, 1],

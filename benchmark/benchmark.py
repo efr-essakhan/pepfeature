@@ -1,10 +1,11 @@
 import pandas as pd
 import pepfeature as pep
 import timeit
+import statistics
 
 if __name__ == '__main__':
-
     cores_to_use = 4
+    times_to_run = 3
 
     mysetup = '''
 import pepfeature as pep
@@ -15,39 +16,17 @@ rows_50 = pd.read_csv('50_seq.csv')
 rows_100 = pd.read_csv('100_seq.csv')
 rows_500 = pd.read_csv('500_seq.csv')
 rows_1000 = pd.read_csv('1000_seq.csv')
-    
+
     '''
 
-    print(f'Running code with {cores_to_use} core multiprocessing...\n')
-    # timeit statements
+    print(f'Running code x{times_to_run} with {cores_to_use} core multiprocessing...\n')
 
-    #rows_10
-    print("10 peptides: "+ str(timeit.timeit(setup=mysetup,stmt=f"pep.aa_all_feat.calc_df(dataframe=rows_10, aa_column='Info_window_seq', Ncores={cores_to_use}, k=2)",
-                        number=5)) + " s")
+    csv_names = ['10_seq.csv', '50_seq.csv', '100_seq.csv', '500_seq.csv', '1000_seq.csv']
 
-    #rows_50
-    print("50 peptides: " + str(timeit.timeit(setup=mysetup,
-                                              stmt=f"pep.aa_all_feat.calc_df(dataframe=rows_50, aa_column='Info_window_seq', Ncores={cores_to_use}, k=2)",
-                                              number=5)) + " s")
-
-    #rows_100
-    print("100 peptides: " + str(timeit.timeit(setup=mysetup,
-                                              stmt=f"pep.aa_all_feat.calc_df(dataframe=rows_100, aa_column='Info_window_seq', Ncores={cores_to_use}, k=2)",
-                                              number=5)) + " s")
-
-    #rows_500
-    print("500 peptides: " + str(timeit.timeit(setup=mysetup,
-                                              stmt=f"pep.aa_all_feat.calc_df(dataframe=rows_500, aa_column='Info_window_seq', Ncores={cores_to_use}, k=2)",
-                                              number=5)) + " s")
-
-    #rows_1000
-    print("1000 peptides: " + str(timeit.timeit(setup=mysetup,
-                                               stmt=f"pep.aa_all_feat.calc_df(dataframe=rows_1000, aa_column='Info_window_seq', Ncores={cores_to_use}, k=2)",
-                                               number=5)) + " s")
-
-
-
-
+    for idx,csv in enumerate(["rows_10", "rows_50", "rows_100", "rows_500", "rows_1000" ]):
+        statement = f"pep.aa_all_feat.calc_df(dataframe={csv}, aa_column='Info_window_seq', Ncores={cores_to_use}, k=2)"
+        resutls = timeit.repeat(stmt=statement, setup=mysetup, repeat = times_to_run, number = 1, globals = None)
+        print(f"{csv_names[idx]}    min {min(resutls)} s , mean {statistics.mean(resutls)} s , max {max(resutls)} s")
 
 
 # def create_subset_datasets():

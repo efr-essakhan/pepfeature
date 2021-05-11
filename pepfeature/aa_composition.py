@@ -1,5 +1,5 @@
 """
-    This module contains methods to calculate Frequency of AA types for given amino acid sequences. Results
+    This module contains 2 functions to calculate Frequency of Amino Acid types for given amino acid sequences. Results
     returned as CSV(s) or DataFrame.
 
     Methods user can call from this module:
@@ -14,7 +14,7 @@ def _algorithm(dataframe: object, aa_column: str = 'Info_window_seq') -> object:
     Not intended to be called directly by the user, use the functions calc_csv or calc_df instead as they have
     multi-processing functionality and more.
 
-    Calculates Frequency of AA types for given amino acid sequences
+    Calculates Frequency of Amino Acid types for given amino acid sequences
 
     For each sequence calculates nine features corresponding to the proportion (out of 1) of each Amino Acid type in the sequences
 
@@ -55,7 +55,7 @@ def _algorithm(dataframe: object, aa_column: str = 'Info_window_seq') -> object:
 
 def calc_csv(dataframe: object, save_folder: str, aa_column: str = 'Info_window_seq', Ncores: int = 1, chunksize: int = None):
     """
-    Calculates Frequency of AA types for given amino acid sequences chunk by chunk from the inputted 'dataframe'.
+    Calculates Frequency of Amino Acid types for given amino acid sequences chunk by chunk from the inputted 'dataframe'.
     It saves each processed chunk as a CSV(s).
 
     Results appended as a new columns named feat_Prop_{group-value} e.g.  feat_Prop_Tiny, feat_Prop_Small etc.
@@ -77,7 +77,7 @@ def calc_csv(dataframe: object, save_folder: str, aa_column: str = 'Info_window_
 
 def calc_df(dataframe: object, Ncores: int = 1, aa_column: str = 'Info_window_seq'):
     """
-    Calculates Frequency of AA types for given amino acid sequences
+    Calculates Frequency of Amino Acid types for given amino acid sequences
 
     For each sequence calculates nine features corresponding to the proportion (out of 1) of each Amino Acid type in the sequences
 

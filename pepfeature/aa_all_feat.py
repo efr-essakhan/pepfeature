@@ -1,5 +1,6 @@
 """
-    This module contains methods to Calculate all features at once either returned as a DataFrame or stored into CSV.
+    This module contains methods to Calculate all features that this package is capable of calculating
+     in one go, the functions callable either return results as a pandas DataFrame or a CSV.
 
     Methods user can call from this module:
         calc_csv,
@@ -29,18 +30,6 @@ def _algorithm(dataframe: object, k: int, aa_column: str = 'Info_window_seq') ->
     # the original dataframe has parts deleted as chunks are returned by df_chunking (there is pass by reference in
     # python)
     df_copy = dataframe.copy()
-
-    # #Functions that will be run to create the dataframes with features
-    # functions = [
-    #     pep.aa_seq_entropy._algorithm,
-    #     pep.aa_num_of_atoms._algorithm,
-    #     pep.aa_molecular_weight._algorithm,
-    #     pep.aa_composition._algorithm,
-    #     pep.aa_descriptors._algorithm,
-    #     pep.aa_CT._algorithm,
-    #     pep.aa_proportion._algorithm,
-    #     #pep.aa_kmer_composition._calc_kmer_composition #This one requires different arguments so will have to deal with it seperatly
-    # ]
 
     #Functions that will be run to create the dataframes with features
     functions = [
@@ -92,9 +81,9 @@ def calc_csv(dataframe: object, k: int, save_folder: str, aa_column: str = 'Info
 
     :param dataframe: A pandas DataFrame that contains a column/feature that is composed of purely Amino-Acid sequences (pepides).
     :param k: Length of subsequences (this is used to calculate k-mer composition features)
-    :param save_folder: Path to folder for saving the output.
-    :param aa_column: Name of column in dataframe consisting of Amino-Acid sequences to process. Default='Info_window_seq'
-    :param Ncores: Number of cores to use. default=1
+    :param save_folder: Path to folder for saving the output as CSV.
+    :param aa_column: Name of column in dataframe input consisting of the Amino-Acid sequences to process. Default='Info_window_seq'
+    :param Ncores: Number of cores to use for executing function (multiprocessing). default=1
     :param chunksize: Number of rows to be processed at a time. default=None (Where a 'None' object denotes no chunks but the entire dataframe to be processed)
     """
     _utils.multiprocessing_export_csv(dataframe=dataframe, function=_algorithm, Ncores=Ncores, chunksize=chunksize,
@@ -105,13 +94,13 @@ def calc_df(dataframe: object, k: int, Ncores: int = 1, aa_column: str = 'Info_w
     """
     Calculate all 8 features that this package calculates at once
 
-    Results appended as a new column to dataframe
+    Results appended as a new column to input dataframe
 
     :param dataframe: A pandas DataFrame that contains a column/feature that is composed of purely Amino-Acid sequences (pepides).
     :param k: Length of subsequences (this is used to calculate k-mer composition features)
     :param Ncores: Number of cores to use. default=1
     :param aa_column: Name of column in dataframe consisting of Amino-Acid sequences to process. Default='Info_window_seq'
-    :return: pandas DataFrame
+    :return: A Pandas DataFrame containing the calculated features appended as new columns.
     """
 
     return _utils.multiprocessing_return_df(dataframe=dataframe, function=_algorithm, Ncores=Ncores,

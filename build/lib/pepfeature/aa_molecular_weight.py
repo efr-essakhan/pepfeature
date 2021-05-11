@@ -1,5 +1,5 @@
 """
-    This module contains methods to Calculates total molecular weight for given amino acid sequences. Results
+    This module contains methods to calculates total molecular weight for given amino acid sequences. Results
     returned as CSV(s) or DataFrame.
 
     Methods user can call from this module:
@@ -18,7 +18,7 @@ def _algorithm(dataframe: object, aa_column: str = 'Info_window_seq') -> object:
 
     Calculates total molecular weight of the sequence.
 
-    Calculated as a simple weighted sum of aminoacid counts, with AA weights
+    Calculated as a simple weighted sum of aminoacid counts, with Amino Acid weights
 
     Results appended as a new column named feat_molecular_weight
 
@@ -86,7 +86,8 @@ def calc_df(dataframe: object, Ncores: int = 1, aa_column: str = 'Info_window_se
     """
       Calculates total molecular weight of the sequence.
 
-    Calculated as a simple weighted sum of aminoacid counts, with AA weights
+    Calculated as a simple weighted sum of amino acid counts, with Amino Acid weights data.
+    Results appended as a new column named feat_molecular_weight
 
     :param dataframe: A pandas DataFrame that contains a column/feature that is composed of purely Amino-Acid sequences (pepides).
     :param Ncores: Number of cores to use. default=1

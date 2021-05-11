@@ -15,7 +15,7 @@ from datetime import datetime
 
 
 def _df_chunking(df, chunksize):
-    """Splits df into chunks, drops data of original df inplace"""
+    """Splits the df (pandas dataframe) into chunk & drops data of original df inplace"""
     count = 0  # Counter for chunks
     while len(df):
         count += 1

@@ -1,5 +1,5 @@
 """
-    This module contains methods to Calculate AA descriptors features for given amino acid sequences. Results
+    This module contains methods to Calculate Amino Acid descriptors features for given amino acid sequences. Results
     returned as CSV(s) or DataFrame.
 
     Methods user can call from this module:
@@ -18,7 +18,7 @@ def _algorithm(dataframe: object, aa_column: str = 'Info_window_seq') -> object:
     Not intended to be called directly by the user, use the functions calc_csv or calc_df instead as they have
     multi-processing functionality and more.
 
-    Calculates AA descriptors features
+    Calculates Amino Acid descriptors features
 
     Results appended as a new columns named feat_{property} e.g. feat_BLOSUM9
 
@@ -58,7 +58,7 @@ def _algorithm(dataframe: object, aa_column: str = 'Info_window_seq') -> object:
 
 def calc_csv(dataframe: object, save_folder: str, aa_column: str = 'Info_window_seq', Ncores: int = 1, chunksize: int = None):
     """
-    Calculates AA descriptors features for given amino acid sequences chunk by chunk from the inputted 'dataframe'.
+    Calculates Amino Acid descriptors features for given amino acid sequences chunk by chunk from the inputted 'dataframe'.
     It saves each processed chunk as a CSV(s).
 
     Results appended as a new columns named feat_{property} e.g. feat_BLOSUM9
@@ -80,7 +80,7 @@ def calc_csv(dataframe: object, save_folder: str, aa_column: str = 'Info_window_
 
 def calc_df(dataframe: object, Ncores: int = 1, aa_column: str = 'Info_window_seq'):
     """
- Calculates AA descriptors features
+ Calculates Amino Acid descriptors features
 
     Results appended as a new columns named feat_{property} e.g. feat_BLOSUM9
 
