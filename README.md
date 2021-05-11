@@ -1,4 +1,4 @@
-# Pepfeature V1.0.8
+# Pepfeature
 ### _A package that consists of functions for calculating epitope/peptide features for prediction purposes_
 
 
@@ -9,16 +9,16 @@ These features can be used for macine learning purposes such as classification f
 
 The features it can calculate for a given Amino Acid string sequence are:
 
-| No. |                      Feature                     | Explanation and references to be found in this section of Report.pdf | Calculated in Pepfeature package's Python Module |
+| No. |                      Feature                     | Explanation and references to be found in this section of Dissertation.pdf (GitHub repo) | Calculated in Pepfeature package's Python Module |
 |-----|:------------------------------------------------:|----------------------------------------------------------------------|--------------------------------------------------|
-| 1   | Proportion of Individual Amino Acids in sequence | 2.3.1                                                                | aa_proportion.py                                 |
-| 2   | k-mer Composition                                | 2.3.2                                                                | aa_kmer_composition.py                           |
-| 3   | Conjoint Triad Frequencies                       | 2.3.3                                                                | aa_CT.py                                         |
-| 4   | Sequence Entropy                                 | 2.3.4                                                                | aa_seq_entropy.py                                |
-| 5   | Frequency of AA types                            | 2.3.5                                                                | aa_composition.py                                |
-| 6   | Number of atoms                                  | 2.3.6                                                                | aa_num_of_atoms.py                               |
-| 7   | Molecular Weight                                 | 2.3.7                                                                | aa_molecular_weight.py                           |
-| 8   | AA descriptors                                   | 2.3.8                                                                | aa_descriptors.py                                |
+| 1   | Proportion of Individual Amino Acids in sequence | 2.2.1                                                                | aa_proportion.py                                 |
+| 2   | k-mer Composition                                | 2.2.2                                                                | aa_kmer_composition.py                           |
+| 3   | Conjoint Triad Frequencies                       | 2.2.3                                                                | aa_CT.py                                         |
+| 4   | Sequence Entropy                                 | 2.2.4                                                                | aa_seq_entropy.py                                |
+| 5   | Frequency of Amino Acid types                            | 2.2.5                                                                | aa_composition.py                                |
+| 6   | Number of atoms                                  | 2.2.6                                                                | aa_num_of_atoms.py                               |
+| 7   | Molecular Weight                                 | 2.2.7                                                                | aa_molecular_weight.py                           |
+| 8   | Amino Acid Descriptors                                   | 2.2.8                                                                | aa_descriptors.py                                |
 
 Additionally a module named aa_feat_all.py also exists and it contains functions to calculate all the eight features in one go.
 
@@ -28,7 +28,7 @@ Additionally a module named aa_feat_all.py also exists and it contains functions
 - Tested on Python 3.8 (other Python 3 versions probably work too)
 
 **Required Package Dependencies:**  
-(Pepfeature has been tested on these versions of the dependancies. More recent/older versions of these dependancies may also be compatible with the Package.)
+(Pepfeature has been tested on these versions of the dependancies. More recent versions of these dependancies may also be compatible with the Package.)
 - et-xmlfile v1.1.0
 - setuptools v56.0.0
 - numpy v1.20.2
@@ -158,9 +158,9 @@ pepfeature.aa_all_feat.calc_df(dataframe, k, Ncores = 1, aa_column= 'Info_window
 
 
 ### aa_composition
-This module contains functions to calculate Frequency of AA types for given amino acid sequences.
+This module contains functions to calculate Frequency of Amino Acid types for given amino acid sequences.
 #### pepfeature.aa_composition.calc_csv
-Calculates Frequency of AA types for given amino acid sequences chunk by chunk from the inputted 'dataframe'. It saves each processed chunk as a CSV(s). 
+Calculates Frequency of Amino Acid types for given amino acid sequences chunk by chunk from the inputted 'dataframe'. It saves each processed chunk as a CSV(s). 
 
 This is a Ram efficient way of calculating the Features as the features are calculated on a single chunk of the dataframe (of chunksize number of rows) at a time and when a chunk has been been processed and saved as a CSV, then the chunk is deleted freeing up RAM.
 
@@ -182,7 +182,7 @@ pepfeature.aa_composition.calc_csv(dataframe, save_folder, aa_column = 'Info_win
 
 #### pepfeature.aa_composition.calc_df
 
-Calculates Frequency of AA types for given amino acid sequences For each sequence calculates nine features corresponding to the proportion (out of 1) of each Amino Acid type in the sequences 
+Calculates Frequency of Amino Acid types for given amino acid sequences For each sequence calculates nine features corresponding to the proportion (out of 1) of each Amino Acid type in the sequences 
 
 Results appended as a new columns named feat_Prop_{group-value} e.g. feat_Prop_Tiny, feat_Prop_Small etc.
 ```python
@@ -249,9 +249,9 @@ pepfeature.aa_CT.calc_df(dataframe, Ncores = 1, aa_column= 'Info_window_seq')
 
  
 ### aa_descriptors
-This module contains functions to calculate AA descriptors features for given amino acid sequences.
+This module contains functions to calculate Amino Acid descriptors features for given amino acid sequences.
 #### pepfeature.aa_descriptors.calc_csv
-Calculates AA descriptors features for given amino acid sequences chunk by chunk from the inputted 'dataframe'.
+Calculates Amino Acid descriptors features for given amino acid sequences chunk by chunk from the inputted 'dataframe'.
 It saves each processed chunk as a CSV(s).
 
 Results appended as a new columns named feat_{property} e.g. feat_BLOSUM9
@@ -274,7 +274,7 @@ pepfeature.aa_descriptors.calc_csv(dataframe, save_folder, aa_column = 'Info_win
     
 
 #### pepfeature.aa_descriptors.calc_df
-Calculates AA descriptors features
+Calculates Amino Acid descriptors features
 
 Results appended as a new columns named feat_{property} e.g. feat_BLOSUM9
 
@@ -389,7 +389,7 @@ pepfeature.aa_molecular_weight.calc_df(dataframe, Ncores = 1, aa_column= 'Info_w
 
 ### aa_num_of_atoms
 This module contains functions to calculate for each given sequence the total number of atoms of each type in that sequence (which is essentially a weighted sum of the aminoacid numbers).
-#### pepfeature.aa_num_of_atoms.calc_csv
+#### pepfeature.aa_num_of_atomst.calc_csv
 Calculates for each given sequence the total number of
 atoms of each type in that sequence (which is essentially a weighted sum of the aminoacid numbers) chunk by chunk from the inputted 'dataframe'.
 It saves each processed chunk as a CSV(s).
@@ -398,7 +398,7 @@ Results appended as a new columns named feat_C_atoms, feat_H_atoms, feat_N_atoms
 
 This is a Ram efficient way of calculating the Features as the features are calculated on a single chunk of the dataframe (of chunksize number of rows) at a time and when a chunk has been been processed and saved as a CSV, then the chunk is deleted freeing up RAM.
 ```python
-pepfeature.aa_num_of_atoms.calc_csv(dataframe, save_folder, aa_column = 'Info_window_seq', Ncores = 1, chunksize = None)
+pepfeature.aa_num_of_atomst.calc_csv(dataframe, save_folder, aa_column = 'Info_window_seq', Ncores = 1, chunksize = None)
 ```
  **Parameters:**
 - **`dataframe`** : `Pandas DataFrame object`
