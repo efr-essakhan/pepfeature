@@ -10,7 +10,7 @@ README = (HERE / "README.md").read_text()
 # This call to setup() does all the work
 setup(
     name="Pepfeature",
-    version="1.0.8",
+    version="1.0.9",
     description="A package that consists of functions for calculating epitope/peptide features for prediction purposes (Feature calculation/extraction)",
     long_description=README,
     long_description_content_type="text/markdown",

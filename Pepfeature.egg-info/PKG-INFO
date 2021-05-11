@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: Pepfeature
-Version: 1.0.8
+Version: 1.0.9
 Summary: A package that consists of functions for calculating epitope/peptide features for prediction purposes (Feature calculation/extraction)
 Home-page: https://github.com/essakh/pepfeature
 Author: Essa Khan
