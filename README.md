@@ -1,11 +1,16 @@
 # Pepfeature
-### _A package that consists of functions for calculating epitope/peptide features for prediction purposes_
+### _A package for calculating epitope/peptide features for prediction purposes_
 
 
 ### What is it
 
 **Pepfeature** is a Python package providing routines for calculating peptide features on a given amino acid sequence.
-These features can be used for macine learning purposes such as classification for epitiope prediction.
+
+A use for this package would be for epitope prediction; here, this package would be used in the feature extraction stage of a machine learning pipeline for classification purposes.
+
+Package makes use of  ‘multiprocessing’ for the purpose of parallelising calculations on multiple cores.
+
+A nice feature of this package is that it allows easy **parallelisation of the calculations on multiple cores** by just passing the number of cores you want to use as a parameter.
 
 The features it can calculate for a given Amino Acid string sequence are:
 
@@ -24,10 +29,10 @@ Additionally a module named aa_feat_all.py also exists and it contains functions
 
 
 ## Pepfeature Requirements
-**Required Software/Tools:**  
+**Required Software/Tools:**
 - Tested on Python 3.8 (other Python 3 versions probably work too)
 
-**Required Package Dependencies:**  
+**Required Package Dependencies:**
 (Pepfeature has been tested on these versions of the dependancies. More recent versions of these dependancies may also be compatible with the Package.)
 - et-xmlfile v1.1.0
 - setuptools v56.0.0
@@ -65,7 +70,7 @@ df = pd.read_csv('pepfeature/data/Sample_Data.csv')
 if __name__ == '__main__':
     #Calculate all features on df
     df_feat = pep.aa_all_feat.calc_df(dataframe=df, aa_column='Info_window_seq', Ncores=4, k=2)
- 
+
     print(df_feat) #print the data frame to console
 ```
 
@@ -90,12 +95,12 @@ The interface functions are calc_csv & calc_df. They have been detailed in respe
 
 Both the interface functions, viz. calc_csv & calc_df always take an argument 'dataframe' and 'aa_column' in all cases.
 
-The 'dataframe' parameter of both the calc_csv() & calc_df() functions require a pandas Data frame* with at least one column that consists of amino acid sequences; this column's name you must pass as the 'aa_column' parameter into calc_csv() & calc_df() aswell. 
+The 'dataframe' parameter of both the calc_csv() & calc_df() functions require a pandas Data frame* with at least one column that consists of amino acid sequences; this column's name you must pass as the 'aa_column' parameter into calc_csv() & calc_df() aswell.
 **Note: The Amino Acid sequences to calculate features on can be of varying sizes/lengths.**
 
-*in the example code shown in the 'Example Use' section of this documentation. The line 
+*in the example code shown in the 'Example Use' section of this documentation. The line
 ```python
-df = pd.read_csv('pepfeature/data/Sample_Data.csv') 
+df = pd.read_csv('pepfeature/data/Sample_Data.csv')
 ```
 converts Sample_Data.csv into a pandas Data Frame to then feed into calc_csv() & calc_df().
 This Sample_Data.csv exists in the location pepfeature/data/Sample_Data.csv relative from the root of the Github repo. This csv can be used as sample data to try out the package and to gauge what is meant by "A pandas DataFrame that contains a column/feature that is composed of purely Amino-Acid sequences (pepides).".
@@ -116,9 +121,9 @@ The features calculated by the functions are:
 
 #### pepfeature.aa_all_feat.calc_csv
  Calculates all 8 features that this package calculates at once chunk by chunk from the inputted 'dataframe'. It saves each processed chunk as a CSV(s).
- 
+
   This is a Ram efficient way of calculating the Features as the features are calculated on a single chunk of the dataframe (of chunksize number of rows) at a time and when a chunk has been been processed and saved as a CSV, then the chunk is deleted freeing up RAM.
- 
+
  Results appended as a new column to input dataframe.
 ```python
 pepfeature.aa_all_feat.calc_csv(dataframe, k, save_folder, aa_column = 'Info_window_seq', Ncores = 1, chunksize = None)
@@ -160,11 +165,11 @@ pepfeature.aa_all_feat.calc_df(dataframe, k, Ncores = 1, aa_column= 'Info_window
 ### aa_composition
 This module contains functions to calculate Frequency of Amino Acid types for given amino acid sequences.
 #### pepfeature.aa_composition.calc_csv
-Calculates Frequency of Amino Acid types for given amino acid sequences chunk by chunk from the inputted 'dataframe'. It saves each processed chunk as a CSV(s). 
+Calculates Frequency of Amino Acid types for given amino acid sequences chunk by chunk from the inputted 'dataframe'. It saves each processed chunk as a CSV(s).
 
 This is a Ram efficient way of calculating the Features as the features are calculated on a single chunk of the dataframe (of chunksize number of rows) at a time and when a chunk has been been processed and saved as a CSV, then the chunk is deleted freeing up RAM.
 
-Results appended as a new columns named feat_Prop_{group-value} e.g. feat_Prop_Tiny, feat_Prop_Small etc. 
+Results appended as a new columns named feat_Prop_{group-value} e.g. feat_Prop_Tiny, feat_Prop_Small etc.
 ```python
 pepfeature.aa_composition.calc_csv(dataframe, save_folder, aa_column = 'Info_window_seq', Ncores = 1, chunksize = None)
 ```
@@ -182,7 +187,7 @@ pepfeature.aa_composition.calc_csv(dataframe, save_folder, aa_column = 'Info_win
 
 #### pepfeature.aa_composition.calc_df
 
-Calculates Frequency of Amino Acid types for given amino acid sequences For each sequence calculates nine features corresponding to the proportion (out of 1) of each Amino Acid type in the sequences 
+Calculates Frequency of Amino Acid types for given amino acid sequences For each sequence calculates nine features corresponding to the proportion (out of 1) of each Amino Acid type in the sequences
 
 Results appended as a new columns named feat_Prop_{group-value} e.g. feat_Prop_Tiny, feat_Prop_Small etc.
 ```python
@@ -202,7 +207,7 @@ pepfeature.aa_all_feat.calc_df(dataframe, Ncores = 1, aa_column= 'Info_window_se
 
 
 
- 
+
 ### aa_CT
 This module contains functions to calculate conjoint triads features for given amino acid sequences.
 #### pepfeature.aa_CT.calc_csv
@@ -247,7 +252,7 @@ pepfeature.aa_CT.calc_df(dataframe, Ncores = 1, aa_column= 'Info_window_seq')
     - A Pandas DataFrame containing the calculated features appended as new columns.
 
 
- 
+
 ### aa_descriptors
 This module contains functions to calculate Amino Acid descriptors features for given amino acid sequences.
 #### pepfeature.aa_descriptors.calc_csv
@@ -271,7 +276,7 @@ pepfeature.aa_descriptors.calc_csv(dataframe, save_folder, aa_column = 'Info_win
     - Number of cores to use for executing function (multiprocessing).
 - **`chunksize`** : `int`,  `Default=None`
     - Number of rows to be processed at a time. (Where a 'None' object denotes no chunks but the entire dataframe to be processed)
-    
+
 
 #### pepfeature.aa_descriptors.calc_df
 Calculates Amino Acid descriptors features
@@ -292,15 +297,15 @@ pepfeature.aa_descriptors.calc_df(dataframe, Ncores = 1, aa_column= 'Info_window
  **Returns:**
  - **`Pandas DataFrame object`**
     - A Pandas DataFrame containing the calculated features appended as new columns.
- 
+
 ### aa_kmer_composition
 This module contains functions to calculate frequency of each k-length contiguous combination of subsequence of amino acid letters in the sequence.
 #### pepfeature.aa_kmer_composition.calc_csv
-Calculates frequency of each k-length contiguous combination of subsequence of amino acid letters in the sequence chunk by chunk from the inputted 'dataframe'. It saves each processed chunk as a CSV(s). 
+Calculates frequency of each k-length contiguous combination of subsequence of amino acid letters in the sequence chunk by chunk from the inputted 'dataframe'. It saves each processed chunk as a CSV(s).
 
-Since there are 20 valid Amino Acid letters, there can be 400 ( 20x20) possible 2-letter combination, 8000 (20x20x20) 3-letter combinations, etc. 
+Since there are 20 valid Amino Acid letters, there can be 400 ( 20x20) possible 2-letter combination, 8000 (20x20x20) 3-letter combinations, etc.
 
-Results appended as a new column named feat_Prop_{subsequence} e.g. feat_Prop_AB, feat_Prop_BC etc. 
+Results appended as a new column named feat_Prop_{subsequence} e.g. feat_Prop_AB, feat_Prop_BC etc.
 
 This is a Ram efficient way of calculating the Features as the features are calculated on a single chunk of the dataframe (of chunksize number of rows) at a time and when a chunk has been been processed and saved as a CSV, then the chunk is deleted freeing up RAM.
 ```python
@@ -321,7 +326,7 @@ pepfeature.aa_kmer_composition.calc_csv(k, dataframe, save_folder, aa_column = '
     - Number of rows to be processed at a time. (Where a 'None' object denotes no chunks but the entire dataframe to be processed)
 
 #### pepfeature.aa_kmer_composition.calc_df
-Calculates frequency of each k-length contiguous combination of subsequence of amino acid letters in the sequence. (k-mers in a sequence are all the subsubsequence of length k.) 
+Calculates frequency of each k-length contiguous combination of subsequence of amino acid letters in the sequence. (k-mers in a sequence are all the subsubsequence of length k.)
 
 Since there are 20 valid Amino Acid letters, there can be 400 ( 20x20) possible 2-letter combination, 8000 (20x20x20) 3-letter combinations, etc.
 
@@ -365,7 +370,7 @@ pepfeature.aa_molecular_weight.calc_csv(dataframe, save_folder, aa_column = 'Inf
     - Number of cores to use for executing function (multiprocessing).
 - **`chunksize`** : `int`,  `Default=None`
     - Number of rows to be processed at a time. (Where a 'None' object denotes no chunks but the entire dataframe to be processed)
-    
+
 
 #### pepfeature.aa_molecular_weight.calc_df
  Calculates total molecular weight of the sequence.
@@ -411,7 +416,7 @@ pepfeature.aa_num_of_atomst.calc_csv(dataframe, save_folder, aa_column = 'Info_w
     - Number of cores to use for executing function (multiprocessing).
 - **`chunksize`** : `int`,  `Default=None`
     - Number of rows to be processed at a time. (Where a 'None' object denotes no chunks but the entire dataframe to be processed)
-    
+
 
 #### pepfeature.aa_num_of_atoms.calc_df
  Calculates for each given sequence the total number of
@@ -434,7 +439,7 @@ pepfeature.aa_num_of_atoms.calc_df(dataframe, Ncores = 1, aa_column= 'Info_windo
     - A Pandas DataFrame containing the calculated features appended as new columns.
 
 ### aa_porportion
-This module contains functions to calculate all the proportion (out of 1) of each Amino Acid in the peptide. 
+This module contains functions to calculate all the proportion (out of 1) of each Amino Acid in the peptide.
 #### pepfeature.aa_porportion.calc_csv
 Calculates the proportion (out of 1) od each Amino-Acid in the peptides (Amino Acid Sequences) chunk by chunk of the inputted 'dataframe'.
 It saves each processed chunk as a CSV(s).
@@ -503,7 +508,7 @@ pepfeature.aa_seq_entropy.calc_csv(dataframe, save_folder, aa_column = 'Info_win
     - Number of cores to use for executing function (multiprocessing).
 - **`chunksize`** : `int`,  `Default=None`
     - Number of rows to be processed at a time. (Where a 'None' object denotes no chunks but the entire dataframe to be processed)
-    
+
 
 #### pepfeature.aa_seq_entropy.calc_df
 Calculates the entropy of given amino acid sequences
@@ -526,7 +531,7 @@ pepfeature.aa_seq_entropy.calc_df(dataframe, Ncores = 1, aa_column= 'Info_window
 
 
 
- 
+
 
 
 
